@@ -8,6 +8,7 @@ Contains:
 from sqlalchemy.orm import relationship
 
 from models.base_model import Base
+from models.restaurant import Restaurant
 from models.user import User
 
 

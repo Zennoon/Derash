@@ -9,6 +9,7 @@ from sqlalchemy import Boolean, Column, Float, String
 from sqlalchemy.orm import relationship
 
 from models.base_model import Base
+from models.order import Order
 from models.user import User
 
 

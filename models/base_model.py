@@ -12,7 +12,7 @@ from uuid import uuid4
 from sqlalchemy import Column, DateTime, String
 from sqlalchemy.orm import declarative_base
 
-from models import db
+import models
 
 
 Base = declarative_base()
@@ -26,7 +26,9 @@ class BaseModel():
 
     def __init__(self, *args, **kwargs):
         """Initializes a new instance"""
-        self.id = uuid4() + uuid4()
+        self.id = str(uuid4()) + str(uuid4())
+        self.created_at = datetime.now()
+        self.updated_at = datetime.now()
         if kwargs is not None:
             for key in kwargs:
                 if key not in ["id", "created_at", "updated_at"]:
@@ -50,13 +52,15 @@ class BaseModel():
         dct["updated_at"] = dct["updated_at"].isoformat()
         if dct.get("_sa_instance_state") is not None:
             del dct["_sa_instance_state"]
+        if dct.get("password") is not None:
+            dct.pop("password")
         return (dct)
 
     def save(self):
         """Commit the instance to the storage session"""
-        db.new(self)
-        db.save()
+        models.db.new(self)
+        models.db.save()
 
     def delete(self):
         """Delete instance from storage"""
-        db.delete(self)
+        models.db.delete(self)

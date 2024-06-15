@@ -13,6 +13,7 @@ from models.base_model import Base, BaseModel
 
 class Review(BaseModel, Base):
     """A restaurant review made by a customer"""
+    __tablename__ = "reviews"
     customer_id = Column(String(120), ForeignKey("customers.id"),
                          nullable=False)
     restaurant_id = Column(String(120), ForeignKey("restaurants.id"),

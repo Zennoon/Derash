@@ -11,7 +11,6 @@ import random
 
 from sqlalchemy import Column, String
 
-from models import default_pics
 from models.base_model import BaseModel
 
 
@@ -23,4 +22,4 @@ class User(BaseModel):
     phone_num = Column(String(10), nullable=False)
     password = Column(String(20), nullable=False)
     image_file = Column(String(20), nullable=False,
-                        default=default_pics[random.randint(0, 9)])
+                        default="default_{}".format(random.randint(0, 9)))

@@ -9,4 +9,4 @@ from models.engine.db_storage import DBStorage
 
 
 db = DBStorage()
-default_pics = ["default_{}".format(i) for i in range(10)]
+db.reload()

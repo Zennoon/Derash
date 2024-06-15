@@ -9,12 +9,12 @@ import random
 
 from sqlalchemy import Column, ForeignKey, Float, String, Text
 
-from models import default_pics
 from models.base_model import Base, BaseModel
 
 
 class Dish(BaseModel, Base):
     """A dish that is served by a restaurant"""
+    __tablename__ = "dishes"
     name = Column(String(60), nullable=False)
     description = Column(Text, nullable=True)
     restaurant_id = Column(String(120), ForeignKey("restaurants.id"),
@@ -22,4 +22,4 @@ class Dish(BaseModel, Base):
     ingredients = Column(Text, nullable=False)
     price = Column(Float, nullable=False)
     image_file = Column(String(20), nullable=False,
-                        default=default_pics[random.randint(0, 9)])
+                        default="default_{}".format(random.randint(0, 9)))

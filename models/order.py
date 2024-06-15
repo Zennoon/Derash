@@ -13,6 +13,7 @@ from models.base_model import Base, BaseModel
 
 class Order(BaseModel, Base):
     """An order made by a customer"""
+    __tablename__ = "orders"
     customer_id = Column(String(120), ForeignKey("customers.id"),
                          nullable=False)
     driver_id = Column(String(120), ForeignKey("drivers.id"), nullable=False)
@@ -22,3 +23,4 @@ class Order(BaseModel, Base):
     destination_latitude = Column(Float, nullable=False)
     destination_longitude = Column(Float, nullable=False)
     dishes = Column(Text, nullable=False)
+    price = Column(Float, nullable=False)

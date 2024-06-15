@@ -10,8 +10,10 @@ import random
 from sqlalchemy import Column, Float, ForeignKey, String, Text
 from sqlalchemy.orm import relationship
 
-from models import default_pics
 from models.base_model import Base, BaseModel
+from models.dish import Dish
+from models.order import Order
+from models.review import Review
 
 
 class Restaurant(BaseModel, Base):
@@ -23,7 +25,7 @@ class Restaurant(BaseModel, Base):
     latitude = Column(Float, nullable=False)
     longitude = Column(Float, nullable=False)
     image_file = Column(String(20), nullable=False,
-                        default=default_pics[random.randint(0, 9)])
+                        default="default_{}".format(random.randint(0, 9)))
     all_orders = relationship("Order", backref="restaurant")
     dishes = relationship("Dish", backref="restaurant",
                           cascade="all, delete, delete-orphan")
