@@ -3,7 +3,8 @@
 Contains:
     Classes
     =======
-    User - Parent class to Customer, Owner, and Driver classes. Contains the common attributes that
+    User - Parent class to Customer, Owner, and Driver classes.
+    Contains the common attributes that
     all user instances must contains
 """
 import random
@@ -21,4 +22,5 @@ class User(BaseModel):
     email = Column(String(120), nullable=False, unique=True)
     phone_num = Column(String(10), nullable=False)
     password = Column(String(20), nullable=False)
-    image_file = Column(String(20), nullable=False, default=default_pics[random.randint(0, 9)])
+    image_file = Column(String(20), nullable=False,
+                        default=default_pics[random.randint(0, 9)])

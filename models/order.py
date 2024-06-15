@@ -13,9 +13,11 @@ from models.base_model import Base, BaseModel
 
 class Order(BaseModel, Base):
     """An order made by a customer"""
-    customer_id = Column(String(120), ForeignKey("customers.id"), nullable=False)
+    customer_id = Column(String(120), ForeignKey("customers.id"),
+                         nullable=False)
     driver_id = Column(String(120), ForeignKey("drivers.id"), nullable=False)
-    restaurant_id = Column(String(120), ForeignKey("restaurants.id", nullable=False))
+    restaurant_id = Column(String(120), ForeignKey("restaurants.id"),
+                           nullable=False)
     delivered = Column(Boolean, nullable=False, default=False)
     destination_latitude = Column(Float, nullable=False)
     destination_longitude = Column(Float, nullable=False)

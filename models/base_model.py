@@ -3,7 +3,8 @@
 Contains:
     Classes
     =======
-    BaseModel - Parent class for all the concrete classes. Contains all the common attributes
+    BaseModel - Parent class for all the concrete classes.
+    Contains all the common attributes
 """
 from datetime import datetime
 from uuid import uuid4
@@ -22,7 +23,7 @@ class BaseModel():
     id = Column(String(120), primary_key=True)
     created_at = Column(DateTime, nullable=False, default=datetime.now)
     updated_at = Column(DateTime, nullable=False, default=datetime.now)
-    
+
     def __init__(self, *args, **kwargs):
         """Initializes a new instance"""
         self.id = uuid4() + uuid4()
@@ -38,9 +39,10 @@ class BaseModel():
             dct.pop("_sa_instance_state")
         if dct.get("password") is not None:
             dct.pop("password")
-        return f"{self.__class__.__name__}({', '.join(["{}={}".format(key, val) 
-                                                       for key, val in dct.items()])})"
-    
+        c_name = self.__class__.__name__
+        args = ["{}={}".format(key, val) for key, val in dct.items()]
+        return f"{c_name}({', '.join(args)})"
+
     def to_dict(self):
         """Dictionary representation of the instance"""
         dct = self.__dict__.copy()

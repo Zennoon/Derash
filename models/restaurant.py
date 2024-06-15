@@ -22,13 +22,15 @@ class Restaurant(BaseModel, Base):
     owner_id = Column(String(120), ForeignKey("owners.id"), nullable=False)
     latitude = Column(Float, nullable=False)
     longitude = Column(Float, nullable=False)
-    image_file = Column(String(20), nullable=False, default=default_pics[random.randint(0, 9)])
+    image_file = Column(String(20), nullable=False,
+                        default=default_pics[random.randint(0, 9)])
     all_orders = relationship("Order", backref="restaurant")
     dishes = relationship("Dish", backref="restaurant",
                           cascade="all, delete, delete-orphan")
     reviews = relationship("Review", backref="restaurant",
                            cascade="all, delete, delete-orphan")
-    
+
     def get_pending_orders(self):
         """Returns the pending orders of the restaurant"""
-        return (list(filter(lambda order: order.delivered == False, self.all_orders)))
+        return (list(filter(lambda order: order.delivered is False,
+                            self.all_orders)))

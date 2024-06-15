@@ -17,7 +17,8 @@ class Customer(User, Base):
     all_orders = relationship("Order", backref="customer")
     reviews = relationship("Review", backref="customer",
                            cascade="all, delete, deelte-orphan")
-    
+
     def get_pending_orders(self):
         """Returns the pending orders of the customer"""
-        return (list(filter(lambda order: order.delivered == False, self.all_orders)))
+        return (list(filter(lambda order: order.delivered is False,
+                            self.all_orders)))
