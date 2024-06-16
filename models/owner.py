@@ -15,4 +15,5 @@ from models.user import User
 class Owner(User, Base):
     """A user who owns/manages restaurants"""
     __tablename__ = "owners"
-    restaurants = relationship("Restaurant", backref="owner")
+    restaurants = relationship("Restaurant", backref="owner",
+                               cascade="all, delete, delete-orphan")

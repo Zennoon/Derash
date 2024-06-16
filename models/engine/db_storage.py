@@ -59,7 +59,15 @@ class DBStorage():
 
     def get(self, cls, id):
         """Retrieves an object of the given class and with the given id from the database"""
-        obj = self.__session.query(cls).get(id)
+        obj = self.__session.query(cls).filter(cls.id == id).all()
+        if obj == []:
+            return (None)
+        return (obj[0])
+    
+    def filter_by_attr(self, cls, attr, val):
+        """Retrieves object(s) from database after filtering using an attribute value"""
+        objs = self.__session.query(cls).filter(cls.__dict__.get(attr) == val).all()
+        return (objs)
 
     def delete(self, obj):
         """Deletes an object from the database"""
