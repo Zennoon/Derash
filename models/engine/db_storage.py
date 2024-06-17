@@ -14,6 +14,7 @@ from models.base_model import Base
 from models.customer import Customer
 from models.dish import Dish
 from models.driver import Driver
+from models.order import Association
 from models.order import Order
 from models.owner import Owner
 from models.restaurant import Restaurant
