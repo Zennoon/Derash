@@ -5,6 +5,7 @@ A simplistic web application meant to connect food lovers, restaurant owners, an
 * [Technologies](#technologies)
 * [Installation](#installation)
 * [Models](#models)
+* [Tests](#tests)
 * [Installation](#installation)
 * [File Descriptions](#file-descriptions)
 * [Usage](#usage)
@@ -49,3 +50,10 @@ A concrete class representing an order that is made by a customer, prepared by a
 
 ### Review
 A concrete class representing a restaurant review that is made by a customer
+
+## Tests
+The tests directory contains unittest tests for the application
+### tests/test_models/
+Contains files which hold unittest test cases for the models
+### tests/test_models/test_engine/test_db_storage.py
+Contains unittest test cases for the storage engine
