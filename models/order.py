@@ -36,7 +36,7 @@ class Order(BaseModel, Base):
     delivered = Column(Boolean, nullable=False, default=False)
     destination_latitude = Column(Float, nullable=False)
     destination_longitude = Column(Float, nullable=False)
-    price = Column(Float, nullable=False)
+    price = Column(Float, nullable=False, default=0)
     dishes = relationship("Association", backref="order")
 
     def add_dish_to_order(self, dish):
@@ -48,3 +48,11 @@ class Order(BaseModel, Base):
             assoc.dish_id = dish.id
             models.db.new(assoc)
             models.db.save()
+
+    def calc_order_price(self):
+        """Calculates and assigns the total price of the order"""
+        self.price = 0
+        self.save()
+        for assoc in self.dishes:
+            self.price += assoc.dish.price
+        self.save()
