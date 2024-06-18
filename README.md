@@ -23,24 +23,24 @@ A simplistic web application meant to connect food lovers, restaurant owners, an
 * Install MySQL client and create a derash_db database, and a derash_user user
 * In the root directory of the project, run `python3 -m derash_flask.app`
 
-## Models
-### BaseModel
+## [Models](models)
+### [BaseModel](models/base_model.py)
 A base class containing all the common attributes of the concrete classes. It is inherited by all the other classes.
-### User
+### [User](models/user.py)
 Another inherited class that includes all common attributes of the three user types (customer, driver, and owner).
-### Customer
+### [Customer](models/customer.py)
 A concrete class representing a user that is able to make orders to a restaurant.
-### Driver
+### [Driver](models/driver.py)
 A concrete class representing a user that delivers orders from restaurants to customers
-### Owner
+### [Owner](models/owner.py)
 A concrete class representing a user that owns/manages restaurants
-### Restaurant
+### [Restaurant](models/restaurant.py)
 A concrete class representing a restaurant that accepts orders from customers
-### Dish
+### [Dish](models/dish.py)
 A concrete class representing a dish that a restaurant servers
-### Order
+### [Order](models/order.py)
 A concrete class representing an order that is made by a customer, prepared by a restaurant, and delivered by a driver.
-### Review
+### [Review](models/review.py)
 A concrete class representing a restaurant review that is made by a customer
 
 ## [Tests](tests)
