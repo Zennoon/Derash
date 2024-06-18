@@ -21,5 +21,9 @@ class Dish(BaseModel, Base):
                            nullable=False)
     ingredients = Column(Text, nullable=False)
     price = Column(Float, nullable=False)
-    image_file = Column(String(20), nullable=False,
-                        default="default_{}".format(random.randint(0, 9)))
+    image_file = Column(String(20), nullable=False)
+
+    def __init__(self, **kwargs):
+        """Initializes a new instance"""
+        self.image_file = "default_{}".format(random.randint(0, 9))
+        super().__init__(**kwargs)

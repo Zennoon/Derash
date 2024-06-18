@@ -21,5 +21,9 @@ class User(BaseModel):
     email = Column(String(120), nullable=False, unique=True)
     phone_num = Column(String(10), nullable=False)
     password = Column(String(20), nullable=False)
-    image_file = Column(String(20), nullable=False,
-                        default="default_{}".format(random.randint(0, 9)))
+    image_file = Column(String(20), nullable=False)
+
+    def __init__(self, **kwargs):
+        """Initializes a new instance"""
+        self.image_file = "default_{}".format(random.randint(0, 9))
+        super().__init__(**kwargs)
