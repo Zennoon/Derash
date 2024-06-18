@@ -15,7 +15,7 @@ A simplistic web application meant to connect food lovers, restaurant owners, an
 * [License](#license)
 
 ## Technologies
-![Python-logo](tech_logos/python-logo.jpeg?raw=true)
+<img src="tech_logos/python-logo.jpeg" width="100" height="100">
 
 ## Installation
 * Clone the repository: `git clone https://www.github.com/Zennoon/Derash.git`
