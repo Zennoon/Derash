@@ -28,7 +28,7 @@ class TestOwner(unittest.TestCase):
         self.owner.email = "barry@fastest1.com"
         self.owner.password = "FlASh."
         self.owner.phone_num = "0912345678"
-        
+
         self.owner.save()
         my_owner = db.get(Owner, self.owner.id)
         self.assertIs(self.owner, my_owner)
@@ -41,18 +41,17 @@ class TestOwner(unittest.TestCase):
         self.owner.password = "FlASh."
         self.owner.phone_num = "0912345678"
         self.owner.save()
-        
+
         my_owner = Owner()
         my_owner.first_name = "Barry"
         my_owner.last_name = "Allen"
         my_owner.email = "barry@fastest1.com"
         my_owner.password = "FlASh."
         my_owner.phone_num = "0912345678"
-        
+
         my_owner.save()
         my_owner2 = db.get(Owner, my_owner.id)
         self.assertIs(my_owner, my_owner2)
         my_owner.delete()
         my_owner2 = db.get(Owner, my_owner.id)
         self.assertIsNone(my_owner2)
-    

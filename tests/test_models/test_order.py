@@ -73,27 +73,30 @@ class TestOrderAttrs(unittest.TestCase):
         self.order.price = 125.45
         self.assertEqual(self.order.price, 125.45)
 
-    
+
 class TestOrderDB(unittest.TestCase):
     """Test casesfor Order class operations involving database"""
     def setUp(self):
         """Executed before each test/method"""
         self.customer = Customer(first_name="Ginger", last_name="Breadman",
-                                 email="ginger@islovely.com", password="Garlic@intshit",
+                                 email="ginger@islovely.com",
+                                 password="Garlic@intshit",
                                  phone_num="0913243546")
         self.customer.save()
 
         self.driver = Driver(first_name="Huey", last_name="Freeman",
-                             email="domestic@terrorist.com", password="R1leY&GrandDaD",
+                             email="domestic@terrorist.com",
+                             password="R1leY&GrandDaD",
                              phone_num="0909080706", license_num="B17327")
         self.driver.save()
 
         self.owner = Owner(first_name="Dora", last_name="TheExplorer",
-                         email="swiper@hater.com", password="B00t5",
-                         phone_num="0918273645")
+                           email="swiper@hater.com", password="B00t5",
+                           phone_num="0918273645")
         self.owner.save()
 
-        self.restaurant = Restaurant(name="Sushi Place", description="Serves Sushi",
+        self.restaurant = Restaurant(name="Sushi Place",
+                                     description="Serves Sushi",
                                      latitude=43.3452, longitude=34.4325,
                                      owner_id=self.owner.id)
         self.restaurant.save()
@@ -103,11 +106,13 @@ class TestOrderDB(unittest.TestCase):
                          price=24.50)
         self.dish.save()
 
-        self.order = Order(customer_id=self.customer.id, driver_id=self.driver.id,
+        self.order = Order(customer_id=self.customer.id,
+                           driver_id=self.driver.id,
                            restaurant_id=self.restaurant.id,
-                           destination_latitude=12.3456, destination_longitude=65.4321,
+                           destination_latitude=12.3456,
+                           destination_longitude=65.4321,
                            price=24.90)
-        
+
     def tearDown(self):
         """Executed after each test/method"""
         self.order.delete()
@@ -124,7 +129,7 @@ class TestOrderDB(unittest.TestCase):
     def test_delete(self):
         """Tests the delete method of the class"""
         self.order.save()
-        
+
         my_order = Order()
         my_order.customer_id = self.customer.id
         my_order.driver_id = self.driver.id
@@ -133,7 +138,7 @@ class TestOrderDB(unittest.TestCase):
         my_order.destination_longitude = 65.4321
         my_order.price = 24.90
         my_order.save()
-        
+
         my_order2 = db.get(Order, my_order.id)
         self.assertIs(my_order, my_order2)
         my_order.delete()

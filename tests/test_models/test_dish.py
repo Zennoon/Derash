@@ -68,13 +68,14 @@ class TestDishDB(unittest.TestCase):
                                      owner_id=self.owner.id)
         self.restaurant.save()
 
-        self.dish = Dish(name="Pepperoni Pizza", description="Again, Hot not Hut",
+        self.dish = Dish(name="Pepperoni Pizza",
+                         description="Again, Hot not Hut",
                          ingredients="Pepperoni, Dough", price=12.50,
                          restaurant_id=self.restaurant.id)
-        
+
     def tearDown(self):
         self.owner.delete()
-        
+
     def test_save(self):
         """Tests the save method of the class"""
         self.dish.save()
@@ -84,14 +85,14 @@ class TestDishDB(unittest.TestCase):
     def test_delete(self):
         """Tests the delete method of the class"""
         self.dish.save()
-        
+
         my_dish = Dish()
         my_dish.name = "Burgerizza"
         my_dish.description = "I don't even know where to start"
         my_dish.restaurant_id = self.restaurant.id
         my_dish.ingredients = "Burger, Pizza"
         my_dish.price = 15.45
-        
+
         my_dish.save()
         my_dish2 = db.get(Dish, my_dish.id)
         self.assertIs(my_dish, my_dish2)

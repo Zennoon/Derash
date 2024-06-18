@@ -3,7 +3,8 @@
 Contains:
     Classes
     =======
-    DBStorage - Establishes connection and provides access to the derash_db database
+    DBStorage - Establishes connection and provides access to the
+    derash_db database
 """
 import os
 
@@ -19,9 +20,11 @@ from models.order import Order
 from models.owner import Owner
 from models.restaurant import Restaurant
 from models.review import Review
+from models.user import User
 
 
 classes = [Customer, Dish, Driver, Order, Owner, Restaurant, Review]
+users = [Customer, Driver, Owner]
 
 
 class DBStorage():
@@ -38,11 +41,10 @@ class DBStorage():
         db_user = "derash_db_user"
         db_pwd = os.getenv("DERASH_DB_PWD")
         db_host = "localhost"
-        self.__engine = create_engine("mysql+mysqldb://{}:{}@{}/{}".format(db_user,
-                                                                           db_pwd,
-                                                                           db_host,
-                                                                           db_name))
-        
+        conn_cmd = "mysql+mysqldb://{}:{}@{}/{}"
+        self.__engine = create_engine(conn_cmd.format(db_user, db_pwd,
+                                                      db_host, db_name))
+
     def reload(self):
         """Creates a session and loads all tables"""
         if os.getenv("DERASH_ENV") == "test":
@@ -59,15 +61,35 @@ class DBStorage():
         self.__session.commit()
 
     def get(self, cls, id):
-        """Retrieves an object of the given class and with the given id from the database"""
-        obj = self.__session.query(cls).filter(cls.id == id).all()
+        """
+        Retrieves an object of the given class and with the given id
+        from the database
+        """
+        if cls is User:
+            obj = []
+            for cl in users:
+                obj.extendself.__session.query(cl).filter(cl.id == id).all()
+        else:
+            obj = self.__session.query(cls).filter(cls.id == id).all()
         if obj == []:
             return (None)
         return (obj[0])
-    
+
     def filter_by_attr(self, cls, attr, val):
-        """Retrieves object(s) from database after filtering using an attribute value"""
-        objs = self.__session.query(cls).filter(cls.__dict__.get(attr) == val).all()
+        """
+        Retrieves object(s) from database after filtering using
+        an attribute value
+        """
+        if cls is User:
+            objs = []
+            for cl in users:
+                q = self.__session.query(cl).filter(
+                    cl.__dict__.get(attr) == val
+                    )
+                objs.extend(q.all())
+        else:
+            q = self.__session.query(cls).filter(cls.__dict__.get(attr) == val)
+            objs = q.all()
         return (objs)
 
     def delete(self, obj):
@@ -76,18 +98,22 @@ class DBStorage():
         self.save()
 
     def all(self, cls=None):
-        """Retrieves all instances of given class or all objects if class not given"""
+        """
+        Retrieves all instances of given class or
+        all objects if class not given
+        """
         all_objs = []
         if cls is None:
             for cl in classes:
                 all_objs.extend(self.__session.query(cl).all())
         else:
-            all_objs = self.__session.query(cls).all()
+            if cls is User:
+                for cl in users:
+                    all_objs.extend(self.__session.query(cl).all())
+            else:
+                all_objs = self.__session.query(cls).all()
         return (all_objs)
-
-
 
     def close(self):
         """Renews session. To be used after transactions"""
         self.__session.remove()
-

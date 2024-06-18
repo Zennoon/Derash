@@ -29,7 +29,7 @@ class TestCustomer(unittest.TestCase):
         self.customer.email = "barry@fastest1.com"
         self.customer.password = "FlASh."
         self.customer.phone_num = "0912345678"
-        
+
         self.customer.save()
         my_customer = db.get(Customer, self.customer.id)
         self.assertIs(self.customer, my_customer)
@@ -42,19 +42,17 @@ class TestCustomer(unittest.TestCase):
         self.customer.password = "FlASh."
         self.customer.phone_num = "0912345678"
         self.customer.save()
-        
+
         my_customer = Customer()
         my_customer.first_name = "Barry"
         my_customer.last_name = "Allen"
         my_customer.email = "barry@fastest1.com"
         my_customer.password = "FlASh."
         my_customer.phone_num = "0912345678"
-        
+
         my_customer.save()
         my_customer2 = db.get(Customer, my_customer.id)
         self.assertIs(my_customer, my_customer2)
         my_customer.delete()
         my_customer2 = db.get(Customer, my_customer.id)
         self.assertIsNone(my_customer2)
-
-

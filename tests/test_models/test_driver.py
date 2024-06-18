@@ -18,7 +18,7 @@ class TestDriver(unittest.TestCase):
         self.driver = Driver(first_name="Calvin", last_name="Klien",
                              email="thepants@guy.com", password="Il0vePan7s.",
                              phone_num="0912345678")
-        
+
     def tearDown(self):
         """Executed after each test/method"""
         self.driver.delete()
@@ -67,7 +67,7 @@ class TestDriver(unittest.TestCase):
     def test_save(self):
         """Tests the save method of the class"""
         self.driver.license_num = "B50043"
-        
+
         self.driver.save()
         my_driver = db.get(Driver, self.driver.id)
         self.assertIs(self.driver, my_driver)
@@ -76,7 +76,7 @@ class TestDriver(unittest.TestCase):
         """Tests the delete method of the class"""
         self.driver.license_num = "B50043"
         self.driver.save()
-        
+
         my_driver = Driver()
         my_driver.first_name = "Barry"
         my_driver.last_name = "Allen"
@@ -84,11 +84,10 @@ class TestDriver(unittest.TestCase):
         my_driver.password = "FlASh."
         my_driver.phone_num = "0912345678"
         my_driver.license_num = "B50044"
-        
+
         my_driver.save()
         my_driver2 = db.get(Driver, my_driver.id)
         self.assertIs(my_driver, my_driver2)
         my_driver.delete()
         my_driver2 = db.get(Driver, my_driver.id)
         self.assertIsNone(my_driver2)
-    

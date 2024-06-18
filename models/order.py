@@ -48,4 +48,3 @@ class Order(BaseModel, Base):
             assoc.dish_id = dish.id
             models.db.new(assoc)
             models.db.save()
-

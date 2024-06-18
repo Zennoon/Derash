@@ -48,7 +48,8 @@ class TestReviewDB(unittest.TestCase):
     def setUp(self):
         """Executed before each test/method"""
         self.customer = Customer(first_name="Flint", last_name="Lockwood",
-                                 email="meatballs@sphagetti.com", password="W3A7h3RGirl",
+                                 email="meatballs@sphagetti.com",
+                                 password="W3A7h3RGirl",
                                  phone_num="0912233445")
         self.customer.save()
 
@@ -66,7 +67,7 @@ class TestReviewDB(unittest.TestCase):
         self.review = Review(text="The noodles were supreme",
                              customer_id=self.customer.id,
                              restaurant_id=self.restaurant.id)
-        
+
     def tearDown(self):
         """Executed after each test/method"""
         self.customer.delete()
@@ -81,12 +82,12 @@ class TestReviewDB(unittest.TestCase):
     def test_delete(self):
         """Tests the delete method of the class"""
         self.review.save()
-        
+
         my_review = Review()
         my_review.text = "Awesome staff!"
         my_review.customer_id = self.customer.id
         my_review.restaurant_id = self.restaurant.id
-        
+
         my_review.save()
         my_review2 = db.get(Review, my_review.id)
         self.assertIs(my_review, my_review2)
@@ -99,7 +100,7 @@ class TestReviewDB(unittest.TestCase):
         self.review.save()
         self.assertIs(self.review.customer, self.customer)
         self.assertTrue(self.review in self.customer.reviews)
-    
+
     def test_restaurant(self):
         """Test the restaurant query of the class"""
         self.review.save()

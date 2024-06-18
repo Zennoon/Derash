@@ -15,7 +15,7 @@ class TestUser(unittest.TestCase):
     def setUp(self):
         """Executed before every test/method"""
         self.user = User()
-    
+
     def tearDown(self):
         """Executed after every test/method"""
         del self.user
@@ -43,7 +43,7 @@ class TestUser(unittest.TestCase):
         self.assertTrue(hasattr(self.user, "password"))
         self.user.password = "L1nC@lN"
         self.assertEqual(self.user.password, "L1nC@lN")
-        
+
     def test_phone_num(self):
         """Tests the phone_num attribute of the class"""
         self.assertTrue(hasattr(self.user, "phone_num"))

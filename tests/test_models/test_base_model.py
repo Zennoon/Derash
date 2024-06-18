@@ -13,7 +13,7 @@ from models.base_model import BaseModel
 
 class TestBaseModel(unittest.TestCase):
     """Test cases for the BaseModel class"""
-    
+
     def setUp(self):
         """Executed before every test/method"""
         self.base_model = BaseModel()
