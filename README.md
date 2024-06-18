@@ -26,34 +26,26 @@ A simplistic web application meant to connect food lovers, restaurant owners, an
 ## Models
 ### BaseModel
 A base class containing all the common attributes of the concrete classes. It is inherited by all the other classes.
-
 ### User
 Another inherited class that includes all common attributes of the three user types (customer, driver, and owner).
-
 ### Customer
 A concrete class representing a user that is able to make orders to a restaurant.
-
 ### Driver
 A concrete class representing a user that delivers orders from restaurants to customers
-
 ### Owner
 A concrete class representing a user that owns/manages restaurants
-
 ### Restaurant
 A concrete class representing a restaurant that accepts orders from customers
-
 ### Dish
 A concrete class representing a dish that a restaurant servers
-
 ### Order
 A concrete class representing an order that is made by a customer, prepared by a restaurant, and delivered by a driver.
-
 ### Review
 A concrete class representing a restaurant review that is made by a customer
 
-## Tests
+## [Tests](tests)
 The tests directory contains unittest tests for the application
-### tests/test_models/
+### [test_models/](tests/test_models/)
 Contains files which hold unittest test cases for the models
-### tests/test_models/test_engine/test_db_storage.py
+### [test_db_storage](tests/test_models/test_engine/test_db_storage.py)
 Contains unittest test cases for the storage engine
