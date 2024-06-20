@@ -16,8 +16,8 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, ValidationError
 from wtforms.validators import DataRequired, Email, EqualTo, Length
 
-import models
-from models.user import User
+from derash.models import db
+from derash.models.user import User
 
 
 class RegisterCustomerForm(FlaskForm):
@@ -35,7 +35,7 @@ class RegisterCustomerForm(FlaskForm):
 
     def validate_email(self, email):
         """Checks if email is already registered"""
-        user = models.db.filter_by_attr(User, "email", email.data)
+        user = db.filter_by_attr(User, "email", email.data)
         if len(user) != 0:
             raise ValidationError("The email is already registered, please use another email")
 

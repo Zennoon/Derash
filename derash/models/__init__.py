@@ -5,7 +5,7 @@ Contains:
     ====
     db - A DBStorage instance giving us access to the database storage
 """
-from models.engine.db_storage import DBStorage
+from derash.models.engine.db_storage import DBStorage
 
 
 db = DBStorage()

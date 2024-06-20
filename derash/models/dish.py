@@ -9,7 +9,7 @@ import random
 
 from sqlalchemy import Column, ForeignKey, Float, String, Text
 
-from models.base_model import Base, BaseModel
+from derash.models.base_model import Base, BaseModel
 
 
 class Dish(BaseModel, Base):

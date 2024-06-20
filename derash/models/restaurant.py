@@ -10,10 +10,10 @@ import random
 from sqlalchemy import Boolean, Column, Float, ForeignKey, String, Text
 from sqlalchemy.orm import relationship
 
-from models.base_model import Base, BaseModel
-from models.dish import Dish
-from models.order import Order
-from models.review import Review
+from derash.models.base_model import Base, BaseModel
+from derash.models.dish import Dish
+from derash.models.order import Order
+from derash.models.review import Review
 
 
 class Restaurant(BaseModel, Base):

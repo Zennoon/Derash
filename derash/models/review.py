@@ -8,7 +8,7 @@ Contains:
 """
 from sqlalchemy import Column, ForeignKey, String, Text
 
-from models.base_model import Base, BaseModel
+from derash.models.base_model import Base, BaseModel
 
 
 class Review(BaseModel, Base):

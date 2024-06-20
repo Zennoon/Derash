@@ -19,31 +19,31 @@ def get_random_elem(lst):
     """Returns a random element from a list"""
     return lst[random.randint(0, len(lst) - 1)]
 
-# with open("./mock_cust_owner.json") as f:
-#     dcts = json.load(f)
-#     for idx, dct in enumerate(dcts):
-#         if idx % 2:
-#             customer = Customer(**dct)
-#             customer.save()
-#         else:
-#             owner = Owner(**dct)
-#             owner.save()
+with open("./mock_data/mock_cust_owner.json") as f:
+    dcts = json.load(f)
+    for idx, dct in enumerate(dcts):
+        if idx % 2:
+            customer = Customer(**dct)
+            customer.save()
+        else:
+            owner = Owner(**dct)
+            owner.save()
 
-# with open("./mock_driver.json") as f:
-#     dcts = json.load(f)
-#     for dct in dcts:
-#         driver = Driver(**dct)
-#         driver.save()
+with open("./mock_data/mock_driver.json") as f:
+    dcts = json.load(f)
+    for dct in dcts:
+        driver = Driver(**dct)
+        driver.save()
 
-# with open("./mock_rest.json") as f:
-#     dcts = json.load(f)
-#     owners = db.all(Owner)
-#     for dct in dcts:
-#         restaurant = Restaurant(**dct)
-#         restaurant.owner_id = get_random_elem(owners).id
-#         restaurant.save()
+with open("./mock_data/mock_rest.json") as f:
+    dcts = json.load(f)
+    owners = db.all(Owner)
+    for dct in dcts:
+        restaurant = Restaurant(**dct)
+        restaurant.owner_id = get_random_elem(owners).id
+        restaurant.save()
 
-with open("./mock_dish.json") as f:
+with open("./mock_data/mock_dish.json") as f:
     dcts = json.load(f)
     restaurants = db.all(Restaurant)
     for dct in dcts:
@@ -51,7 +51,7 @@ with open("./mock_dish.json") as f:
         dish.restaurant_id = get_random_elem(restaurants).id
         dish.save()
 
-with open("./mock_review.json") as f:
+with open("./mock_data/mock_review.json") as f:
     dcts = json.load(f)
     customers = db.all(Customer)
     restaurants = db.all(Restaurant)
@@ -61,7 +61,7 @@ with open("./mock_review.json") as f:
         review.restaurant_id = get_random_elem(restaurants).id
         review.save()
 
-with open("./mock_order.json") as f:
+with open("./mock_data/mock_order.json") as f:
     dcts = json.load(f)
     customers = db.all(Customer)
     restaurants = db.all(Restaurant)

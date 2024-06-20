@@ -7,9 +7,9 @@ Contains:
 """
 from sqlalchemy.orm import relationship
 
-from models.base_model import Base
-from models.restaurant import Restaurant
-from models.user import User
+from derash.models.base_model import Base
+from derash.models.restaurant import Restaurant
+from derash.models.user import User
 
 
 class Owner(User, Base):

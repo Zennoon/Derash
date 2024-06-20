@@ -12,15 +12,16 @@ import random
 from flask_login import UserMixin
 from sqlalchemy import Column, String
 
-from flask_app.app import login_manager
-import models
-from models.base_model import BaseModel
+
+import derash.models
+from derash import login_manager
+from derash.models.base_model import BaseModel
 
 
 @login_manager.user_loader
 def load_user(user_id):
     """Loads a user object given its ID"""
-    return (models.db.get(User, user_id))
+    return (derash.models.db.get(User, user_id))
 
 class User(BaseModel, UserMixin):
     """Parent class for all user classes (Customer, Owner, Driver)"""

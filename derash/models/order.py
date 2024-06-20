@@ -11,9 +11,9 @@ from uuid import uuid4
 from sqlalchemy import Boolean, Column, ForeignKey, Float, String, Table, Text
 from sqlalchemy.orm import relationship
 
-import models
-from models.base_model import Base, BaseModel
-from models.dish import Dish
+import derash.models
+from derash.models.base_model import Base, BaseModel
+from derash.models.dish import Dish
 
 
 class Association(BaseModel, Base):
@@ -46,8 +46,8 @@ class Order(BaseModel, Base):
             assoc = Association(extra_data="TODO")
             assoc.order_id = self.id
             assoc.dish_id = dish.id
-            models.db.new(assoc)
-            models.db.save()
+            derash.models.db.new(assoc)
+            derash.models.db.save()
 
     def calc_order_price(self):
         """Calculates and assigns the total price of the order"""

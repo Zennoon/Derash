@@ -12,7 +12,7 @@ from uuid import uuid4
 from sqlalchemy import Column, DateTime, String
 from sqlalchemy.orm import declarative_base
 
-import models
+import derash.models
 
 
 Base = declarative_base()
@@ -58,9 +58,9 @@ class BaseModel():
 
     def save(self):
         """Commit the instance to the storage session"""
-        models.db.new(self)
-        models.db.save()
+        derash.models.db.new(self)
+        derash.models.db.save()
 
     def delete(self):
         """Delete instance from storage"""
-        models.db.delete(self)
+        derash.models.db.delete(self)

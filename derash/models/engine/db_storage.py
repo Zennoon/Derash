@@ -11,16 +11,16 @@ import os
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
 
-from models.base_model import Base
-from models.customer import Customer
-from models.dish import Dish
-from models.driver import Driver
-from models.order import Association
-from models.order import Order
-from models.owner import Owner
-from models.restaurant import Restaurant
-from models.review import Review
-from models.user import User
+from derash.models.base_model import Base
+from derash.models.customer import Customer
+from derash.models.dish import Dish
+from derash.models.driver import Driver
+from derash.models.order import Association
+from derash.models.order import Order
+from derash.models.owner import Owner
+from derash.models.restaurant import Restaurant
+from derash.models.review import Review
+from derash.models.user import User
 
 
 classes = [Customer, Dish, Driver, Order, Owner, Restaurant, Review]
