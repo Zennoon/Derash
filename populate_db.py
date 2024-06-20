@@ -5,61 +5,61 @@ Populates database with mock data
 import json
 import random
 
-from models import db
-from models.customer import Customer
-from models.dish import Dish
-from models.driver import Driver
-from models.order import Order
-from models.owner import Owner
-from models.restaurant import Restaurant
-from models.review import Review
+from derash.models import db
+from derash.models.customer import Customer
+from derash.models.dish import Dish
+from derash.models.driver import Driver
+from derash.models.order import Order
+from derash.models.owner import Owner
+from derash.models.restaurant import Restaurant
+from derash.models.review import Review
 
 
 def get_random_elem(lst):
     """Returns a random element from a list"""
     return lst[random.randint(0, len(lst) - 1)]
 
-with open("./mock_data/mock_cust_owner.json") as f:
-    dcts = json.load(f)
-    for idx, dct in enumerate(dcts):
-        if idx % 2:
-            customer = Customer(**dct)
-            customer.save()
-        else:
-            owner = Owner(**dct)
-            owner.save()
+# with open("./mock_data/mock_cust_owner.json") as f:
+#     dcts = json.load(f)
+#     for idx, dct in enumerate(dcts):
+#         if idx % 2:
+#             customer = Customer(**dct)
+#             customer.save()
+#         else:
+#             owner = Owner(**dct)
+#             owner.save()
 
-with open("./mock_data/mock_driver.json") as f:
-    dcts = json.load(f)
-    for dct in dcts:
-        driver = Driver(**dct)
-        driver.save()
+# with open("./mock_data/mock_driver.json") as f:
+#     dcts = json.load(f)
+#     for dct in dcts:
+#         driver = Driver(**dct)
+#         driver.save()
 
-with open("./mock_data/mock_rest.json") as f:
-    dcts = json.load(f)
-    owners = db.all(Owner)
-    for dct in dcts:
-        restaurant = Restaurant(**dct)
-        restaurant.owner_id = get_random_elem(owners).id
-        restaurant.save()
+# with open("./mock_data/mock_rest.json") as f:
+#     dcts = json.load(f)
+#     owners = db.all(Owner)
+#     for dct in dcts:
+#         restaurant = Restaurant(**dct)
+#         restaurant.owner_id = get_random_elem(owners).id
+#         restaurant.save()
 
-with open("./mock_data/mock_dish.json") as f:
-    dcts = json.load(f)
-    restaurants = db.all(Restaurant)
-    for dct in dcts:
-        dish = Dish(**dct)
-        dish.restaurant_id = get_random_elem(restaurants).id
-        dish.save()
+# with open("./mock_data/mock_dish.json") as f:
+#     dcts = json.load(f)
+#     restaurants = db.all(Restaurant)
+#     for dct in dcts:
+#         dish = Dish(**dct)
+#         dish.restaurant_id = get_random_elem(restaurants).id
+#         dish.save()
 
-with open("./mock_data/mock_review.json") as f:
-    dcts = json.load(f)
-    customers = db.all(Customer)
-    restaurants = db.all(Restaurant)
-    for dct in dcts:
-        review = Review(**dct)
-        review.customer_id = get_random_elem(customers).id
-        review.restaurant_id = get_random_elem(restaurants).id
-        review.save()
+# with open("./mock_data/mock_review.json") as f:
+#     dcts = json.load(f)
+#     customers = db.all(Customer)
+#     restaurants = db.all(Restaurant)
+#     for dct in dcts:
+#         review = Review(**dct)
+#         review.customer_id = get_random_elem(customers).id
+#         review.restaurant_id = get_random_elem(restaurants).id
+#         review.save()
 
 with open("./mock_data/mock_order.json") as f:
     dcts = json.load(f)

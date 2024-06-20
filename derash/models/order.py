@@ -33,7 +33,8 @@ class Order(BaseModel, Base):
     driver_id = Column(String(120), ForeignKey("drivers.id"), nullable=False)
     restaurant_id = Column(String(120), ForeignKey("restaurants.id"),
                            nullable=False)
-    delivered = Column(Boolean, nullable=False, default=False)
+    customer_confirm = Column(Boolean, nullable=False, default=False)
+    driver_confirm = Column(Boolean, nullable=False, default=False)
     destination_latitude = Column(Float, nullable=False)
     destination_longitude = Column(Float, nullable=False)
     price = Column(Float, nullable=False, default=0)

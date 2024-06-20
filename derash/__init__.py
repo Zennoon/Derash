@@ -11,6 +11,8 @@ cors = CORS(app, resources={
 })
 bcrypt = Bcrypt(app)
 login_manager = LoginManager(app)
+login_manager.login_view = 'login'
 
-from derash.routes.api.api_views import *
+
 from derash.routes.app.app_views import *
+from derash.routes.api.customer import *
