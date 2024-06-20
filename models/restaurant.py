@@ -7,7 +7,7 @@ Contains:
 """
 import random
 
-from sqlalchemy import Column, Float, ForeignKey, String, Text
+from sqlalchemy import Boolean, Column, Float, ForeignKey, String, Text
 from sqlalchemy.orm import relationship
 
 from models.base_model import Base, BaseModel
@@ -25,6 +25,7 @@ class Restaurant(BaseModel, Base):
     latitude = Column(Float, nullable=False)
     longitude = Column(Float, nullable=False)
     image_file = Column(String(20), nullable=False)
+    is_open = Column(Boolean, nullable=False, default=False)
     all_orders = relationship("Order", backref="restaurant")
     dishes = relationship("Dish", backref="restaurant",
                           cascade="all, delete, delete-orphan")
