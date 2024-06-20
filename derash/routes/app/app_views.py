@@ -3,7 +3,7 @@
 Contains Route handler functions for the app
 """
 from flask import flash, redirect, render_template, url_for
-from flask_login import current_user, login_user
+from flask_login import current_user, login_user, logout_user
 
 from derash import app, bcrypt
 from derash.forms.register import RegisterCustomerForm, RegisterDriverForm, RegisterOwnerForm
@@ -104,3 +104,9 @@ def login():
         else:
             print("Not registered")
     return (render_template("login.html", form=form))
+
+@app.route("/logout")
+def logout():
+    """Handles the /logout route, logs user out of the application"""
+    logout_user()
+    return (redirect(url_for("login")))
