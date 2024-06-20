@@ -68,7 +68,7 @@ class DBStorage():
         if cls is User:
             obj = []
             for cl in users:
-                obj.extendself.__session.query(cl).filter(cl.id == id).all()
+                obj.extend(self.__session.query(cl).filter(cl.id == id).all())
         else:
             obj = self.__session.query(cls).filter(cls.id == id).all()
         if obj == []:

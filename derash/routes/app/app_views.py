@@ -3,7 +3,7 @@
 Contains Route handler functions for the app
 """
 from flask import flash, redirect, render_template, url_for
-from flask_login import login_user
+from flask_login import current_user, login_user
 
 from derash import app, bcrypt
 from derash.forms.register import RegisterCustomerForm, RegisterDriverForm, RegisterOwnerForm
@@ -11,6 +11,8 @@ from derash.forms.login import LoginForm
 
 from derash.models import db
 from derash.models.customer import Customer
+from derash.models.driver import Driver
+from derash.models.owner import Owner
 from derash.models.user import User
 
 
@@ -24,7 +26,7 @@ def check_password(encrypted, password):
 
 @app.route("/")
 def home():
-    return ("<H1>Home</H1>")
+    return (render_template("testing.html"))
 
 @app.route("/register")
 def register():
@@ -53,12 +55,41 @@ def register_customer():
 @app.route("/register_owner", methods=["GET, POST"])
 def register_owner():
     """Registers a new owner/restaurants manager"""
-    pass
+    form = RegisterOwnerForm()
+    if form.validate_on_submit():
+        hashed = encrypt_password(form.password.data)
+        dct = {
+            "first_name": form.first_name.data,
+            "last_name": form.last_name.data,
+            "email": form.email.data,
+            "phone_num": form.phone_num.data,
+            "password": hashed
+        }
+        owner = Owner(**dct)
+        owner.save()
+        flash("Your account has been created!")
+        return (redirect(url_for("login")))
+    return (render_template("register_customer.html", form=form))
 
 @app.route("/register_driver", methods=["GET", "POST"])
 def register_driver():
     """Registers a new driver"""
-    pass
+    form = RegisterDriverForm()
+    if form.validate_on_submit():
+        hashed = encrypt_password(form.password.data)
+        dct = {
+            "first_name": form.first_name.data,
+            "last_name": form.last_name.data,
+            "email": form.email.data,
+            "phone_num": form.phone_num.data,
+            "password": hashed,
+            "license_num": form.license_num.data
+        }
+        driver = Driver(**dct)
+        driver.save()
+        flash("Your account has been created!")
+        return (redirect(url_for("login")))
+    return (render_template("register_customer.html", form=form))
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
