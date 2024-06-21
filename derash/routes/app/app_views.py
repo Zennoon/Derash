@@ -52,7 +52,7 @@ def register_customer():
         return (redirect(url_for("login")))
     return (render_template("register_customer.html", form=form))
     
-@app.route("/register_owner", methods=["GET, POST"])
+@app.route("/register_owner", methods=["GET", "POST"])
 def register_owner():
     """Registers a new owner/restaurants manager"""
     form = RegisterOwnerForm()
@@ -69,7 +69,7 @@ def register_owner():
         owner.save()
         flash("Your account has been created!")
         return (redirect(url_for("login")))
-    return (render_template("register_customer.html", form=form))
+    return (render_template("register_owner.html", form=form))
 
 @app.route("/register_driver", methods=["GET", "POST"])
 def register_driver():
@@ -89,7 +89,7 @@ def register_driver():
         driver.save()
         flash("Your account has been created!")
         return (redirect(url_for("login")))
-    return (render_template("register_customer.html", form=form))
+    return (render_template("register_driver.html", form=form))
 
 @app.route("/login", methods=["GET", "POST"])
 def login():

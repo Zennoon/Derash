@@ -36,14 +36,14 @@
                 <div>
                     {{ form.password.label }}
                     {% if form.password.errors %}
-                        {{ form.password }}
+                        {{ form.password(type="password") }}
                         <div>
                             {% for error in form.password.errors %}
                                 <span>{{ error }}</span>
                             {% endfor %}
                         </div>  
                     {% else %}
-                        {{ form.password }}
+                        {{ form.password(type=(password)) }}
                     {% endif %}
                 </div>
                 <div>

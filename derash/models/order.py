@@ -14,6 +14,7 @@ from sqlalchemy.orm import relationship
 import derash.models
 from derash.models.base_model import Base, BaseModel
 from derash.models.dish import Dish
+from utils import calc_distance
 
 
 class Association(BaseModel, Base):
@@ -50,10 +51,21 @@ class Order(BaseModel, Base):
             derash.models.db.new(assoc)
             derash.models.db.save()
 
+    def calc_delivery_price(self):
+        """Calculates the cost of delivery"""
+        delivery_coords = (self.destination_latitude,
+                           self.destination_longitude)
+        restaurant = self.restaurant
+        rest_coords = (restaurant.latitude,
+                       restaurant.longitude)
+        distance = calc_distance(delivery_coords, rest_coords)
+        return (int(distance * 15))
+
     def calc_order_price(self):
         """Calculates and assigns the total price of the order"""
         self.price = 0
         self.save()
         for assoc in self.dishes:
             self.price += assoc.dish.price
+        self.price += self.calc_delivery_price()
         self.save()
