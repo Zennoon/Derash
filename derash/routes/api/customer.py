@@ -19,6 +19,14 @@ from utils import calc_distance
 
 default_driver = db.get(Driver, "0")
 
+
+@app.route("/api/customer")
+def get_customer_details():
+    """Returns info about customer"""
+    if not isinstance(current_user, Customer):
+        return ("Not authorized", 401)
+    return (jsonify(current_user.to_dict()))
+
 @app.route("/api/customer/all_restaurants")
 @login_required
 def get_all_restaurants():

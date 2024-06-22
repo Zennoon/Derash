@@ -16,4 +16,5 @@ login_manager.login_view = 'login'
 
 from derash.routes.app.app_views import *
 from derash.routes.api.customer import *
+from derash.routes.api.driver import *
 from derash.routes.api.owner import *

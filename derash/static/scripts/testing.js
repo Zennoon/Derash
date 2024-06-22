@@ -1,5 +1,15 @@
 $(document).ready(() => {
     // Customers
+    const custGetDetails = () => {
+        $.ajax({
+            url: 'http://127.0.0.1:5000/api/customer',
+            success: (data, textStatus) => {
+                console.log(data);
+            }
+        });
+    }
+    // custGetDetails();
+
     const custGetAllRestaurants = () => {
         $.ajax({
             url: 'http://127.0.0.1:5000/api/customer/all_restaurants',
@@ -132,33 +142,45 @@ $(document).ready(() => {
         });   
     };
 
-    // const custRepeatOrder = (orderId) => {
-    //     $.ajax({
-    //         url: `http://127.0.0.1:5000/api/customer/orders/${orderId}`,
-    //         success: (data, textStatus) => {
-    //             $.ajax({
-    //                 url: 'http://127.0.0.1:5000/api/customer/new_order',
-    //                 method: "POST",
-    //                 headers: {
-    //                     "Content-Type": "application/json"
-    //                 },
-    //                 data: JSON.stringify(data),
-    //                 success: (data, textStatus) => {
-    //                     console.log(data);
-    //                 }
-    //             }); 
-    //         }
-    //     });
-    // };
+    const custRepeatOrder = (orderId) => {
+        $.ajax({
+            url: `http://127.0.0.1:5000/api/customer/orders/${orderId}`,
+            success: (data, textStatus) => {
+                $.ajax({
+                    url: 'http://127.0.0.1:5000/api/customer/new_order',
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    data: JSON.stringify(data),
+                    success: (data, textStatus) => {
+                        console.log(data);
+                    }
+                }); 
+            }
+        });
+    };
+    // custRepeatOrder("f9ae688f-e5a5-4902-bdaf-f085c9cbae847904798b-2f77-41b5-a274-925ae08ee65c");
+
 
 
     // Owners
+    const ownerGetDetails = () => {
+        $.ajax({
+            url: 'http://127.0.0.1:5000/api/owner',
+            success: (data, textStatus) => {
+                console.log(data);
+            }
+        });
+    }
+    // ownerGetDetails();
+
     const ownerGetMyRestaurants = () => {
         $.ajax({
             url: 'http://127.0.0.1:5000/api/owner/my_restaurants',
             success: (data, textStatus) => {
                 console.log(data);
-            },
+            }
         });
     };
     // ownerGetMyRestaurants();
@@ -168,7 +190,7 @@ $(document).ready(() => {
             url: `http://127.0.0.1:5000/api/owner/my_restaurants/${restaurantId}`,
             success: (data, textStatus) => {
                 console.log(data);
-            },
+            }
         });
     };
     // ownerGetRestaurantDetails("503f2d53-82aa-4bdf-9812-16a9db999ef47c14963d-fa31-4c06-bd58-76f56458cbec");
@@ -178,7 +200,7 @@ $(document).ready(() => {
             url: `http://127.0.0.1:5000/api/owner/my_restaurants/${restaurantId}/reviews`,
             success: (data, textStatus) => {
                 console.log(data);
-            },
+            }
         });    
     };
     // ownerGetRestaurantReviews("503f2d53-82aa-4bdf-9812-16a9db999ef47c14963d-fa31-4c06-bd58-76f56458cbec");
@@ -189,7 +211,7 @@ $(document).ready(() => {
             method: "PUT",
             success: (data, textStatus) => {
                 console.log(data);
-            },
+            }
         });
     };
     // ownerOpenRestaurant("503f2d53-82aa-4bdf-9812-16a9db999ef47c14963d-fa31-4c06-bd58-76f56458cbec");
@@ -200,7 +222,7 @@ $(document).ready(() => {
             method: "PUT",
             success: (data, textStatus) => {
                 console.log(data);
-            },
+            }
         });
     };
     // ownerCloseRestaurant("503f2d53-82aa-4bdf-9812-16a9db999ef47c14963d-fa31-4c06-bd58-76f56458cbec");
@@ -211,7 +233,7 @@ $(document).ready(() => {
             method: "GET",
             success: (data, textStatus) => {
                 console.log(data);
-            },
+            }
         });
     };
     // ownerGetMonthlyReceipt("503f2d53-82aa-4bdf-9812-16a9db999ef47c14963d-fa31-4c06-bd58-76f56458cbec");
@@ -222,10 +244,10 @@ $(document).ready(() => {
             method: "GET",
             success: (data, textStatus) => {
                 console.log(data);
-            },
+            }
         });
     };
-    // ownerGetPastMonthReceipt("503f2d53-82aa-4bdf-9812-16a9db999ef47c14963d-fa31-4c06-bd58-76f56458cbec");
+    ownerGetPastMonthReceipt("503f2d53-82aa-4bdf-9812-16a9db999ef47c14963d-fa31-4c06-bd58-76f56458cbec");
 
     const ownerGetAllRestaurantOrders = (restaurantId) => {
         $.ajax({
@@ -233,7 +255,7 @@ $(document).ready(() => {
             method: "GET",
             success: (data, textStatus) => {
                 console.log(data);
-            },
+            }
         });
     };
     // ownerGetAllRestaurantOrders("503f2d53-82aa-4bdf-9812-16a9db999ef47c14963d-fa31-4c06-bd58-76f56458cbec");
@@ -244,7 +266,7 @@ $(document).ready(() => {
             method: "GET",
             success: (data, textStatus) => {
                 console.log(data);
-            },
+            }
         });  
     };
     // ownerGetPastRestaurantOrders("503f2d53-82aa-4bdf-9812-16a9db999ef47c14963d-fa31-4c06-bd58-76f56458cbec");
@@ -255,7 +277,7 @@ $(document).ready(() => {
             method: "GET",
             success: (data, textStatus) => {
                 console.log(data);
-            },
+            }
         });  
     };
     // ownerGetPendingRestaurantOrders("503f2d53-82aa-4bdf-9812-16a9db999ef47c14963d-fa31-4c06-bd58-76f56458cbec");
@@ -266,19 +288,148 @@ $(document).ready(() => {
             method: "GET",
             success: (data, textStatus) => {
                 console.log(data);
-            },
+            }
         }); 
     };
-    ownerGetOrderDetails("03e14db8-197e-4c9b-93eb-20bffe8a17241194f80d-f28a-4f8e-b38a-e3c6b6df9031");
+    // ownerGetOrderDetails("03e14db8-197e-4c9b-93eb-20bffe8a17241194f80d-f28a-4f8e-b38a-e3c6b6df9031");
 
-    const confirmOrderMade = (orderId) => {
+    const ownerConfirmOrderMade = (orderId) => {
         $.ajax({
             url: `http://127.0.0.1:5000/api/owner/my_orders/${orderId}/done`,
             method: "PUT",
             success: (data, textStatus) => {
                 console.log(data);
-            },
+            }
         }); 
     };
-    // confirmOrderMade("03e14db8-197e-4c9b-93eb-20bffe8a17241194f80d-f28a-4f8e-b38a-e3c6b6df9031");
+    // ownerConfirmOrderMade("03e14db8-197e-4c9b-93eb-20bffe8a17241194f80d-f28a-4f8e-b38a-e3c6b6df9031");
+
+    
+
+    // Driver
+    const driverGetDetails = () => {
+        $.ajax({
+            url: 'http://127.0.0.1:5000/api/driver',
+            success: (data, textStatus) => {
+                console.log(data);
+            }
+        });
+    }
+    // driverGetDetails();
+
+    const driverGetAllDeliveries = () => {
+        $.ajax({
+            url: `http://127.0.0.1:5000/api/driver/all_deliveries`,
+            method: "GET",
+            success: (data, textStatus) => {
+                console.log(data);
+            }
+        });
+    };
+    // driverGetAllDeliveries();
+
+    const driverGetPastDeliveries = () => {
+        $.ajax({
+            url: `http://127.0.0.1:5000/api/driver/past_deliveries`,
+            method: "GET",
+            success: (data, textStatus) => {
+                console.log(data);
+            }
+        });
+    };
+    // driverGetPastDeliveries();
+
+    const driverActivate = () => {
+        $.ajax({
+            url: `http://127.0.0.1:5000/api/driver/activate`,
+            method: "PUT",
+            success: (data, textStatus) => {
+                console.log(data);
+            }
+        });
+    };
+    // driverActivate();
+
+    const driverDeactivate = () => {
+        $.ajax({
+            url: `http://127.0.0.1:5000/api/driver/deactivate`,
+            method: "PUT",
+            success: (data, textStatus) => {
+                console.log(data);
+            }
+        });
+    };
+    // driverDeactivate();
+
+    const driverGetPossibleDeliveries = () => {
+        $.ajax({
+            url: `http://127.0.0.1:5000/api/driver/possible_deliveries`,
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            data: JSON.stringify({
+                "coords": [47.7272, 96.8460]
+            }),
+            success: (data, textStatus) => {
+                console.log(data);
+            }
+        });   
+    }
+    // driverGetPossibleDeliveries();
+
+    const driverAcceptDelivery = (orderId) => {
+        $.ajax({
+            url: `http://127.0.0.1:5000/api/driver/${orderId}/accept`,
+            method: "PUT",
+            success: (data, textStatus) => {
+                console.log(data);
+            }
+        });
+    };
+    // driverAcceptDelivery("ef2cea46-8922-4218-8aab-71d9f9551cc4ab0df35d-5202-458b-a598-918ff0170700");
+
+    const driverCurrentDelivery = (orderId) => {
+        $.ajax({
+            url: `http://127.0.0.1:5000/api/driver/current_delivery`,
+            method: "GET",
+            success: (data, textStatus) => {
+                console.log(data);
+            }
+        });
+    };
+    // driverCurrentDelivery();
+
+    const driverConfirmDelivery = (orderId) => {
+        $.ajax({
+            url: `http://127.0.0.1:5000/api/driver/${orderId}/delivered`,
+            method: "PUT",
+            success: (data, textStatus) => {
+                console.log(data);
+            }
+        });
+    };
+    // driverConfirmDelivery("035e08a6-7a73-4ce9-8e62-9829b3811b13e70fb4ec-e192-4808-8c7b-19717d5d02f7");
+
+    const driverGetMonthlyReceipt = () => {
+        $.ajax({
+            url: `http://127.0.0.1:5000/api/driver/monthly`,
+            method: "GET",
+            success: (data, textStatus) => {
+                console.log(data);
+            }
+        });
+    };
+    // driverGetMonthlyReceipt();
+
+    const driverGetPastMonthReceipt = () => {
+        $.ajax({
+            url: `http://127.0.0.1:5000/api/driver/past_month`,
+            method: "GET",
+            success: (data, textStatus) => {
+                console.log(data);
+            }
+        });
+    };
+    // driverGetPastMonthReceipt();
 });

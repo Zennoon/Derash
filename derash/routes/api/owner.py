@@ -16,6 +16,13 @@ from derash.models.order import Order
 from derash.models.owner import Owner
 
 
+@app.route("/api/owner")
+def get_owner_details():
+    """Returns info about owner/manager"""
+    if not isinstance(current_user, Owner):
+        return ("Not authorized", 401)
+    return (jsonify(current_user.to_dict()))
+
 @app.route("/api/owner/my_restaurants")
 @login_required
 def get_my_restaurants():
@@ -55,6 +62,7 @@ def get_my_restaurant_reviews(restaurant_id):
     return (jsonify(reviews))
 
 @app.route("/api/owner/my_restaurants/<restaurant_id>/open", methods=["PUT"])
+@login_required
 def open_my_restaurant(restaurant_id):
     """Opens an owner's restaurant"""
     if not isinstance(current_user, Owner):
@@ -69,6 +77,7 @@ def open_my_restaurant(restaurant_id):
     return (jsonify(True))
 
 @app.route("/api/owner/my_restaurants/<restaurant_id>/close", methods=["PUT"])
+@login_required
 def close_my_restaurant(restaurant_id):
     """Closes an owner's restaurant"""
     if not isinstance(current_user, Owner):
@@ -84,7 +93,8 @@ def close_my_restaurant(restaurant_id):
 
 
 @app.route("/api/owner/my_restaurants/<restaurant_id>/monthly")
-def get_monthly_receipt(restaurant_id):
+@login_required
+def get_restaurant_monthly_receipt(restaurant_id):
     """Retrieves the orders of the current month until now"""
     if not isinstance(current_user, Owner):
         return ("Not authorized", 401)
@@ -114,7 +124,8 @@ def get_monthly_receipt(restaurant_id):
     return (jsonify(orders_this_month))
 
 @app.route("/api/owner/my_restaurants/<restaurant_id>/past_month")
-def get_past_month_receipt(restaurant_id):
+@login_required
+def get_restaurant_past_month_receipt(restaurant_id):
     """Retrieves the completed orders of the past month"""
     if not isinstance(current_user, Owner):
         return ("Not authorized", 401)
@@ -148,10 +159,16 @@ def get_past_month_receipt(restaurant_id):
                    minute=created_at.minute,
                    second=created_at.second,
                    microsecond=created_at.microsecond)
-    print(start, end)
-    return (jsonify(True))
+    orders_past_month = []
+    for order in restaurant.all_orders:
+        if (order.restaurant_confirm
+            and order.created_at > start
+            and order.created_at < end):
+            orders_past_month.append(order.to_dict())
+    return (jsonify(orders_past_month))
 
 @app.route("/api/owner/my_restaurants/<restaurant_id>/all_orders")
+@login_required
 def get_my_restaurant_all_orders(restaurant_id):
     """Retrieves all the orders of an owner's restaurant"""
     if not isinstance(current_user, Owner):
@@ -175,6 +192,7 @@ def get_my_restaurant_all_orders(restaurant_id):
     return (jsonify(all_orders))
 
 @app.route("/api/owner/my_restaurants/<restaurant_id>/past_orders")
+@login_required
 def get_my_restaurant_past_orders(restaurant_id):
     """Retrieves all the past (done) orders of an owner's restaurant"""
     if not isinstance(current_user, Owner):
@@ -199,6 +217,7 @@ def get_my_restaurant_past_orders(restaurant_id):
     return (jsonify(past_orders))
 
 @app.route("/api/owner/my_restaurants/<restaurant_id>/pending_orders")
+@login_required
 def get_my_restaurant_pending_orders(restaurant_id):
     """Retrieves all the past (done) orders of an owner's restaurant"""
     if not isinstance(current_user, Owner):
@@ -223,6 +242,7 @@ def get_my_restaurant_pending_orders(restaurant_id):
     return (jsonify(pending_orders))
 
 @app.route("/api/owner/my_orders/<order_id>")
+@login_required
 def get_my_order_details(order_id):
     """Retrieves details about an order"""
     if not isinstance(current_user, Owner):
@@ -233,17 +253,16 @@ def get_my_order_details(order_id):
     all_dishes = [assoc.dish for assoc in order.dishes]
     unique_dishes = {}
     for dish in all_dishes:
-        print(dish.price)
         if dish.id in unique_dishes:
             unique_dishes[dish.id] += 1
         else:
             unique_dishes[dish.id] = 1
     dct = order.to_dict()
     dct["dishes"] = unique_dishes
-    print(dct)
     return (jsonify(dct))
 
 @app.route("/api/owner/my_orders/<order_id>/done", methods=["PUT"])
+@login_required
 def confirm_order_done(order_id):
     """Confirms that the order has been prepared"""
     if not isinstance(current_user, Owner):
