@@ -36,6 +36,7 @@ class Order(BaseModel, Base):
                            nullable=False)
     customer_confirm = Column(Boolean, nullable=False, default=False)
     driver_confirm = Column(Boolean, nullable=False, default=False)
+    restaurant_confirm = Column(Boolean, nullable=False, default=False)
     destination_latitude = Column(Float, nullable=False)
     destination_longitude = Column(Float, nullable=False)
     price = Column(Float, nullable=False, default=0)

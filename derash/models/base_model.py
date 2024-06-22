@@ -55,6 +55,15 @@ class BaseModel():
         if dct.get("password") is not None:
             dct.pop("password")
         return (dct)
+    
+    def update(self, **kwargs):
+        """Updates instance with values from given dictionary"""
+        for key, val in kwargs:
+            if key not in ["id", "created_at", "updated_at",
+                           "email", "password"]:
+                self.__dict__[key] = val
+        self.__dict__["updated_at"] = datetime.now()
+        self.save()
 
     def save(self):
         """Commit the instance to the storage session"""

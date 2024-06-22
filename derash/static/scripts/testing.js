@@ -1,4 +1,5 @@
 $(document).ready(() => {
+    // Customers
     const custGetAllRestaurants = () => {
         $.ajax({
             url: 'http://127.0.0.1:5000/api/customer/all_restaurants',
@@ -110,12 +111,12 @@ $(document).ready(() => {
         $.ajax({
             url: `http://127.0.0.1:5000/api/customer/orders/${orderId}`,
             success: (data, textStatus) => {
-                console.log(data)
+                console.log(data);
             }
         })
     };
-    custGetOrderDetails("8c23e934-83da-4de6-b46b-16469599f6261b1d8093-cb2b-4660-ad2b-47553a9e8181");
-    custGetOrderDetails("1b6c4ee8-a19b-4357-b86d-7ad431ceb0e36c68378a-e0b3-46e3-a899-04284b9df1f6");
+    // custGetOrderDetails("8c23e934-83da-4de6-b46b-16469599f6261b1d8093-cb2b-4660-ad2b-47553a9e8181");
+    // custGetOrderDetails("1b6c4ee8-a19b-4357-b86d-7ad431ceb0e36c68378a-e0b3-46e3-a899-04284b9df1f6");
 
     const custCreateOrder = (data) => {
         $.ajax({
@@ -130,4 +131,154 @@ $(document).ready(() => {
             }
         });   
     };
+
+    // const custRepeatOrder = (orderId) => {
+    //     $.ajax({
+    //         url: `http://127.0.0.1:5000/api/customer/orders/${orderId}`,
+    //         success: (data, textStatus) => {
+    //             $.ajax({
+    //                 url: 'http://127.0.0.1:5000/api/customer/new_order',
+    //                 method: "POST",
+    //                 headers: {
+    //                     "Content-Type": "application/json"
+    //                 },
+    //                 data: JSON.stringify(data),
+    //                 success: (data, textStatus) => {
+    //                     console.log(data);
+    //                 }
+    //             }); 
+    //         }
+    //     });
+    // };
+
+
+    // Owners
+    const ownerGetMyRestaurants = () => {
+        $.ajax({
+            url: 'http://127.0.0.1:5000/api/owner/my_restaurants',
+            success: (data, textStatus) => {
+                console.log(data);
+            },
+        });
+    };
+    // ownerGetMyRestaurants();
+
+    const ownerGetRestaurantDetails = (restaurantId) => {
+        $.ajax({
+            url: `http://127.0.0.1:5000/api/owner/my_restaurants/${restaurantId}`,
+            success: (data, textStatus) => {
+                console.log(data);
+            },
+        });
+    };
+    // ownerGetRestaurantDetails("503f2d53-82aa-4bdf-9812-16a9db999ef47c14963d-fa31-4c06-bd58-76f56458cbec");
+
+    const ownerGetRestaurantReviews = (restaurantId) => {
+        $.ajax({
+            url: `http://127.0.0.1:5000/api/owner/my_restaurants/${restaurantId}/reviews`,
+            success: (data, textStatus) => {
+                console.log(data);
+            },
+        });    
+    };
+    // ownerGetRestaurantReviews("503f2d53-82aa-4bdf-9812-16a9db999ef47c14963d-fa31-4c06-bd58-76f56458cbec");
+
+    const ownerOpenRestaurant = (restaurantId) => {
+        $.ajax({
+            url: `http://127.0.0.1:5000/api/owner/my_restaurants/${restaurantId}/open`,
+            method: "PUT",
+            success: (data, textStatus) => {
+                console.log(data);
+            },
+        });
+    };
+    // ownerOpenRestaurant("503f2d53-82aa-4bdf-9812-16a9db999ef47c14963d-fa31-4c06-bd58-76f56458cbec");
+
+    const ownerCloseRestaurant = (restaurantId) => {
+        $.ajax({
+            url: `http://127.0.0.1:5000/api/owner/my_restaurants/${restaurantId}/close`,
+            method: "PUT",
+            success: (data, textStatus) => {
+                console.log(data);
+            },
+        });
+    };
+    // ownerCloseRestaurant("503f2d53-82aa-4bdf-9812-16a9db999ef47c14963d-fa31-4c06-bd58-76f56458cbec");
+
+    const ownerGetMonthlyReceipt = (restaurantId) => {
+        $.ajax({
+            url: `http://127.0.0.1:5000/api/owner/my_restaurants/${restaurantId}/monthly`,
+            method: "GET",
+            success: (data, textStatus) => {
+                console.log(data);
+            },
+        });
+    };
+    // ownerGetMonthlyReceipt("503f2d53-82aa-4bdf-9812-16a9db999ef47c14963d-fa31-4c06-bd58-76f56458cbec");
+
+    const ownerGetPastMonthReceipt = (restaurantId) => {
+        $.ajax({
+            url: `http://127.0.0.1:5000/api/owner/my_restaurants/${restaurantId}/past_month`,
+            method: "GET",
+            success: (data, textStatus) => {
+                console.log(data);
+            },
+        });
+    };
+    // ownerGetPastMonthReceipt("503f2d53-82aa-4bdf-9812-16a9db999ef47c14963d-fa31-4c06-bd58-76f56458cbec");
+
+    const ownerGetAllRestaurantOrders = (restaurantId) => {
+        $.ajax({
+            url: `http://127.0.0.1:5000/api/owner/my_restaurants/${restaurantId}/all_orders`,
+            method: "GET",
+            success: (data, textStatus) => {
+                console.log(data);
+            },
+        });
+    };
+    // ownerGetAllRestaurantOrders("503f2d53-82aa-4bdf-9812-16a9db999ef47c14963d-fa31-4c06-bd58-76f56458cbec");
+
+    const ownerGetPastRestaurantOrders = (restaurantId) => {
+        $.ajax({
+            url: `http://127.0.0.1:5000/api/owner/my_restaurants/${restaurantId}/past_orders`,
+            method: "GET",
+            success: (data, textStatus) => {
+                console.log(data);
+            },
+        });  
+    };
+    // ownerGetPastRestaurantOrders("503f2d53-82aa-4bdf-9812-16a9db999ef47c14963d-fa31-4c06-bd58-76f56458cbec");
+
+    const ownerGetPendingRestaurantOrders = (restaurantId) => {
+        $.ajax({
+            url: `http://127.0.0.1:5000/api/owner/my_restaurants/${restaurantId}/pending_orders`,
+            method: "GET",
+            success: (data, textStatus) => {
+                console.log(data);
+            },
+        });  
+    };
+    // ownerGetPendingRestaurantOrders("503f2d53-82aa-4bdf-9812-16a9db999ef47c14963d-fa31-4c06-bd58-76f56458cbec");
+
+    const ownerGetOrderDetails = (orderId) => {
+        $.ajax({
+            url: `http://127.0.0.1:5000/api/owner/my_orders/${orderId}`,
+            method: "GET",
+            success: (data, textStatus) => {
+                console.log(data);
+            },
+        }); 
+    };
+    ownerGetOrderDetails("03e14db8-197e-4c9b-93eb-20bffe8a17241194f80d-f28a-4f8e-b38a-e3c6b6df9031");
+
+    const confirmOrderMade = (orderId) => {
+        $.ajax({
+            url: `http://127.0.0.1:5000/api/owner/my_orders/${orderId}/done`,
+            method: "PUT",
+            success: (data, textStatus) => {
+                console.log(data);
+            },
+        }); 
+    };
+    // confirmOrderMade("03e14db8-197e-4c9b-93eb-20bffe8a17241194f80d-f28a-4f8e-b38a-e3c6b6df9031");
 });

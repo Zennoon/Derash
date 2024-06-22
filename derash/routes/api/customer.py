@@ -17,7 +17,7 @@ from derash.models.user import User
 from utils import calc_distance
 
 
-default_driver = db.get(Driver, "265c1d8f-6f9a-4540-9bc7-7b65b11cb2049688d3af-4e4c-4cc9-b2c1-b5ae1883478d")
+default_driver = db.get(Driver, "0")
 
 @app.route("/api/customer/all_restaurants")
 @login_required
@@ -178,7 +178,7 @@ def confirm_order_delivered(order_id):
 @login_required
 def get_order_details(order_id):
     """Retrieves info about an order"""
-    if not isinstance(current_user, User):
+    if not isinstance(current_user, Customer):
         return ("Not authorized", 401)
     order = db.get(Order, order_id)
     if order is None:
