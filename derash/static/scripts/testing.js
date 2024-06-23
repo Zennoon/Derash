@@ -247,7 +247,7 @@ $(document).ready(() => {
             }
         });
     };
-    ownerGetPastMonthReceipt("503f2d53-82aa-4bdf-9812-16a9db999ef47c14963d-fa31-4c06-bd58-76f56458cbec");
+    // ownerGetPastMonthReceipt("503f2d53-82aa-4bdf-9812-16a9db999ef47c14963d-fa31-4c06-bd58-76f56458cbec");
 
     const ownerGetAllRestaurantOrders = (restaurantId) => {
         $.ajax({

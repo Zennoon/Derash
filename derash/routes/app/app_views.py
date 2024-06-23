@@ -3,10 +3,12 @@
 Contains Route handler functions for the app
 """
 from flask import flash, redirect, render_template, url_for
-from flask_login import current_user, login_user, logout_user
+from flask_login import current_user, login_required, login_user, logout_user
+from flask_mail import Mail, Message
 
-from derash import app, bcrypt
+from derash import app, bcrypt, mail
 from derash.forms.register import RegisterCustomerForm, RegisterDriverForm, RegisterOwnerForm
+from derash.forms.reset import RequestResetForm, ResetPasswordForm
 from derash.forms.login import LoginForm
 
 from derash.models import db
@@ -94,6 +96,8 @@ def register_driver():
 @app.route("/login", methods=["GET", "POST"])
 def login():
     """Handles the /login route, Logs user to the application"""
+    if current_user.is_authenticated:
+        return (redirect(url_for("home")))
     form = LoginForm()
     if form.validate_on_submit():
         user = db.filter_by_attr(User, "email", form.email.data)
@@ -106,7 +110,46 @@ def login():
     return (render_template("login.html", form=form))
 
 @app.route("/logout")
+@login_required
 def logout():
     """Handles the /logout route, logs user out of the application"""
     logout_user()
     return (redirect(url_for("login")))
+
+def send_reset_token(user):
+    """Sends instructions on how to reset password to requesting user"""
+    token = user.get_reset_token()
+    msg = Message("Password Reset Request",
+                  sender="noreply@demo.com",
+                  recipients=[user.email])
+    msg.body = "To reset your password, visit the following link: {}".format(url_for("reset_password", token=token, _external=True))
+    msg.send()
+
+@app.route("/reset_password", methods=["GET", "POST"])
+def request_reset_password():
+    """Handles the /reset_password route, handles requests to reset user password"""
+    if current_user.is_authenticated:
+        return (redirect(url_for("home")))
+    form = RequestResetForm()
+    if form.validate_on_submit():
+        user = db.filter_by_attr(User, "email", form.email.data)[0]
+        send_reset_token(user)
+        flash("An email has been sent with instructions on how to reset your password")
+        return (redirect(url_for("login")))
+    return (render_template("reset_request.html", form=form))
+
+@app.route("/reset_password/<token>", methods=["GET", "POST"])
+def reset_password(token):
+    """Handles the /reset_password/<token> route, resets a user's password if
+    token is valid"""
+    if current_user.is_authenticated:
+        return (redirect(url_for("home")))
+    user = User.verify_reset_token(token)
+    if user is None:
+        flash("That is an invalid or expired token")
+        return (redirect(url_for("request_reset_password")))
+    form = ResetPasswordForm()
+    if form.validate_on_submit():
+        user.password = bcrypt.generate_password_hash(form.password.data)
+        user.save()
+    return (render_template("reset_password.html", form=form))

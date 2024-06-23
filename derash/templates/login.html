@@ -43,7 +43,7 @@
                             {% endfor %}
                         </div>  
                     {% else %}
-                        {{ form.password(type=(password)) }}
+                        {{ form.password(type="password") }}
                     {% endif %}
                 </div>
                 <div>
@@ -53,8 +53,8 @@
             </fieldset>
             <div>
                 {{ form.submit }}
+                <small><a href="{{ url_for('request_reset_password') }}">Forgot password?</a></small>
             </div>
-            <small><a href="#">Forgot password?</a></small>
         </form>
     </div>
     <div>
