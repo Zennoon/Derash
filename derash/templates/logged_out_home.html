@@ -1,0 +1,45 @@
+{% extends "layout.html"%}
+{% block meta %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/logged_out.css') }}">
+    <title>Derash, your gateway to explore Ethiopian Cuisine</title>
+{% endblock meta %}
+{% block upper %}
+    <div class="hero-content">
+        <div class="hero">
+            <h1 class="hero-head">Hungry Customers, Happy Restaurants, Empowered Drivers. One App Does It All.</h1>
+            <p>Eat What You Crave. Deliver When You Need. Drive Your Success.</p>
+        </div>
+        <img src="{{ url_for('static', filename='images/app-images/burger.png') }}" alt="a cartoon image of a burger" class="hero-cartoon hero-burger">
+        <img src="{{ url_for('static', filename='images/app-images/pizza.png') }}" alt="a cartoon image of a cheesy pizza" class="hero-cartoon hero-pizza">
+        <img src="{{ url_for('static', filename='images/app-images/fruit-punch.png') }}" alt="a cartoon image of a fruit punch" class="hero-cartoon hero-punch">
+        <img src="{{ url_for('static', filename='images/app-images/beyaynet.png') }}" alt="a cartoon image of a fruit punch" class="hero-cartoon hero-beyaynet">
+    </div>
+{% endblock upper %}
+{% block content %}
+<div class="calls">
+    <div class="customer-call call">
+        <div class="call-text">
+            <h2>Explore food like never before</h2>
+            <p>Thousands of Choices. One Easy App. Your Food Delivery Starts Here. Start using <span class="derash-span">Derash</span> now</p>
+            <a href="{{ url_for('register_customer') }}">Sign up now</a>
+        </div>
+        <img src="{{ url_for('static', filename='images/app-images/injera.png') }}" alt="A traditional Ethiopian food, injera, served with 8 different stews" class="call-img customer-call-img">
+    </div>
+    <div class="restaurant-call call">
+        <img src="{{ url_for('static', filename='images/app-images/restaurant-manager.png') }}" alt="A black female restaurant owner posing for the camera" class="call-img restaurant-call-img">
+        <div class="call-text">
+            <h2>Make your restaurants accessible to thousands of daily users</h2>
+            <p>Expand Your Reach. Grow Your Business. Join <span class="derash-span">Derash</span> today.</p>
+            <a href="{{ url_for('register_owner') }}">Sign up now</a>
+        </div>
+    </div>
+    <div class="driver-call call">
+        <div class="call-text">
+            <h2>Earn with Derash, on your own time</h2>
+            <p>Be Your Own Boss. Set Your Schedule. Deliver with <span class="derash-span">Derash</span>.</p>
+            <a href="{{ url_for('register_driver') }}">Sign up now</a>
+        </div>
+        <img src="{{ url_for('static', filename='images/app-images/driver.png') }}" alt="A red food delivery car" class="call-img driver-call-img">
+    </div>
+</div>
+{% endblock content %}

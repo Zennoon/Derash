@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='images/app-images/derash-icon.png') }}" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fo nts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/resetter.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/common.css') }}">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://kit.fontawesome.com/4a80508866.js" crossorigin="anonymous"></script>
+    <script src="{{ url_for('static', filename='scripts/layout.js') }}"></script>
+    {% block meta %}{% endblock %}
+</head>
+<body>
+    <div class="main-cont">
+    {% block header %}
+        <header class="header">
+            <div class="logo-info">
+                <p class="header-name">DERASH</p>
+            </div>
+            <div class="links">
+                <a href="{{ url_for('home') }}" class="home-link header-link">Home</a>
+                <a href="#" class="home-link header-link">About us</a>
+                <a href="#"  class="home-link header-link">Contact</a>
+                {% if current_user.is_authenticated %}
+                    <a href="{{ url_for('logout') }}" class="home-link header-link">Log out</a>
+                {% else %}
+                    <a href="{{ url_for('login') }}" class="login-link header-link">Log in</a>
+                    <a href="{{ url_for('register') }}" class="signup-link header-link">Sign up</a>
+                {% endif %}
+            </div>
+        </header>
+    {% endblock header %}
+    {% block upper %}
+    {% endblock upper %}
+    </div>
+    {% block content %}
+    {%endblock%}
+    {% block footer %}
+    <footer class="footer">
+        <p class="copyright">Copyright &#169 Derash. All rights reserved</p>
+        <div class="social-links">
+            <a href="https://github.com/Zennoon" class="github"><i class="fa-brands fa-github"></i></a>
+            <a href="https://linkedin.com/in/yunus-kedir" class="linkedin"><i class="fa-brands fa-linkedin"></i></a>
+            <a href="https://t.me/@Zennoon" class="telegram"><i class="fa-brands fa-telegram"></i></a>
+        </div>
+    </footer>
+    {% endblock footer %}
+</body>
+</html>

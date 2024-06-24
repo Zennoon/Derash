@@ -1,0 +1,171 @@
+.header-cont {
+    background-image: url("../images/app-images/main-hero.jpeg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 500px;
+}
+
+.hero-content {
+    height: 500px;
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero {
+    width: 60%;
+    text-align: center;
+}
+
+.hero-head {
+    font-size: 46px;
+    margin-bottom: 30px;
+}
+
+.hero-cartoon {
+    width: 100px;
+    height: auto;
+    position: absolute;
+}
+
+.hero-burger {
+    transform: rotate(25deg);
+    top: 160px;
+    right: 10%;
+}
+
+.hero-pizza {
+    top: 260px;
+    left: 9%;
+}
+
+.hero-punch {
+    top: 90px;
+    left: 37%;
+    transform: rotate(-10deg);
+}
+
+.hero-beyaynet {
+    width: 70px;
+    height: auto;
+    bottom: 75px;
+    right: 35%;
+}
+
+.calls {
+    background: aliceblue;
+    padding: 80px 0px;
+}
+
+.call {
+    padding: 0 110px;
+    margin-bottom: 180px;
+    position: relative;
+}
+
+.derash-span {
+    color:rgb(66, 255, 151);
+    font-weight: bold;
+}
+
+.customer-call {
+    background: #0e2230;
+}
+
+.restaurant-call {
+    background: rgb(170, 189, 189);
+}
+
+.driver-call {
+    background: #85ebd0;
+}
+
+.call-text {
+    padding: 50px 5%;
+    color: aliceblue;
+    border-radius: 40px;
+    max-width: 50%;
+
+    display: flex;
+    flex-flow: column;
+    gap: 30px;
+}
+
+.call-text a {
+    font-weight: bold;
+    padding: 15px 30px;
+    background-color: aliceblue;
+    color: #0e2230;
+    border-radius: 20px;
+}
+
+.call-text a:hover {
+    background-color: rgb(66, 255, 151);
+    color: #fff
+}
+
+.call-img {
+    width: 30%;
+    height: auto;
+    position: absolute;
+}
+
+.customer-call .call-text {
+    align-items: flex-start;
+}
+
+.customer-call-img {
+    top: -50px;
+    right: 5%;
+}
+
+.restaurant-call .call-text {
+    align-items: flex-end;
+    color: #0e2230;
+    text-align: right;
+    margin-left: auto;
+}
+
+.restaurant-call .call-text .derash-span {
+    color: #0e2230;
+}
+
+
+.restaurant-call-img {
+    top: -50px;
+    left: -5%;
+    height: 120%;
+    width: auto;
+}
+
+.restaurant-call .call-text a:hover {
+    background-color: #0e2230;
+    color: #fff;
+}
+
+.driver-call .call-text {
+    color: #000;
+    align-items: flex-start;
+}
+
+.driver-call .call-text .derash-span {
+    color: #0e2230;
+}
+
+.driver-call-img {
+    top: 50px;
+    right: 5%;
+}
+
+.driver-call .call-text a:hover {
+    background-color: #f85959;
+    color: #fff;
+}
+
+.driver-call {
+    margin-bottom: 0;
+}
+ 

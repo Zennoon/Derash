@@ -1,0 +1,115 @@
+body {
+    font-family: "Quicksand", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    background-color: aliceblue;
+}
+
+h1 {
+    font-size: 36px;
+    font-weight: 700;
+}
+
+h2 {
+    font-size: 30px;
+    font-weight: 700;
+}
+
+a {
+    text-decoration: none;
+    color: #000;
+}
+
+.main-cont {
+    background-image: linear-gradient(rgb(181, 250, 255), aliceblue);
+}
+
+.header {
+    padding: 15px 30px;
+    margin: 0 10%;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    background-color: white;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.logo {
+    width: 35px;
+    height: auto;
+}
+
+.logo-info p {
+    font-size: 25px;
+    background-image: linear-gradient(to top right, rgb(33, 253, 132), rgb(180, 255, 255));
+    background-clip: text;
+    color: transparent;
+    font-weight: 700;
+}
+
+.links {
+    display: flex;
+    gap: 20px;
+}
+
+.header-link {
+    font-weight: 500;
+    padding: 10px 20px;
+}
+
+.header-link:hover {
+    color: #67dd8a;
+}
+
+.login-link {
+    border: 1px solid rgb(181, 250, 255);
+    border-radius: 15px;
+}
+
+.login-link:hover {
+    color: #fff;
+    background-color: rgb(68, 243, 255);
+}
+
+.signup-link {
+    border: 1px solid rgb(66, 255, 151);
+    border-radius: 15px;
+}
+
+.signup-link:hover {
+    color: #fff;
+    background-color: rgb(66, 255, 151);
+}
+
+.footer {
+    margin: 0 110px;
+    padding: 20px 20px;
+    display: flex;
+    background-color: aliceblue;
+    justify-content: space-between;
+    align-items: center;
+
+    border: 2px solid rgb(66, 255, 151);
+    border-bottom: none;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+}
+
+.social-links {
+    display: flex;
+    gap: 20px;
+}
+
+.social-links i {
+    font-size: 25px;
+    color: #0e0e0e;
+}

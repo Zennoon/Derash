@@ -28,7 +28,9 @@ def check_password(encrypted, password):
 
 @app.route("/")
 def home():
-    return (render_template("testing.html"))
+    if current_user.is_authenticated:
+        return (render_template("logged_in_home.html"))
+    return (render_template("logged_out_home.html"))
 
 @app.route("/register")
 def register():

@@ -1,0 +1,87 @@
+html, body {
+    height: 100%;
+}
+
+div.main-cont {
+    background-image: linear-gradient(to bottom right, rgb(63, 250, 147), rgb(180, 255, 255));
+    
+    background-size: cover;
+    height: 100%;
+    padding: 40px;
+    text-align: center;
+}
+
+h1.user-choice {
+    color: #000;
+    margin-bottom: 40px;
+}
+
+.user-selections {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 5%;
+    padding: 0 50px;
+}
+
+.selection {
+    background-color: #0c0a0a;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    align-items: center;
+    border-bottom-left-radius: 40px;
+    border-bottom-right-radius: 40px;
+    margin-bottom: 20px;
+    max-width: 310px;
+}
+
+.selection h3 {
+    font-size: 26px;
+    background-color: #8dfc8d;
+    padding: 10px 0;
+    align-self: stretch;
+}
+
+.avatar {
+    width: 100px;
+    height: auto;
+    /* background-color: #fff; */
+    border: 3px solid #8dfc8d;
+    border-radius: 50%;
+}
+
+.selection ul {
+    padding: 0 30px;
+    color: #fff;
+}
+
+.selection li {
+    margin-bottom: 30px;
+    font-size: 14px;
+    text-align: left;
+
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.selection li i {
+    color: #8dfc8d;
+    padding: 3px;
+    border: 1px solid #8dfc8d;
+    border-radius: 50%;
+}
+
+.selection a {
+    padding: 10px 20px;
+    border: 2px solid #8dfc8d;
+    border-radius: 20px;
+    color: #fff;
+    margin-bottom: 30px;
+}
+
+.selection a:hover {
+    background: #8dfc8d;
+    color: #000;
+}
