@@ -1,4 +1,38 @@
-{% extends "layout.html" %}
-{% block upper %}
-    <nav class=""></nav>
-{% endblock upper %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='images/app-images/derash-icon.png') }}" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fo nts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/resetter.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/logged_in.css') }}">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="{{ url_for('static', filename='scripts/logged_in.js') }}"></script>
+    <script src="https://kit.fontawesome.com/4a80508866.js" crossorigin="anonymous"></script>
+    {% block meta %}{% endblock meta %}
+    <title>Derash, your trusted companion to explore Ethiopia's rich culinary world</title>
+</head>
+<body>
+    <header class="header">
+        <h1 class="app-name">DERASH</h1>
+        <div class="links">
+            <a href="{{ url_for('home') }}" class="nav-link">Home</a>
+            <a href="#" class="nav-link">About us</a>
+            <a href="#" class="nav-link">Contact</a>
+            <a href="{{ url_for('logout') }}" class="nav-link">Log out</a>
+            <a href="#" class="nav-link">Account</a>
+        </div>
+    </header>
+    <div class="cont">
+        <nav class="main-nav">
+            <ul class="nav-items">
+                {% block nav_items %}{% endblock nav_items %}
+            </ul>
+        </nav>
+        <div class="content"></div>
+    </div>
+</body>
+</html>

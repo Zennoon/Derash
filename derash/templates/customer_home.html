@@ -1,0 +1,10 @@
+{% extends "logged_in_home.html" %}
+{% block meta %}
+    <script src="{{ url_for('static', filename='scripts/customer_home.js') }}"></script>
+{% endblock meta %}
+{% block nav_items %}
+    <li class="nav-item open-restaurants"><i class="fa-solid fa-utensils"></i>Open Restaurants</li>
+    <li class="nav-item nearby-restaurants"><i class="fa-solid fa-location-dot"></i>Restaurants nearby</li>
+    <li class="nav-item pending-orders"><i class="fa-regular fa-hourglass-half"></i>Pending Orders</li>
+    <li class="nav-item past-orders"><i class="fa-solid fa-clock-rotate-left"></i>Past Orders</li>
+{% endblock nav_items %}

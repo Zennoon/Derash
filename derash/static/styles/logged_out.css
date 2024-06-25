@@ -43,7 +43,7 @@
 }
 
 .hero-punch {
-    top: 90px;
+    top: 65px;
     left: 37%;
     transform: rotate(-10deg);
 }
@@ -51,7 +51,7 @@
 .hero-beyaynet {
     width: 70px;
     height: auto;
-    bottom: 75px;
+    bottom: 55px;
     right: 35%;
 }
 
@@ -103,7 +103,7 @@
 }
 
 .call-text a:hover {
-    background-color: rgb(66, 255, 151);
+    background-color: rgb(6, 172, 81);
     color: #fff
 }
 
@@ -133,7 +133,6 @@
     color: #0e2230;
 }
 
-
 .restaurant-call-img {
     top: -50px;
     left: -5%;
@@ -152,7 +151,7 @@
 }
 
 .driver-call .call-text .derash-span {
-    color: #0e2230;
+    color: #f85959;
 }
 
 .driver-call-img {

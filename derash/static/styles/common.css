@@ -1,26 +1,3 @@
-body {
-    font-family: "Quicksand", sans-serif;
-    font-optical-sizing: auto;
-    font-weight: 400;
-    font-style: normal;
-    background-color: aliceblue;
-}
-
-h1 {
-    font-size: 36px;
-    font-weight: 700;
-}
-
-h2 {
-    font-size: 30px;
-    font-weight: 700;
-}
-
-a {
-    text-decoration: none;
-    color: #000;
-}
-
 .main-cont {
     background-image: linear-gradient(rgb(181, 250, 255), aliceblue);
 }
@@ -94,9 +71,10 @@ a {
     margin: 0 110px;
     padding: 20px 20px;
     display: flex;
-    background-color: aliceblue;
+    background-color: rgb(13, 14, 15);
     justify-content: space-between;
     align-items: center;
+    color: #74eb97;
 
     border: 2px solid rgb(66, 255, 151);
     border-bottom: none;
@@ -111,7 +89,7 @@ a {
 
 .social-links i {
     font-size: 25px;
-    color: #0e0e0e;
+    color: #74eb97;
 }
 
 .flash {

@@ -41,11 +41,15 @@ def home():
 @app.route("/register")
 def register():
     """Handles the /register route, Registers a new user"""
+    if current_user.is_authenticated:
+        return (redirect(url_for("home")))
     return (render_template("select_user.html"))
 
 @app.route("/register_customer", methods=["GET", "POST"])
 def register_customer():
     """Registers a new customer"""
+    if current_user.is_authenticated:
+        return (redirect(url_for("home")))
     form = RegisterCustomerForm()
     if form.validate_on_submit():
         hashed = encrypt_password(form.password.data)
@@ -65,6 +69,8 @@ def register_customer():
 @app.route("/register_owner", methods=["GET", "POST"])
 def register_owner():
     """Registers a new owner/restaurants manager"""
+    if current_user.is_authenticated:
+        return (redirect(url_for("home")))
     form = RegisterOwnerForm()
     if form.validate_on_submit():
         hashed = encrypt_password(form.password.data)
@@ -84,6 +90,8 @@ def register_owner():
 @app.route("/register_driver", methods=["GET", "POST"])
 def register_driver():
     """Registers a new driver"""
+    if current_user.is_authenticated:
+        return (redirect(url_for("home")))
     form = RegisterDriverForm()
     if form.validate_on_submit():
         hashed = encrypt_password(form.password.data)
