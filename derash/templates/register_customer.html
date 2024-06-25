@@ -1,102 +1,92 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <div class="form-cont">
-        <form method="POST" action="">
-            {{ form.hidden_tag() }}
-            <fieldset>
-                <div>Customer</div>
-                <legend>Sign Up</legend>
-                <div>
-                    {{ form.first_name.label }}
-                    {% if form.first_name.errors %}
-                        {{ form.first_name }}
-                        <div>
-                            {% for error in form.first_name.errors %}
-                                <span>{{ error }}</span>
-                            {% endfor %}
-                        </div>  
-                    {% else %}
-                        {{ form.first_name }}
-                    {% endif %}
-                </div>
-                <div>
-                    {{ form.last_name.label }}
-                    {% if form.last_name.errors %}
-                        {{ form.last_name }}
-                        <div>
-                            {% for error in form.last_name.errors %}
-                                <span>{{ error }}</span>
-                            {% endfor %}
-                        </div>  
-                    {% else %}
-                        {{ form.last_name }}
-                    {% endif %}
-                </div>
-                <div>
-                    {{ form.email.label }}
-                    {% if form.email.errors %}
-                        {{ form.email }}
-                        <div>
-                            {% for error in form.email.errors %}
-                                <span>{{ error }}</span>
-                            {% endfor %}
-                        </div>  
-                    {% else %}
-                        {{ form.email }}
-                    {% endif %}
-                </div>
-                <div>
-                    {{ form.password.label }}
-                    {% if form.password.errors %}
-                        {{ form.password(type="password") }}
-                        <div>
-                            {% for error in form.password.errors %}
-                                <span>{{ error }}</span>
-                            {% endfor %}
-                        </div>  
-                    {% else %}
-                        {{ form.password(type="password") }}
-                    {% endif %}
-                </div>
-                <div>
-                    {{ form.confirm_password.label }}
-                    {% if form.confirm_password.errors %}
-                        {{ form.confirm_password(type="password") }}
-                        <div>
-                            {% for error in form.confirm_password.errors %}
-                                <span>{{ error }}</span>
-                            {% endfor %}
-                        </div>  
-                    {% else %}
-                        {{ form.confirm_password(type="password") }}
-                    {% endif %}
-                </div>
-                <div>
-                    {{ form.phone_num.label }}
-                    {% if form.phone_num.errors %}
-                        {{ form.phone_num }}
-                        <div>
-                            {% for error in form.phone_num.errors %}
-                                <span>{{ error }}</span>
-                            {% endfor %}
-                        </div>  
-                    {% else %}
-                        {{ form.phone_num }}
-                    {% endif %}
-                </div>
-            </fieldset>
-            <div>
-                {{ form.submit }}
+{% extends "register.html" %}
+{% block title %}Become part of the family, register to Derash as a customer{% endblock title %}
+{% block form %}
+    <form method="POST" action="">
+        {{ form.hidden_tag() }}
+        <fieldset>
+            <legend>Sign Up</legend>
+            <div class="field">
+                {{ form.first_name.label }}
+                {% if form.first_name.errors %}
+                    {{ form.first_name }}
+                    <div>
+                        {% for error in form.first_name.errors %}
+                            <span class="error-span">{{ error }}</span>
+                        {% endfor %}
+                    </div>  
+                {% else %}
+                    {{ form.first_name }}
+                {% endif %}
             </div>
-            <small><a href="{{ url_for('login') }}">Already have an account?</a></small>
-        </form>
-    </div>
-    <img src="" alt="">
-</body>
-</html>
+            <div class="field">
+                {{ form.last_name.label }}
+                {% if form.last_name.errors %}
+                    {{ form.last_name }}
+                    <div>
+                        {% for error in form.last_name.errors %}
+                            <span class="error-span">{{ error }}</span>
+                        {% endfor %}
+                    </div>  
+                {% else %}
+                    {{ form.last_name }}
+                {% endif %}
+            </div>
+            <div class="field">
+                {{ form.email.label }}
+                {% if form.email.errors %}
+                    {{ form.email }}
+                    <div>
+                        {% for error in form.email.errors %}
+                            <span class="error-span">{{ error }}</span>
+                        {% endfor %}
+                    </div>  
+                {% else %}
+                    {{ form.email }}
+                {% endif %}
+            </div>
+            <div class="field">
+                {{ form.password.label }}
+                {% if form.password.errors %}
+                    {{ form.password(type="password") }}
+                    <div>
+                        {% for error in form.password.errors %}
+                            <span class="error-span">{{ error }}</span>
+                        {% endfor %}
+                    </div>  
+                {% else %}
+                    {{ form.password(type="password") }}
+                {% endif %}
+            </div>
+            <div class="field">
+                {{ form.confirm_password.label }}
+                {% if form.confirm_password.errors %}
+                    {{ form.confirm_password(type="password") }}
+                    <div>
+                        {% for error in form.confirm_password.errors %}
+                            <span class="error-span">{{ error }}</span>
+                        {% endfor %}
+                    </div>  
+                {% else %}
+                    {{ form.confirm_password(type="password") }}
+                {% endif %}
+            </div>
+            <div class="field">
+                {{ form.phone_num.label }}
+                {% if form.phone_num.errors %}
+                    {{ form.phone_num }}
+                    <div>
+                        {% for error in form.phone_num.errors %}
+                            <span class="error-span">{{ error }}</span>
+                        {% endfor %}
+                    </div>  
+                {% else %}
+                    {{ form.phone_num }}
+                {% endif %}
+            </div>
+        </fieldset>
+        <div class="submit register-submit">
+            {{ form.submit }}
+        </div>
+        <small><a href="{{ url_for('login') }}">Already have an account?</a></small>
+    </form>
+{% endblock form %}

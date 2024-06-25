@@ -1,64 +1,59 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-</head>
-<body>
-    {% with messages = get_flashed_messages() %}
-        {% if messages %}
-            {% for message in messages %}
-                <div>
-                    {{ message }}
-                </div>
-            {% endfor %}
-        {% endif %}
-    {% endwith %}
-    <div>
-        <form method="POST" action="">
-            {{ form.hidden_tag() }}
-            <fieldset>
-                <legend>Sign In</legend>
-                <div>
-                    {{ form.email.label }}
-                    {% if form.email.errors %}
-                        {{ form.email }}
-                        <div>
-                            {% for error in form.email.errors %}
-                                <span>{{ error }}</span>
-                            {% endfor %}
-                        </div>  
-                    {% else %}
-                        {{ form.email }}
-                    {% endif %}
-                </div>
-                <div>
-                    {{ form.password.label }}
-                    {% if form.password.errors %}
-                        {{ form.password(type="password") }}
-                        <div>
-                            {% for error in form.password.errors %}
-                                <span>{{ error }}</span>
-                            {% endfor %}
-                        </div>  
-                    {% else %}
-                        {{ form.password(type="password") }}
-                    {% endif %}
-                </div>
-                <div>
-                    {{ form.remember }}
-                    {{ form.remember.label  }}
-                </div>
-            </fieldset>
-            <div>
-                {{ form.submit }}
-                <small><a href="{{ url_for('request_reset_password') }}">Forgot password?</a></small>
+{% extends "register.html" %}
+{% block title %}Log into your account{% endblock title %}
+{% block other %}
+    <style>
+        body {
+            background-color: rgb(179, 248, 225);
+        }
+    </style>
+{% endblock other %}
+{% block form %}
+    <form method="POST" action="">
+        {{ form.hidden_tag() }}
+        <fieldset>
+            <legend>Sign In</legend>
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <p class="flash flash-error">{{ message }}</p>
+                {% endfor %}
+            {% endif %}
+            {% endwith %}
+            <div class="field">
+                {{ form.email.label }}
+                {% if form.email.errors %}
+                    {{ form.email }}
+                    <div>
+                        {% for error in form.email.errors %}
+                            <span class="error-span">{{ error }}</span>
+                        {% endfor %}
+                    </div>  
+                {% else %}
+                    {{ form.email }}
+                {% endif %}
             </div>
-        </form>
-    </div>
-    <div>
-        <small>Don't have an account? <a href="{{ url_for('register') }}">Sign Up</a></small>
-    </div>
-</body>
-</html>
+            <div class="field">
+                {{ form.password.label }}
+                {% if form.password.errors %}
+                    {{ form.password(type="password") }}
+                    <div>
+                        {% for error in form.password.errors %}
+                            <span class="error-span">{{ error }}</span>
+                        {% endfor %}
+                    </div>  
+                {% else %}
+                    {{ form.password(type="password") }}
+                {% endif %}
+            </div>
+            <div class="field remember">
+                {{ form.remember }}
+                {{ form.remember.label  }}
+            </div>
+        </fieldset>
+        <div class="submit login-submit">
+            {{ form.submit }}
+            <small><a href="{{ url_for('request_reset_password') }}">Forgot password?</a></small>
+        </div>
+        <small>Don't have an account? &nbsp<a href="{{ url_for('register') }}">Sign Up</a></small>
+    </form>
+{% endblock form %}

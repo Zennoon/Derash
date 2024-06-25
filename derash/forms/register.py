@@ -31,7 +31,7 @@ class RegisterCustomerForm(FlaskForm):
     password = StringField("Password", validators=[DataRequired()])
     confirm_password = StringField("Confirm Password", validators=[DataRequired(),
                                                                    EqualTo("password")])
-    submit = SubmitField("Sign Up")
+    submit = SubmitField("Become a customer")
 
     def validate_email(self, email):
         """Checks if email is already registered"""
@@ -42,10 +42,11 @@ class RegisterCustomerForm(FlaskForm):
 
 class RegisterOwnerForm(RegisterCustomerForm):
     """Form to register a new owner"""
-    pass
+    submit = SubmitField("Become a manager")
 
 
 class RegisterDriverForm(RegisterCustomerForm):
     """Form to register a new driver"""
     license_num = StringField("License Plate Number",
                               validators=[DataRequired()])
+    submit = SubmitField("Become a driver")

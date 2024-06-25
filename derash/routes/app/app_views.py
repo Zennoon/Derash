@@ -29,6 +29,12 @@ def check_password(encrypted, password):
 @app.route("/")
 def home():
     if current_user.is_authenticated:
+        if isinstance(current_user, Customer):
+            return (render_template("customer_home.html"))
+        elif isinstance(current_user, Owner):
+            return (render_template("owner_home.html"))
+        elif isinstance(current_user, Driver):
+            return (render_template("driver_home.html"))
         return (render_template("logged_in_home.html"))
     return (render_template("logged_out_home.html"))
 
@@ -108,7 +114,7 @@ def login():
             login_user(user[0], remember=form.remember.data)
             return (redirect(url_for("home")))
         else:
-            print("Not registered")
+            flash("Incorrect credentials. Please check the email and password")
     return (render_template("login.html", form=form))
 
 @app.route("/logout")

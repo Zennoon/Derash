@@ -1,23 +1,31 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+{% extends "register.html" %}
+{% block title %}Request a password reset{% endblock title %}
+{% block other %}
+    <style>
+        body {
+            background-color: rgb(56, 156, 73);
+        }
+    </style>
+{% endblock other %}
+{% block form %}
     <form method="POST" action="">
         {{ form.hidden_tag() }}
         <fieldset>
-            <div>Customer</div>
             <legend>Request Password Reset</legend>
-            <div>
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <p class="flash flash-error">{{ message }}</p>
+                {% endfor %}
+            {% endif %}
+            {% endwith %}
+            <div class="field">
                 {{ form.email.label }}
                 {% if form.email.errors %}
                     {{ form.email }}
                     <div>
                         {% for error in form.email.errors %}
-                            <span>{{ error }}</span>
+                            <span class="error-span">{{ error }}</span>
                         {% endfor %}
                     </div>  
                 {% else %}
@@ -25,9 +33,8 @@
                 {% endif %}
             </div>
         </fieldset>
-        <div>
+        <div class="submit reset-request-submit">
             {{ form.submit }}
         </div>
     </form>
-</body>
-</html>
+{% endblock form %}

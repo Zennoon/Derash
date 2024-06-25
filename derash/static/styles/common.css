@@ -113,3 +113,24 @@ a {
     font-size: 25px;
     color: #0e0e0e;
 }
+
+.flash {
+    padding: 20px;
+    border: 2px solid #000;
+    border-radius: 5px;
+}
+
+.flash, .flash-info {
+    background-color: rgb(171, 171, 245);
+    border-color: rgb(172, 172, 255);
+}
+
+.flash, .flash-warning {
+    background-color: rgb(250, 243, 183);
+    border-color: yellow;
+}
+
+.flash, .flash-error {
+    background-color: rgb(255, 172, 161);
+    border-color: red;
+}
