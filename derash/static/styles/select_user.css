@@ -1,19 +1,15 @@
-html, body {
-    height: 100%;
-}
-
 div.main-cont {
     background-image: linear-gradient(to bottom right, rgb(63, 250, 147), rgb(180, 255, 255));
     
     background-size: cover;
     height: 100%;
-    padding: 40px;
+    padding: 20px;
     text-align: center;
 }
 
 h1.user-choice {
     color: #000;
-    margin-bottom: 40px;
+    margin-bottom: 30px;
 }
 
 .user-selections {
@@ -57,7 +53,7 @@ h1.user-choice {
 }
 
 .selection li {
-    margin-bottom: 30px;
+    margin-bottom: 20px;
     font-size: 14px;
     text-align: left;
 
@@ -79,6 +75,7 @@ h1.user-choice {
     border-radius: 20px;
     color: #fff;
     margin-bottom: 30px;
+    font-weight: 500;
 }
 
 .selection a:hover {

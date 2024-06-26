@@ -186,6 +186,7 @@ def get_all_orders():
 @login_required
 def confirm_order_delivered(order_id):
     """Confirms that order has been delivered to customer"""
+    print(order_id)
     if not isinstance(current_user, Customer):
         return ("Not authorized", 401)
     order = db.get(Order, order_id)
@@ -248,5 +249,6 @@ def create_order():
         for i in range(amt):
             new_order.add_dish_to_order(dish)
     new_order.calc_order_price()
+    new_order.calc_delivery_price()
     print(new_order.id)
     return (jsonify(True))

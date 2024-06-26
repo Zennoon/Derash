@@ -47,7 +47,6 @@ $(document).ready(() => {
         $('.current-location').on('click', () => {
             navigator.geolocation.getCurrentPosition((position) => {
                 const coords = {"coords": [position.coords.latitude, position.coords.longitude]};
-                console.log(coords);
 
                 $(contentDiv).empty();
                 $(contentDiv).append('<div class="loader"></div>');
@@ -61,7 +60,28 @@ $(document).ready(() => {
         $(contentDiv).append('<div class="loader"></div>');
         custGetPendingOrders(contentDiv);
     })
+
+    $('.past-orders').on('click', () => {
+        $(contentDiv).empty()
+        $(contentDiv).append('<div class="loader"></div>');
+        custGetPastOrders(contentDiv);
+    })
 })
+
+const mergeDishNames = (dishNames) => {
+    let dishesArray = [];
+
+    for (const dishName in dishNames) {
+        dishesArray.push(`${dishNames[dishName]}&times; ${dishName}`);
+    }
+    return (dishesArray.join(', '));
+}
+
+const getDateTime = (date) => {
+    const dateTime = date.split('T');
+
+    return (dateTime);
+}
 
 const fillContentRestaurants = (element, data, title) => {
     $(element).empty();
@@ -74,7 +94,7 @@ const fillContentRestaurants = (element, data, title) => {
         if (!restaurant.description) {
             restaurant.description = "";
         }
-        const restaurantDiv = `<a href="#"><div class="restaurant" data-id=${restaurant.id}>
+        const restaurantDiv = `<a href="http://127.0.0.1:5000/c/restaurants/${restaurant.id}"><div class="restaurant" data-id=${restaurant.id}>
             <h3 class="restaurant-name">${restaurant.name}</h3>
             <img src="/static/images/restaurant-pics/${restaurant.image_file}.png" class="restaurant-img">
             <div class="restaurant-text">
@@ -91,19 +111,39 @@ const fillContentOrders = (element, data, title) => {
     $(element).empty();
     $(element).append(`<h1 class='section-title'>${title}</h1>`);
     const orders = $('<div class="orders"></div>');
+    let repeatButton = '';
+
     if (data.length === 0) {
         $(orders).append('<p class="empty-list">No result has been found. Try another query</p>')
     }
+    if (title === "Past Orders") {
+        repeatButton = '<button class="repeat-order">Repeat Order</button>';
+    }
+
     for (const order of data) {
-        const orderDiv = `<a href="#"><div class="order" data-id=${restaurant.id}>
-            <h3 class="order-name">${restaurant.name}</h3>
-            <img src="/static/images/restaurant-pics/${restaurant.image_file}.png" class="restaurant-img">
-            <div class="restaurant-text">
-                <p>${restaurant.description}</p>
-                <p class="restaurant-location"><i class="fa-solid fa-location-dot"></i>lat: ${restaurant.latitude} lng: ${restaurant.longitude}</p>
+        let confirmDelivered = '<button class="order-delivered">Confirm Delivery</button>';
+        if (title === "Pending Orders" && order.customer_confirm) {
+            confirmDelivered = '<p class="awaiting-driver">Waiting for driver confirmation</p>';
+        }
+        if (title === "Past Orders") {
+            confirmDelivered = '';
+        }
+        const dateTime = getDateTime(order.created_at);
+        const orderDiv = `<a href="#"><div class="order" data-id=${order.id}>
+        <div class="order-headline">
+            <h3 class="order-restaurant-name">Ordered from ${order.restaurant.name}</h3>
+            <p class="order-time">${dateTime[0]} at ${dateTime[1]}</p>
+        </div>
+        <div class="order-body">
+            <div class="order-text">
+                <p class="order-driver-name">Delivered by ${order.driver.first_name+ ' ' + order.driver.last_name}, License Plate number: <span class="order-license-num">${order.driver.license_num}</span></p>
+                <p class="order-dishes">${mergeDishNames(order.dish_names)}</p>
             </div>
-        </div></a>`
-        $(orders).append(restaurantDiv);
+            ${repeatButton}
+            ${confirmDelivered}
+        </div>
+    </div></a>`
+        $(orders).append(orderDiv);
     }
     $(element).append(orders);
 }
@@ -131,11 +171,54 @@ const custGetRestaurantsNear = (coords, element) => {
     });
 };
 
-const custGetPendingOrders = () => {
+const custGetPendingOrders = (element) => {
     $.ajax({
         url: `http://127.0.0.1:5000/api/customer/pending_orders`,
         success: (data, textStatus) => {
-            console.log(data);
+            fillContentOrders(element, data, "Pending Orders");
+            $('.order-delivered').on('click', (event) => {
+                custConfirmOrderDelivered(element, $(event.currentTarget).parent().parent().attr("data-id"));
+            })
+        }
+    });
+};
+
+const custConfirmOrderDelivered = (element, orderId) => {
+    $(element).empty();
+    $(element).append('<div class="loader"></div>');
+    $.ajax({
+        url: `http://127.0.0.1:5000/api/customer/confirm_delivered/${orderId}`,
+        method: "PUT",
+        success: (data, textStatus) => {
+            custGetPendingOrders(element);
+        }
+    });
+};
+
+const addCustomEventListener = (element, eventName, callback) => {
+    $(element).on(eventName, callback);
+}
+
+const custGetPastOrders = (element) => {
+    $.ajax({
+        url: `http://127.0.0.1:5000/api/customer/past_orders`,
+        success: (data, textStatus) => {
+            fillContentOrders(element, data, 'Past Orders');
+            $('.repeat-order').on('click', (event) => {
+                $(event.currentTarget).parent().parent().append(`<div class="nearby-select"><div class="coord-form">
+                <label for="latitude">Latitude:</label>
+                <input id="latitude" class="coord-input" required>
+                <label for="longitude">Longitude:</label>
+                <input id="longitude" class="coord-input" required>
+                <button class="coord-submit">Submit</button>
+            </div><h3>or</h3><div class="other-options"><button class="current-location">Use my location</button></div><button class="cancel-repeat">Cancel</button></div>`);
+                $(event.currentTarget).remove()
+                $('.cancel-repeat').on('click', (event) => {
+                    $(element).empty();
+                    $(element).append('<div class="loader"></div>');
+                    custGetPastOrders(element);
+                })
+            })
         }
     });
 };

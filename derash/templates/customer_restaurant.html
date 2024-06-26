@@ -1,0 +1,43 @@
+{% extends "logged_in_home.html" %}
+{% block meta %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/customer_restaurant.css') }}">
+    <script src="{{ url_for('static', filename='scripts/customer_restaurant.js') }}"></script>
+{% endblock meta %}
+{% block main_content %}
+<div class="main-content" data-id="{{ restaurant.id }}">
+    <div class="popup-cont">
+        <div class="popup-order-confirm"></div>
+    </div>
+    <div class="restaurant-intro">
+        <img src="{{ url_for('static', filename='images/restaurant-pics/{}.png'.format(restaurant.image_file)) }}" alt="Image of the restaurant described in the page" class="restaurant-img">
+        <h1 class="restaurant-name">{{ restaurant.name }}</h1>
+        {% if restaurant.description %}
+            <p class="restaurant description">{{ restaurant.description }}</p>
+        {% endif %}
+        <p class="restaurant-location"><i class="fa-solid fa-location-dot"></i> <span class="restaurant-lat">{{restaurant.latitude}}</span> Lat, <span class="restaurant-lng">{{ restaurant.longitude }}</span> Lng</p>
+    </div>
+    <div class="restaurant-dishes">
+        {% for dish in restaurant.dishes %}
+            <div class="restaurant-dish" data-id="{{ dish.id }}">
+                <img src="{{ url_for('static', filename='images/dish-pics/{}.png'.format(restaurant.image_file)) }}" alt="Image of the dish described in this section" class="dish-img">
+                <div class="dish-info">
+                    <h2>{{ dish.name }}</h2>
+                    {% if dish.description %}
+                        <p class="dish description">{{ dish.description }}</p>
+                    {% endif %}
+                    <p>Ingredients: {{ dish.ingredients }}</p>
+                </div>
+                <div class="dish-to-order">
+                    <h2 class="dish-price">{{ dish.price }} ETB</h2>
+                    <div class="dish-order">
+                        <button class="dish-order-button add-to-order"><i class="fa-solid fa-plus"></i></button>
+                        <span class="dish-amt"></span>
+                        <button class="dish-order-button decrease-from-order"><i class="fa-solid fa-minus"></i></button>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+<footer class="restaurant-footer"></footer>
+{% endblock main_content %}

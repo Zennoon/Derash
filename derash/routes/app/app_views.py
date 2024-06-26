@@ -7,6 +7,7 @@ from flask_login import current_user, login_required, login_user, logout_user
 from flask_mail import Mail, Message
 
 from derash import app, bcrypt, mail
+from derash.forms.new_restaurant import createRestaurant
 from derash.forms.register import RegisterCustomerForm, RegisterDriverForm, RegisterOwnerForm
 from derash.forms.reset import RequestResetForm, ResetPasswordForm
 from derash.forms.login import LoginForm
@@ -15,6 +16,7 @@ from derash.models import db
 from derash.models.customer import Customer
 from derash.models.driver import Driver
 from derash.models.owner import Owner
+from derash.models.restaurant import Restaurant
 from derash.models.user import User
 
 
@@ -32,6 +34,7 @@ def home():
         if isinstance(current_user, Customer):
             return (render_template("customer_home.html"))
         elif isinstance(current_user, Owner):
+            form = createRestaurant()
             return (render_template("owner_home.html"))
         elif isinstance(current_user, Driver):
             return (render_template("driver_home.html"))
@@ -169,3 +172,13 @@ def reset_password(token):
         user.password = bcrypt.generate_password_hash(form.password.data)
         user.save()
     return (render_template("reset_password.html", form=form))
+
+@app.route("/c/restaurants/<restaurant_id>")
+def view_restaurant(restaurant_id):
+    """Displays a restaurant in detail"""
+    restaurant = db.get(Restaurant, restaurant_id)
+    if restaurant is None:
+        return ("Not a valid restaurant id", 404)
+    dct  = restaurant.to_dict()
+    dct["dishes"] = [dish.to_dict() for dish in restaurant.dishes]
+    return (render_template("customer_restaurant.html", restaurant=dct))

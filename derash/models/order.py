@@ -40,6 +40,7 @@ class Order(BaseModel, Base):
     destination_latitude = Column(Float, nullable=False)
     destination_longitude = Column(Float, nullable=False)
     price = Column(Float, nullable=False, default=0)
+    delivery_fee = Column(Float, nullable=False, default=0)
     dishes = relationship("Association", backref="order")
 
     def add_dish_to_order(self, dish):
@@ -60,7 +61,7 @@ class Order(BaseModel, Base):
         rest_coords = (restaurant.latitude,
                        restaurant.longitude)
         distance = calc_distance(delivery_coords, rest_coords)
-        return (int(distance * 15))
+        self.delivery_fee = 50 + float(int(distance * 15))
 
     def calc_order_price(self):
         """Calculates and assigns the total price of the order"""
@@ -68,5 +69,4 @@ class Order(BaseModel, Base):
         self.save()
         for assoc in self.dishes:
             self.price += assoc.dish.price
-        self.price += self.calc_delivery_price()
         self.save()

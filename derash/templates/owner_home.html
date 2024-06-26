@@ -1,0 +1,17 @@
+{% extends "logged_in_home.html" %}
+{% block meta %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/owner_home.css') }}">
+    <script src="{{ url_for('static', filename='scripts/owner_home.js') }}"></script>
+{% endblock meta %}
+{% block main_content %}
+    <div class="main-content">
+        <div class="popup-cont">
+            <div class="popup-new-restaurant"></div>
+        </div>
+        <div class="intro">
+            <h1>My Restaurants</h1>
+            <button class="add-restaurant"><i class="fa-solid fa-plus"></i> New</i></button>
+        </div>
+        <div class="owner-restaurants"></div>
+    </div>
+{% endblock main_content %}

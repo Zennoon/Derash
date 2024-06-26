@@ -6,12 +6,14 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    padding-top: 50px;
 
     background-color: rgb(199, 255, 199);
 }
 
 form {
-    padding: 30px 50px;
+    margin: 20px;
+    padding: 20px 50px;
     border-radius: 30px;
     width: 20%;
 
