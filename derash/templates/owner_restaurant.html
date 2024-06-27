@@ -1,0 +1,92 @@
+{% extends "logged_in_home.html" %}
+{% block meta %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/owner_restaurant.css') }}">
+    <script src="{{ url_for('static', filename='scripts/owner_restaurant.js') }}"></script>
+{% endblock meta %}
+{% block nav_items %}
+    <li class="nav-item restaurant-details"><i class="fa-solid fa-utensils"></i>Restaurant Details</li>
+    <li class="nav-item pending-orders"><i class="fa-solid fa-location-dot"></i>Pending Orders</li>
+    <li class="nav-item past-orders"><i class="fa-regular fa-hourglass-half"></i>Past Orders</li>
+    <li class="nav-item orders-past-month"><i class="fa-solid fa-clock-rotate-left"></i>Past Month Receipt</li>
+{% endblock nav_items %}
+{% block content %}
+<div class="content" data-id="{{ restaurant.id }}">
+    <div class="popup-cont">
+        <div class="popup-edit-restaurant">
+            <i class="fa-solid fa-xmark cancel"></i>
+            <form method="POST" action="" enctype="multipart/form-data" class="update-restaurant-form">
+                {{ update_form.hidden_tag() }}
+                <fieldset>
+                    <legend>Edit Restaurant</legend>
+                    <div class="field">
+                        {{ update_form.name.label }}
+                        {% if update_form.name.errors %}
+                            {{ update_form.name }}
+                            <div>
+                                {% for error in update_form.name.errors %}
+                                    <span class="error-span">{{ error }}</span>
+                                {% endfor %}
+                            </div>  
+                        {% else %}
+                            {{ update_form.name }}
+                        {% endif %}
+                    </div>
+                    <div class="field">
+                        {{ update_form.description.label }}
+                        {% if update_form.description.errors %}
+                            {{ update_form.description }}
+                            <div>
+                                {% for error in update_form.description.errors %}
+                                    <span class="error-span">{{ error }}</span>
+                                {% endfor %}
+                            </div>  
+                        {% else %}
+                            {{ update_form.description }}
+                        {% endif %}
+                    </div>
+                    <div class="field">
+                        {{ update_form.latitude.label }}
+                        {% if update_form.latitude.errors %}
+                            {{ update_form.latitude }}
+                            <div>
+                                {% for error in update_form.latitude.errors %}
+                                    <span class="error-span">{{ error }}</span>
+                                {% endfor %}
+                            </div>  
+                        {% else %}
+                            {{ update_form.latitude }}
+                        {% endif %}
+                    </div>
+                    <div class="field">
+                        {{ update_form.longitude.label }}
+                        {% if update_form.longitude.errors %}
+                            {{ update_form.longitude }}
+                            <div>
+                                {% for error in update_form.longitude.errors %}
+                                    <span class="error-span">{{ error }}</span>
+                                {% endfor %}
+                            </div>  
+                        {% else %}
+                            {{ update_form.longitude }}
+                        {% endif %}
+                    </div>
+                    <div class="field">
+                        {{ update_form.image_file.label() }}
+                        {{ update_form.image_file() }}
+                        {% if update_form.image_file.errors %}
+                            {% for error in update_form.image_file.errors %}
+                                <span class="error-text">{{ error }}</span>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                </fieldset>
+                <div class="submit update-restaurant-submit">
+                    {{ update_form.submit }}
+                </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
+{% block main_content %}
+    {{ super() }}
+{% endblock main_content %}

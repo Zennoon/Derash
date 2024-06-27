@@ -33,7 +33,7 @@
                 {% block nav_items %}{% endblock nav_items %}
             </ul>
         </nav>
-        <div class="content"></div>
+        {% block content %}<div class="content"></div>{% endblock content %}
     </div>
     {% endblock main_content %}
 </body>

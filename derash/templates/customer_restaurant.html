@@ -9,7 +9,7 @@
         <div class="popup-order-confirm"></div>
     </div>
     <div class="restaurant-intro">
-        <img src="{{ url_for('static', filename='images/restaurant-pics/{}.png'.format(restaurant.image_file)) }}" alt="Image of the restaurant described in the page" class="restaurant-img">
+        <img src="{{ url_for('static', filename='images/restaurant-pics/{}'.format(restaurant.image_file)) }}" alt="Image of the restaurant described in the page" class="restaurant-img">
         <h1 class="restaurant-name">{{ restaurant.name }}</h1>
         {% if restaurant.description %}
             <p class="restaurant description">{{ restaurant.description }}</p>
@@ -19,7 +19,7 @@
     <div class="restaurant-dishes">
         {% for dish in restaurant.dishes %}
             <div class="restaurant-dish" data-id="{{ dish.id }}">
-                <img src="{{ url_for('static', filename='images/dish-pics/{}.png'.format(restaurant.image_file)) }}" alt="Image of the dish described in this section" class="dish-img">
+                <img src="{{ url_for('static', filename='images/dish-pics/{}'.format(dish.image_file)) }}" alt="Image of the dish described in this section" class="dish-img">
                 <div class="dish-info">
                     <h2>{{ dish.name }}</h2>
                     {% if dish.description %}

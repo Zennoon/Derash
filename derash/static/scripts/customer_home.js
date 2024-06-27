@@ -96,7 +96,7 @@ const fillContentRestaurants = (element, data, title) => {
         }
         const restaurantDiv = `<a href="http://127.0.0.1:5000/c/restaurants/${restaurant.id}"><div class="restaurant" data-id=${restaurant.id}>
             <h3 class="restaurant-name">${restaurant.name}</h3>
-            <img src="/static/images/restaurant-pics/${restaurant.image_file}.png" class="restaurant-img">
+            <img src="/static/images/restaurant-pics/${restaurant.image_file}" class="restaurant-img">
             <div class="restaurant-text">
                 <p>${restaurant.description}</p>
                 <p class="restaurant-location"><i class="fa-solid fa-location-dot"></i>lat: ${restaurant.latitude} lng: ${restaurant.longitude}</p>

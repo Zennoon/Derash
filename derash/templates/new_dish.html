@@ -1,0 +1,72 @@
+<div class="popup-new-dish">
+    <i class="fa-solid fa-xmark cancel"></i>
+    <form method="POST" action="" enctype="multipart/form-data" class="new-dish-form">
+        {{ dish_form.hidden_tag() }}
+        <fieldset>
+            <legend>New Dish</legend>
+            <div class="field">
+                {{ dish_form.name.label }}
+                {% if dish_form.name.errors %}
+                    {{ dish_form.name }}
+                    <div>
+                        {% for error in dish_form.name.errors %}
+                            <span class="error-span">{{ error }}</span>
+                        {% endfor %}
+                    </div>  
+                {% else %}
+                    {{ dish_form.name }}
+                {% endif %}
+            </div>
+            <div class="field">
+                {{ dish_form.description.label }}
+                {% if dish_form.description.errors %}
+                    {{ dish_form.description }}
+                    <div>
+                        {% for error in dish_form.description.errors %}
+                            <span class="error-span">{{ error }}</span>
+                        {% endfor %}
+                    </div>  
+                {% else %}
+                    {{ dish_form.description }}
+                {% endif %}
+            </div>
+            <div class="field">
+                {{ dish_form.ingredients.label }}
+                {% if dish_form.ingredients.errors %}
+                    {{ dish_form.ingredients }}
+                    <div>
+                        {% for error in dish_form.ingredients.errors %}
+                            <span class="error-span">{{ error }}</span>
+                        {% endfor %}
+                    </div>  
+                {% else %}
+                    {{ dish_form.ingredients }}
+                {% endif %}
+            </div>
+            <div class="field">
+                {{ dish_form.price.label }}
+                {% if dish_form.price.errors %}
+                    {{ dish_form.price }}
+                    <div>
+                        {% for error in dish_form.price.errors %}
+                            <span class="error-span">{{ error }}</span>
+                        {% endfor %}
+                    </div>  
+                {% else %}
+                    {{ dish_form.price }}
+                {% endif %}
+            </div>
+            <div class="field">
+                {{ dish_form.image_file.label() }}
+                {{ dish_form.image_file() }}
+                {% if dish_form.image_file.errors %}
+                    {% for error in dish_form.image_file.errors %}
+                        <span class="error-text">{{ error }}</span>
+                    {% endfor %}
+                {% endif %}
+            </div>
+        </fieldset>
+        <div class="submit new-dish-submit">
+            {{ dish_form.submit }}
+        </div>
+</div>

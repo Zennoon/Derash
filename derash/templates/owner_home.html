@@ -6,7 +6,78 @@
 {% block main_content %}
     <div class="main-content">
         <div class="popup-cont">
-            <div class="popup-new-restaurant"></div>
+            <div class="popup-new-restaurant">
+                <i class="fa-solid fa-xmark cancel"></i>
+                <form method="POST" action="" enctype="multipart/form-data" class="new-restaurant-form">
+                    {{ form.hidden_tag() }}
+                    <fieldset>
+                        <legend>Add a Restaurant</legend>
+                        <div class="field">
+                            {{ form.name.label }}
+                            {% if form.name.errors %}
+                                {{ form.name }}
+                                <div>
+                                    {% for error in form.name.errors %}
+                                        <span class="error-span">{{ error }}</span>
+                                    {% endfor %}
+                                </div>  
+                            {% else %}
+                                {{ form.name }}
+                            {% endif %}
+                        </div>
+                        <div class="field">
+                            {{ form.description.label }}
+                            {% if form.description.errors %}
+                                {{ form.description }}
+                                <div>
+                                    {% for error in form.description.errors %}
+                                        <span class="error-span">{{ error }}</span>
+                                    {% endfor %}
+                                </div>  
+                            {% else %}
+                                {{ form.description }}
+                            {% endif %}
+                        </div>
+                        <div class="field">
+                            {{ form.latitude.label }}
+                            {% if form.latitude.errors %}
+                                {{ form.latitude }}
+                                <div>
+                                    {% for error in form.latitude.errors %}
+                                        <span class="error-span">{{ error }}</span>
+                                    {% endfor %}
+                                </div>  
+                            {% else %}
+                                {{ form.latitude }}
+                            {% endif %}
+                        </div>
+                        <div class="field">
+                            {{ form.longitude.label }}
+                            {% if form.longitude.errors %}
+                                {{ form.longitude }}
+                                <div>
+                                    {% for error in form.longitude.errors %}
+                                        <span class="error-span">{{ error }}</span>
+                                    {% endfor %}
+                                </div>  
+                            {% else %}
+                                {{ form.longitude }}
+                            {% endif %}
+                        </div>
+                        <div class="field">
+                            {{ form.image_file.label() }}
+                            {{ form.image_file() }}
+                            {% if form.image_file.errors %}
+                                {% for error in form.image_file.errors %}
+                                    <span class="error-text">{{ error }}</span>
+                                {% endfor %}
+                            {% endif %}
+                        </div>
+                    </fieldset>
+                    <div class="submit new-restaurant-submit">
+                        {{ form.submit }}
+                    </div>
+            </div>
         </div>
         <div class="intro">
             <h1>My Restaurants</h1>

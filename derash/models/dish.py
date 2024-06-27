@@ -25,5 +25,5 @@ class Dish(BaseModel, Base):
 
     def __init__(self, **kwargs):
         """Initializes a new instance"""
-        self.image_file = "default_{}".format(random.randint(0, 9))
+        self.image_file = "default_{}.png".format(random.randint(0, 9))
         super().__init__(**kwargs)

@@ -2,18 +2,23 @@
 """
 Contains Route handler functions for the app
 """
-from flask import flash, redirect, render_template, url_for
+import os
+import secrets
+
+from flask import flash, redirect, render_template, request, url_for
 from flask_login import current_user, login_required, login_user, logout_user
 from flask_mail import Mail, Message
 
 from derash import app, bcrypt, mail
-from derash.forms.new_restaurant import createRestaurant
+from derash.forms.dish import createDish, updateDish
+from derash.forms.login import LoginForm
 from derash.forms.register import RegisterCustomerForm, RegisterDriverForm, RegisterOwnerForm
 from derash.forms.reset import RequestResetForm, ResetPasswordForm
-from derash.forms.login import LoginForm
+from derash.forms.restaurant import createRestaurant, updateRestaurant
 
 from derash.models import db
 from derash.models.customer import Customer
+from derash.models.dish import Dish
 from derash.models.driver import Driver
 from derash.models.owner import Owner
 from derash.models.restaurant import Restaurant
@@ -28,14 +33,35 @@ def check_password(encrypted, password):
     """Checks that a user submitted password at login is correct"""
     return (bcrypt.check_password_hash(encrypted, password))
 
-@app.route("/")
+def save_image_file(form_picture, folder):
+    """Saves the form submitted image"""
+    random_hex = secrets.token_hex(8)
+    _, f_ext = os.path.splitext(form_picture.filename)
+    image_filename = random_hex + f_ext
+    save_path = os.path.join(app.root_path, 'static/images/{}'.format(folder), image_filename)
+    form_picture.save(save_path)
+    return (image_filename)
+
+@app.route("/", methods=["GET", "POST"])
 def home():
     if current_user.is_authenticated:
         if isinstance(current_user, Customer):
             return (render_template("customer_home.html"))
         elif isinstance(current_user, Owner):
             form = createRestaurant()
-            return (render_template("owner_home.html"))
+            if form.validate_on_submit():
+                restaurant = Restaurant()
+                restaurant.name = form.name.data
+                restaurant.latitude = form.latitude.data
+                restaurant.longitude = form.longitude.data
+                restaurant.owner_id = current_user.id
+                if form.description.data:
+                    restaurant.description = form.description.data
+                if form.image_file.data:
+                    image_file = save_image_file(form.image_file.data, "restaurant-pics")
+                    restaurant.image_file = image_file
+                restaurant.save()
+            return (render_template("owner_home.html", form=form))
         elif isinstance(current_user, Driver):
             return (render_template("driver_home.html"))
         return (render_template("logged_in_home.html"))
@@ -174,7 +200,8 @@ def reset_password(token):
     return (render_template("reset_password.html", form=form))
 
 @app.route("/c/restaurants/<restaurant_id>")
-def view_restaurant(restaurant_id):
+@login_required
+def view_restaurant_customer(restaurant_id):
     """Displays a restaurant in detail"""
     restaurant = db.get(Restaurant, restaurant_id)
     if restaurant is None:
@@ -182,3 +209,65 @@ def view_restaurant(restaurant_id):
     dct  = restaurant.to_dict()
     dct["dishes"] = [dish.to_dict() for dish in restaurant.dishes]
     return (render_template("customer_restaurant.html", restaurant=dct))
+
+@app.route("/o/restaurants/<restaurant_id>", methods=["GET", "POST"])
+@login_required
+def view_restaurant_owner(restaurant_id):
+    """Displays an owner's restaurant in detail"""
+    restaurant = db.get(Restaurant, restaurant_id)
+    if restaurant is None:
+        return ("Not a valid restaurant id", 404)
+    dct = restaurant.to_dict()
+    dct["dishes"] = [dish.to_dict() for dish in restaurant.dishes]
+    return (render_template("owner_restaurant.html"))
+
+@app.route("/o/restaurants/<restaurant_id>/update", methods=["GET", "POST"])
+@login_required
+def update_restaurant(restaurant_id):
+    """Displays an owner's restaurant in detail"""
+    restaurant = db.get(Restaurant, restaurant_id)
+    if restaurant is None:
+        return ("Not a valid restaurant id", 404)
+    if restaurant.owner_id != current_user.id:
+        return ("Not authorized", 401)
+    form = updateRestaurant()
+    if form.validate_on_submit():
+        restaurant.name = form.name.data
+        restaurant.latitude = form.latitude.data
+        restaurant.longitude = form.longitude.data
+        if form.description.data:
+            restaurant.description = form.description.data
+        if form.image_file.data:
+            image_file = save_image_file(form.image_file.data)
+            restaurant.image_file = image_file
+        restaurant.save()
+        return (redirect(url_for('view_restaurant_owner', restaurant_id=restaurant_id)))
+    elif request.method == "GET":
+        form.name.data = restaurant.name
+        form.description.data = restaurant.description
+        form.latitude.data = restaurant.latitude
+        form.longitude.data = restaurant.longitude
+    return (render_template("update_restaurant.html", restaurant_name=restaurant.name, form=form))
+
+@app.route("/o/restaurants/<restaurant_id>/add-dish", methods=["GET", "POST"])
+@login_required
+def create_dish(restaurant_id):
+    """Page to create a new form"""
+    restaurant = db.get(Restaurant, restaurant_id)
+    if restaurant is None:
+        return ("Not a valid restaurant id", 404)
+    dish_form = createDish()
+    if dish_form.validate_on_submit():
+        dish = Dish()
+        dish.restaurant_id = restaurant_id
+        dish.name = dish_form.name.data
+        dish.ingredients = dish_form.ingredients.data
+        dish.price = dish_form.price.data
+        if dish_form.description.data:
+            dish.description = dish_form.description.data
+        if dish_form.image_file.data:
+            image_file = save_image_file(dish_form.image_file.data, "dish-pics")
+            dish.image_file = image_file
+        dish.save()
+        return (redirect(url_for('view_restaurant_owner', restaurant_id=restaurant_id)))         
+    return (render_template("new_dish.html", restaurant_name=restaurant.name, dish_form=dish_form))

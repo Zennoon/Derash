@@ -48,60 +48,188 @@ button.add-restaurant {
     flex-direction: column;
     justify-content: space-between;
     padding: 20px;
+    gap: 10px;
 }
 
 .restaurant-headline {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     border-bottom: 1px solid #fff;
+    padding-bottom: 5px;
+}
+
+.restaurant-headline img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
 }
 
 .restaurant-headline h2 {
     font-size: 20px;
     font-weight: 700;
+    color: rgb(66, 255, 151);
+}
+
+.restaurant-headline a:hover {
+    border-bottom: 1px solid rgb(66, 255, 151);
 }
 
 .restaurant-headline span {
+    display: inline-block;
     background-color: rgb(247, 122, 122);
-    padding: 20px;
+    width: 10px;
+    height: 10px;
     border-radius: 50%;
+    margin-right: 10px;
 }
 
 .restaurant-headline span.active {
     background-color: rgb(66, 255, 151);
 }
 
+.restaurant-description {
+    color: #fff;
+}
+
 .activate, .deactivate {
     outline: none;
     padding: 10px 20px;
-    border: 1px solid rgb(247, 122, 122);
+    font-family: "Quicksand";
+    border: 2px solid rgb(247, 122, 122);
     border-radius: 20px;
 }
 
 .activate {
-    background-color: rgb(27, 185, 98);
+    background-color: inherit;
     border-color:rgb(66, 255, 151);
+    color: rgb(66, 255, 151);
 }
 
 .deactivate {
+    background-color: inherit;
+    color: rgb(247, 122, 122);
+
+}
+
+.activate:hover {
+    background-color: rgb(66, 255, 151);
+    color: #112121;
+}
+
+.deactivate:hover {
     background-color: rgb(247, 122, 122);
+    color: #112121;
 }
 
 .popup-cont {
     position: relative;
+    top: -50px;
     width: 100%;
 }
 
 .popup-new-restaurant {
     visibility: hidden;
     position: fixed;
-    width: 90%;
-    height: 70%;
-    margin: 0 auto;
-    background: #fff;
-    color: #000;
-    padding: 50px;
+    width: 30%;
+    left: 25%;
+    background: #112121;;
+    color: #fff;
+    padding: 30px;
+    border: 2px solid rgb(66, 255, 151);
     border-radius: 20px;
     z-index: 10;
-    overflow-y: scroll;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* .new-restaurant-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.new-restaurant-form {
+
+} */
+
+form {
+    padding: 8px 0px;
+    border-radius: 30px;
+
+    background-color: #112121;
+}
+
+legend {
+    text-align: center;
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 25px;
+}
+
+form fieldset {
+    display: flex;
+    flex-flow: column;
+    align-items: stretch;
+    gap: 15px;
+}
+
+.field {
+    display: flex;
+    flex-flow: column;
+    gap: 5px;
+}
+
+.field label {
+    font-weight: 700;
+}
+
+.field input, .field textarea {
+    font-family: "Quicksand" sans-serif;
+    margin-top: 5px;
+    padding: 2px 0;
+    font-size: 16px;
+    background-color: inherit;
+    color: rgb(66, 255, 151);
+    /* border: 1px solid black;
+    border-radius: 15px; */
+    border: none;
+    outline: none;
+    border-bottom: 1px solid rgb(66, 255, 151);
+}
+
+
+input[type='text'], textarea {
+    font-family: "Quicksand";
+}
+
+.submit input {
+    width: 100%;
+    padding: 15px 30px;
+    margin-top: 10px;
+    outline: none;
+    background-color: #112121;
+    border: 2px solid rgb(66, 255, 151);
+    border-radius: 20px;
+    color: rgb(66, 255, 151);
+    font-family: "Quicksand" sans-serif;
+    font-weight: 700;
+}
+
+.submit input:hover {
+    background-color: rgb(66, 255, 151);
+    padding: 14px 29px;
+    color: #112121;
+    cursor: pointer;
+}
+
+.cancel {
+    color:rgb(66, 255, 151);
+    font-size: 20px;
+    cursor: pointer;
+    position: absolute;
+    top: 15px;
+    right: 15px;
 }
