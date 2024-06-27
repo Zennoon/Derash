@@ -219,12 +219,12 @@ def view_restaurant_owner(restaurant_id):
         return ("Not a valid restaurant id", 404)
     dct = restaurant.to_dict()
     dct["dishes"] = [dish.to_dict() for dish in restaurant.dishes]
-    return (render_template("owner_restaurant.html"))
+    return (render_template("owner_restaurant.html", restaurant=dct))
 
 @app.route("/o/restaurants/<restaurant_id>/update", methods=["GET", "POST"])
 @login_required
 def update_restaurant(restaurant_id):
-    """Displays an owner's restaurant in detail"""
+    """Modifies an existing restaurant"""
     restaurant = db.get(Restaurant, restaurant_id)
     if restaurant is None:
         return ("Not a valid restaurant id", 404)
@@ -238,7 +238,7 @@ def update_restaurant(restaurant_id):
         if form.description.data:
             restaurant.description = form.description.data
         if form.image_file.data:
-            image_file = save_image_file(form.image_file.data)
+            image_file = save_image_file(form.image_file.data, "restaurant-pics")
             restaurant.image_file = image_file
         restaurant.save()
         return (redirect(url_for('view_restaurant_owner', restaurant_id=restaurant_id)))
@@ -252,22 +252,53 @@ def update_restaurant(restaurant_id):
 @app.route("/o/restaurants/<restaurant_id>/add-dish", methods=["GET", "POST"])
 @login_required
 def create_dish(restaurant_id):
-    """Page to create a new form"""
+    """Handles creating a new dish"""
     restaurant = db.get(Restaurant, restaurant_id)
     if restaurant is None:
         return ("Not a valid restaurant id", 404)
-    dish_form = createDish()
-    if dish_form.validate_on_submit():
+    if restaurant.owner_id != current_user.id:
+        return ("Not authorized", 401)
+    form = createDish()
+    if form.validate_on_submit():
         dish = Dish()
         dish.restaurant_id = restaurant_id
-        dish.name = dish_form.name.data
-        dish.ingredients = dish_form.ingredients.data
-        dish.price = dish_form.price.data
-        if dish_form.description.data:
-            dish.description = dish_form.description.data
-        if dish_form.image_file.data:
-            image_file = save_image_file(dish_form.image_file.data, "dish-pics")
+        dish.name = form.name.data
+        dish.ingredients = form.ingredients.data
+        dish.price = form.price.data
+        if form.description.data:
+            dish.description = form.description.data
+        if form.image_file.data:
+            image_file = save_image_file(form.image_file.data, "dish-pics")
             dish.image_file = image_file
         dish.save()
         return (redirect(url_for('view_restaurant_owner', restaurant_id=restaurant_id)))         
-    return (render_template("new_dish.html", restaurant_name=restaurant.name, dish_form=dish_form))
+    return (render_template("new_dish.html", restaurant_name=restaurant.name, form=form))
+
+@app.route("/o/dish/<dish_id>/edit", methods=["GET", "POST"])
+@login_required
+def update_dish(dish_id):
+    """Modifies an existing dish"""
+    dish = db.get(Dish, dish_id)
+    if dish is None:
+        return ("Not a valid dish id", 404)
+    restaurant = db.get(Restaurant, dish.restaurant_id)
+    if restaurant.owner_id != current_user.id:
+        return ("Not authorized", 401)
+    form = updateDish()
+    if form.validate_on_submit():
+        dish.name = form.name.data
+        dish.ingredients = form.ingredients.data
+        dish.price = form.price.data
+        if form.description.data:
+            dish.description = form.description.data
+        if form.image_file.data:
+            image_file = save_image_file(form.image_file.data, "dish-pics")
+            dish.image_file = image_file
+        dish.save()
+        return (redirect(url_for('view_restaurant_owner', restaurant_id=restaurant.id)))
+    elif request.method == "GET":
+        form.name.data = dish.name
+        form.description.data = dish.description
+        form.ingredients.data = dish.ingredients
+        form.price.data = dish.price
+    return (render_template("update_dish.html", dish_name=dish.name, form=form))

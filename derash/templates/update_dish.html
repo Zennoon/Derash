@@ -1,0 +1,87 @@
+{% extends "register.html" %}
+{% block links %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/logged_in_forms.css') }}">
+{% endblock links %}
+{% block title %}Modify {{ dish_name }}{% endblock title %}
+{% block other %}
+{% endblock other %}
+{% block cartoons %}{% endblock cartoons %}
+{% block form %}
+    <form method="POST" action="" enctype="multipart/form-data">
+        {{ form.hidden_tag() }}
+        <fieldset>
+            <legend>Update {{ dish_name }}</legend>
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <p class="flash flash-error">{{ message }}</p>
+                {% endfor %}
+            {% endif %}
+            {% endwith %}
+            <div class="field">
+                {{ form.name.label }}
+                {% if form.name.errors %}
+                    {{ form.name }}
+                    <div>
+                        {% for error in form.name.errors %}
+                            <span class="error-span">{{ error }}</span>
+                        {% endfor %}
+                    </div>  
+                {% else %}
+                    {{ form.name }}
+                {% endif %}
+            </div>
+            <div class="field">
+                {{ form.description.label }}
+                {% if form.description.errors %}
+                    {{ form.description }}
+                    <div>
+                        {% for error in form.description.errors %}
+                            <span class="error-span">{{ error }}</span>
+                        {% endfor %}
+                    </div>  
+                {% else %}
+                    {{ form.description }}
+                {% endif %}
+            </div>
+            <div class="field">
+                {{ form.ingredients.label }}
+                {% if form.ingredients.errors %}
+                    {{ form.ingredients }}
+                    <div>
+                        {% for error in form.ingredients.errors %}
+                            <span class="error-span">{{ error }}</span>
+                        {% endfor %}
+                    </div>  
+                {% else %}
+                    {{ form.ingredients }}
+                {% endif %}
+            </div>
+            <div class="field">
+                {{ form.price.label }}
+                {% if form.price.errors %}
+                    {{ form.price }}
+                    <div>
+                        {% for error in form.price.errors %}
+                            <span class="error-span">{{ error }}</span>
+                        {% endfor %}
+                    </div>  
+                {% else %}
+                    {{ form.price }}
+                {% endif %}
+            </div>
+            <div class="field">
+                {{ form.image_file.label() }}
+                {{ form.image_file() }}
+                {% if form.image_file.errors %}
+                    {% for error in form.image_file.errors %}
+                        <span class="error-text">{{ error }}</span>
+                    {% endfor %}
+                {% endif %}
+            </div>
+        </fieldset>
+        <div class="submit update-restaurant">
+            {{ form.submit }}
+        </div>
+    </form>
+{% endblock form %}

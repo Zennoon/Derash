@@ -1,0 +1,83 @@
+html, body {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(4, 19, 32);
+}
+
+form {
+    padding: 50px;
+    border-radius: 30px;
+    color: #fff;
+    background-color: #112121;
+}
+
+legend {
+    text-align: center;
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 25px;
+}
+
+form fieldset {
+    display: flex;
+    flex-flow: column;
+    align-items: stretch;
+    gap: 15px;
+}
+
+.field {
+    display: flex;
+    flex-flow: column;
+    gap: 5px;
+}
+
+.field label {
+    font-weight: 700;
+}
+
+.field input, .field textarea {
+    font-family: "Quicksand" sans-serif;
+    margin-top: 5px;
+    padding: 2px 0;
+    font-size: 16px;
+    background-color: inherit;
+    color: rgb(66, 255, 151);
+    /* border: 1px solid black;
+    border-radius: 15px; */
+    border: none;
+    outline: none;
+    border-bottom: 1px solid rgb(66, 255, 151);
+}
+
+textarea {
+    border: 1px solid rgb(66, 255, 151);
+}
+
+input[type='text'], textarea {
+    font-family: "Quicksand";
+}
+
+.submit input {
+    width: 100%;
+    padding: 15px 30px;
+    margin-top: 10px;
+    outline: none;
+    background-color: #112121;
+    border: 2px solid rgb(66, 255, 151);
+    border-radius: 20px;
+    color: rgb(66, 255, 151);
+    font-family: "Quicksand" sans-serif;
+    font-weight: 700;
+}
+
+.submit input:hover {
+    background-color: rgb(66, 255, 151);
+    padding: 14px 29px;
+    color: #112121;
+    cursor: pointer;
+}

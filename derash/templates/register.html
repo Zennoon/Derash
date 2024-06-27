@@ -1,25 +1,29 @@
 {% extends "layout.html" %}
 {% block meta %}
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles/register.css') }}">
+    {% block links %}
+        <link rel="stylesheet" href="{{ url_for('static', filename='styles/register.css') }}">
+    {% endblock links %}
     {% block other %}{% endblock other %}
     <title>{% block title %}{% endblock title %}</title>
 {% endblock meta %}
 {% block header %}{% endblock header %}
 {% block content %}
-    <img src="{{ url_for('static', filename='images/app-images/avocado-cartoon.png') }}" alt="A cartoon illustration of an alive avocado" class="cartoon avocado-1">
-    <img src="{{ url_for('static', filename='images/app-images/chicken-cartoon.png') }}" alt="A cartoon illustration of a chicken" class="cartoon chicken-1">
-    <img src="{{ url_for('static', filename='images/app-images/delivery-car-cartoon.png') }}" alt="A cartoon illustration of a delivery car" class="cartoon delivery-car-1">
-    <img src="{{ url_for('static', filename='images/app-images/lemonade-cartoon.png') }}" alt="A cartoon illustration of an alive glass of lemonade" class="cartoon lemonade-1">
-    <img src="{{ url_for('static', filename='images/app-images/noodles-cartoon.png') }}" alt="A cartoon illustration of an alive bowl of noodles" class="cartoon noodles-1">
-    <img src="{{ url_for('static', filename='images/app-images/salad-cartoon.png') }}" alt="A cartoon illustration of a bowl of salad" class="cartoon salad-1">
-    <img src="{{ url_for('static', filename='images/app-images/watermelon-cartoon.png') }}" alt="A cartoon illustration of a slice of watermelon" class="cartoon watermelon-1">
-    <img src="{{ url_for('static', filename='images/app-images/avocado-cartoon.png') }}" alt="A cartoon illustration of an alive avocado" class="cartoon avocado-2">
-    <img src="{{ url_for('static', filename='images/app-images/chicken-cartoon.png') }}" alt="A cartoon illustration of a chicken" class="cartoon chicken-2">
-    <img src="{{ url_for('static', filename='images/app-images/delivery-car-cartoon.png') }}" alt="A cartoon illustration of a delivery car" class="cartoon delivery-car-2">
-    <img src="{{ url_for('static', filename='images/app-images/lemonade-cartoon.png') }}" alt="A cartoon illustration of an alive glass of lemonade" class="cartoon lemonade-2">
-    <img src="{{ url_for('static', filename='images/app-images/noodles-cartoon.png') }}" alt="A cartoon illustration of an alive bowl of noodles" class="cartoon noodles-2">
-    <img src="{{ url_for('static', filename='images/app-images/salad-cartoon.png') }}" alt="A cartoon illustration of a bowl of salad" class="cartoon salad-2">
-    <img src="{{ url_for('static', filename='images/app-images/watermelon-cartoon.png') }}" alt="A cartoon illustration of a slice of watermelon" class="cartoon watermelon-2">
+    {% block cartoons %}
+        <img src="{{ url_for('static', filename='images/app-images/avocado-cartoon.png') }}" alt="A cartoon illustration of an alive avocado" class="cartoon avocado-1">
+        <img src="{{ url_for('static', filename='images/app-images/chicken-cartoon.png') }}" alt="A cartoon illustration of a chicken" class="cartoon chicken-1">
+        <img src="{{ url_for('static', filename='images/app-images/delivery-car-cartoon.png') }}" alt="A cartoon illustration of a delivery car" class="cartoon delivery-car-1">
+        <img src="{{ url_for('static', filename='images/app-images/lemonade-cartoon.png') }}" alt="A cartoon illustration of an alive glass of lemonade" class="cartoon lemonade-1">
+        <img src="{{ url_for('static', filename='images/app-images/noodles-cartoon.png') }}" alt="A cartoon illustration of an alive bowl of noodles" class="cartoon noodles-1">
+        <img src="{{ url_for('static', filename='images/app-images/salad-cartoon.png') }}" alt="A cartoon illustration of a bowl of salad" class="cartoon salad-1">
+        <img src="{{ url_for('static', filename='images/app-images/watermelon-cartoon.png') }}" alt="A cartoon illustration of a slice of watermelon" class="cartoon watermelon-1">
+        <img src="{{ url_for('static', filename='images/app-images/avocado-cartoon.png') }}" alt="A cartoon illustration of an alive avocado" class="cartoon avocado-2">
+        <img src="{{ url_for('static', filename='images/app-images/chicken-cartoon.png') }}" alt="A cartoon illustration of a chicken" class="cartoon chicken-2">
+        <img src="{{ url_for('static', filename='images/app-images/delivery-car-cartoon.png') }}" alt="A cartoon illustration of a delivery car" class="cartoon delivery-car-2">
+        <img src="{{ url_for('static', filename='images/app-images/lemonade-cartoon.png') }}" alt="A cartoon illustration of an alive glass of lemonade" class="cartoon lemonade-2">
+        <img src="{{ url_for('static', filename='images/app-images/noodles-cartoon.png') }}" alt="A cartoon illustration of an alive bowl of noodles" class="cartoon noodles-2">
+        <img src="{{ url_for('static', filename='images/app-images/salad-cartoon.png') }}" alt="A cartoon illustration of a bowl of salad" class="cartoon salad-2">
+        <img src="{{ url_for('static', filename='images/app-images/watermelon-cartoon.png') }}" alt="A cartoon illustration of a slice of watermelon" class="cartoon watermelon-2">
+    {% endblock cartoons %}
     {% block form %}{% endblock form %}
 {% endblock content %}
 {% block footer %}{% endblock footer %}

@@ -18,7 +18,7 @@ class createDish(FlaskForm):
     """Form to register a new dish"""
     name = StringField("Name", validators=[DataRequired()])
     description = TextAreaField("Description")
-    ingredients = StringField("Ingredients", validators=[DataRequired()])
+    ingredients = TextAreaField("Ingredients", validators=[DataRequired()])
     price = FloatField("Price in ETB", validators=[DataRequired()])
     image_file = FileField("Upload an image", validators=[FileAllowed(['jpg', 'png'])])
     submit = SubmitField("Add dish")

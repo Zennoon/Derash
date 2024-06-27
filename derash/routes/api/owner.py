@@ -59,6 +59,11 @@ def get_my_restaurant_reviews(restaurant_id):
     if restaurant.owner_id != current_user.id:
         return ("Not authorized", 401)
     reviews = [review.to_dict() for review in restaurant.reviews]
+    reviews = []
+    for review in restaurant.reviews:
+        dct = review.to_dict()
+        dct["customer"] = review.customer.to_dict()
+        reviews.append(dct)
     return (jsonify(reviews))
 
 @app.route("/api/owner/my_restaurants/<restaurant_id>/open", methods=["PUT"])
@@ -182,12 +187,17 @@ def get_my_restaurant_all_orders(restaurant_id):
     for order in restaurant.all_orders:
         dct = order.to_dict()
         dct["dishes"] = {}
+        dct["dish_names"] = {}
         all_dishes = [assoc.dish for assoc in order.dishes]
         for dish in all_dishes:
             if dish.id in dct["dishes"]:
                 dct["dishes"][dish.id] += 1
+                dct["dish_names"][dish.name] += 1
             else:
                 dct["dishes"][dish.id] = 1
+                dct["dish_names"][dish.name] = 1
+        dct["customer"] = order.customer.to_dict()
+        dct["driver"] = order.driver.to_dict()
         all_orders.append(dct)
     return (jsonify(all_orders))
 
@@ -207,12 +217,17 @@ def get_my_restaurant_past_orders(restaurant_id):
         if order.restaurant_confirm:
             dct = order.to_dict()
             dct["dishes"] = {}
+            dct["dish_names"] = {}
             all_dishes = [assoc.dish for assoc in order.dishes]
             for dish in all_dishes:
                 if dish.id in dct["dishes"]:
                     dct["dishes"][dish.id] += 1
+                    dct["dish_names"][dish.name] += 1
                 else:
                     dct["dishes"][dish.id] = 1
+                    dct["dish_names"][dish.name] = 1
+            dct["customer"] = order.customer.to_dict()
+            dct["driver"] = order.driver.to_dict()
             past_orders.append(dct)
     return (jsonify(past_orders))
 
@@ -232,12 +247,17 @@ def get_my_restaurant_pending_orders(restaurant_id):
         if not order.restaurant_confirm:
             dct = order.to_dict()
             dct["dishes"] = {}
+            dct["dish_names"] = {}
             all_dishes = [assoc.dish for assoc in order.dishes]
             for dish in all_dishes:
                 if dish.id in dct["dishes"]:
                     dct["dishes"][dish.id] += 1
+                    dct["dish_names"][dish.name] += 1
                 else:
                     dct["dishes"][dish.id] = 1
+                    dct["dish_names"][dish.name] = 1
+            dct["customer"] = order.customer.to_dict()
+            dct["driver"] = order.driver.to_dict()
             pending_orders.append(dct)
     return (jsonify(pending_orders))
 
