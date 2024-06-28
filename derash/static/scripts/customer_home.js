@@ -75,13 +75,13 @@ const mergeDishNames = (dishNames) => {
         dishesArray.push(`${dishNames[dishName]}&times; ${dishName}`);
     }
     return (dishesArray.join(', '));
-}
+};
 
 const getDateTime = (date) => {
     const dateTime = date.split('T');
 
     return (dateTime);
-}
+};
 
 const fillContentRestaurants = (element, data, title) => {
     $(element).empty();
@@ -128,21 +128,30 @@ const fillContentOrders = (element, data, title) => {
         if (title === "Past Orders") {
             confirmDelivered = '';
         }
+        let driver =  '';
+        if (order.driver.id === "0") {
+            driver = 'Waiting for a driver to accept delivery'
+        } else {
+            driver = `Delivered by ${order.driver.first_name + ' ' + order.driver.last_name} , License Plate number: <span class="order-license-num">${order.driver.license_num}</span>, Phone number: <span>${order.driver.phone_num}</span>`;
+        }
         const dateTime = getDateTime(order.created_at);
-        const orderDiv = `<a href="#"><div class="order" data-id=${order.id}>
+        const orderDiv = `<div class="order" data-id=${order.id}>
         <div class="order-headline">
             <h3 class="order-restaurant-name">Ordered from ${order.restaurant.name}</h3>
             <p class="order-time">${dateTime[0]} at ${dateTime[1]}</p>
         </div>
         <div class="order-body">
             <div class="order-text">
-                <p class="order-driver-name">Delivered by ${order.driver.first_name+ ' ' + order.driver.last_name}, License Plate number: <span class="order-license-num">${order.driver.license_num}</span></p>
+                <p class="order-driver-name">${driver}</p>
                 <p class="order-dishes">${mergeDishNames(order.dish_names)}</p>
+                <p class="order-price">Order Price: <span>${order.price} ETB</span></p>
+                <p class="delivery-fee">Delivery Fee: <span>${order.delivery_fee} ETB</span></p>
+                <p class="total-price">Total: <span>${order.price + order.delivery_fee} ETB</span></p>
             </div>
             ${repeatButton}
             ${confirmDelivered}
         </div>
-    </div></a>`
+    </div>`
         $(orders).append(orderDiv);
     }
     $(element).append(orders);

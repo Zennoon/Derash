@@ -23,6 +23,7 @@
 
     display: flex;
     gap: 20px;
+    align-items: center;
 }
 
 .nav-item:hover {
@@ -203,10 +204,18 @@ input.coord-input {
 .order-body {
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 
 .order-text {
     color: #fff;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.order-text span {
+    color: rgb(66, 255, 151);
 }
 
 .awaiting-driver {

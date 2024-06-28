@@ -1,0 +1,177 @@
+.main-nav {
+    margin-left: 20px;
+    height: 100%;
+    width: 25%;
+
+    position: fixed;
+    top: 64px;
+}
+
+.nav-items {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 20px;
+    gap: 20px;
+}
+
+.nav-item {
+    padding: 30px;
+    background-color:rgb(46, 54, 59);
+    border-radius: 10px;
+    font-weight: bold;
+
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.nav-item:hover {
+    cursor: pointer;
+    background-color:rgb(74, 82, 87);
+}
+
+.toggle-active {
+    width: 70%;
+    background: rgb(4, 19, 32);
+    position: relative;
+    top: 64px;
+    left: 30%;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    align-items: center;
+}
+
+.activate, .deactivate {
+    cursor: pointer;
+    outline: none;
+    padding: 10px 20px;
+    font-family: "Quicksand";
+    font-weight: 700;
+    border: 2px solid rgb(247, 122, 122);
+    border-radius: 20px;
+}
+
+.activate {
+    background-color: inherit;
+    border-color:rgb(66, 255, 151);
+    color: rgb(66, 255, 151);
+}
+
+.deactivate {
+    background-color: inherit;
+    color: rgb(247, 122, 122);
+}
+
+.active {
+    color: rgb(66, 255, 151);
+    font-weight: 700;
+}
+
+.dormant {
+    color: rgb(247, 122, 122);
+    font-weight: 700;
+}
+
+.activate:hover {
+    background-color: rgb(66, 255, 151);
+    color: #112121;
+}
+
+.deactivate:hover {
+    background-color: rgb(247, 122, 122);
+    color: #112121;
+}
+
+.content {
+    width: 70%;
+    background: rgb(4, 19, 32);
+    position: relative;
+    top: 84px;
+    left: 30%;
+    padding: 20px;
+}
+
+.nav-item.clicked {
+    border: 2px solid rgb(66, 255, 151);
+}
+
+.section-title {
+    font-size: 28px;
+    color: rgb(66, 255, 151);
+    border-bottom: 1px solid #fff;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+}
+
+.orders {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    margin-top: 50px;
+}
+
+.order {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    background-color: #112121;
+    border: 2px solid rgb(66, 255, 151);
+    gap: 20px;
+}
+
+.order-headline {
+    display: flex;
+    justify-content: space-between;
+    color: rgb(66, 255, 151);
+    border-bottom: 1px solid rgb(66, 255, 151);
+}
+
+.order-restaurant-name {
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.order-time {
+    color: rgb(66, 255, 151);
+}
+
+.order-body {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.order-text {
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.order-text span {
+    color: rgb(66, 255, 151);
+    font-weight: 700;
+}
+
+.confirm-delivered, .accept-delivery {
+    cursor: pointer;
+    font-family: "Quicksand";
+    font-weight: 700;
+    color: rgb(66, 255, 151);
+    padding: 10px 20px;
+    background: inherit;
+    border: 1px solid rgb(66, 255, 151);
+    border-radius: 20px;
+}
+
+.confirm-delivered:hover, .accept-delivery:hover {
+    background: rgb(66, 255, 151);
+    color: rgb(4, 19, 32);
+}
+
+.error-text {
+    color: rgb(247, 122, 122);
+}

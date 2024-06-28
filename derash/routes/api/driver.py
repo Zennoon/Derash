@@ -62,6 +62,8 @@ def get_past_deliveries():
                     dct["dishes"][dish.id] += 1
                 else:
                     dct["dishes"][dish.id] = 1
+            dct["restaurant"] = delivery.restaurant.to_dict()
+            dct["customer"] = delivery.customer.to_dict()
             past_deliveries.append(dct)
     return (jsonify(past_deliveries))
 
@@ -84,12 +86,12 @@ def get_possible_deliveries():
             restaurant = db.get(Restaurant, order.restaurant_id)
             restaurant_coords = (restaurant.latitude,
                                  restaurant.longitude)
-            print(restaurant_coords)
             distance = calc_distance(restaurant_coords,
                                      driver_coords)
             if distance <= 5:
                 dct = order.to_dict()
                 dct["restaurant"] = restaurant.to_dict()
+                dct["customer"] = order.customer.to_dict()
                 possible_deliveries.append(dct)
     return (jsonify(possible_deliveries))
 
@@ -110,7 +112,6 @@ def deactivate_driver():
     if not isinstance(current_user, Driver):
         return ("Not authorized", 401)
     current_user.active = False
-    current_user.delivering = False
     current_user.save()
     return (jsonify(True))
 
@@ -120,6 +121,10 @@ def accept_delivery(order_id):
     """Accepts an order (to be deliveredby current user)"""
     if not isinstance(current_user, Driver):
         return ("Not authorized", 401)
+    if not current_user.active:
+        return ("You are not active", 400)
+    if current_user.delivering:
+        return ("You have an unfinished delivery", 400)
     order = db.get(Order, order_id)
     if order is None:
         return ("Invalid order id", 400)
@@ -135,8 +140,7 @@ def get_current_delivery():
     """Retrieves the current order being delivered by current user"""
     if not isinstance(current_user, Driver):
         return ("Not authorized", 401)
-    if not current_user.delivering:
-        return (jsonify(None), 400)
+    pending_orders = []
     for order in current_user.all_orders:
         if (not order.customer_confirm
         or not order.driver_confirm):
@@ -149,7 +153,10 @@ def get_current_delivery():
                 else:
                     unique_dishes[dish.id] = 1
             dct["dishes"] = unique_dishes
-            return (jsonify(dct))
+            dct["customer"] = order.customer.to_dict()
+            dct["restaurant"] = order.restaurant.to_dict()
+            pending_orders.append(dct)
+    return (jsonify(pending_orders))
 
 @app.route("/api/driver/<order_id>/delivered", methods=["PUT"])
 @login_required

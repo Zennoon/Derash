@@ -1,4 +1,5 @@
 $(document).ready(() => {
+    const restaurantId = $('.main-content').attr('data-id');
     const restaurantLat = Number($('.restaurant-lat').html());
     const restaurantLng = Number($('.restaurant-lng').html());
     const orderDishes = {};
@@ -6,6 +7,10 @@ $(document).ready(() => {
     let totalPrice = 0;
     const footer = $('footer.restaurant-footer');
     const popup = $('div.popup-order-confirm');
+    const reviewsDiv = $('.reviews');
+    const toggleReviews = $('.reviews-toggle');
+    const reviewText = $('#make-new-review');
+    const newReview = $('.new-review');
 
     $('.add-to-order').on('click', (event) => {
         const dishId = $(event.currentTarget).closest('.restaurant-dish').attr('data-id');
@@ -62,8 +67,6 @@ $(document).ready(() => {
             $(footer).css("display", "none");
         }
         $('button.restaurant-checkout').on('click', () => {
-            console.log(orderDishes);
-            console.log(orderDishNames);
             $(popup).empty();
             $(popup).append(`<h1>Your order</h1><i class="fa-solid fa-xmark cancel-mark"></i>`)
             const table = $(`<table class>
@@ -129,8 +132,11 @@ $(document).ready(() => {
                         "restaurant_id": $('.main-content').attr('data-id')
                     }
                     custCreateOrder(data);
-                    $(popup).empty();
-                    $(popup).css('visibility', 'hidden');
+                    $('.confirm-order').empty();
+                    $('.confirm-order').append('<p>Your order has been successfully made!</p>');
+                    $('.confirm-order').addClass('order-success');
+                    $('.order-success').removeClass('confirm-order');
+                    $('.order-success').off('click');
                 })
             })
 
@@ -148,14 +154,54 @@ $(document).ready(() => {
                         $('p.delivery').css('color', '#317006');
                     }
                     $('.confirm-order').on('click', () => {
-                    
-                    })
-                })
-            })
+                        const data = {
+                            "dishes": orderDishes,
+                            "destination_latitude": customerCoords[0],
+                            "destination_longitude": customerCoords[1],
+                            "restaurant_id": $('.main-content').attr('data-id')
+                        }
+                        custCreateOrder(data);
+                        $('.confirm-order').empty();
+                        $('.confirm-order').append('<p>Your order has been successfully made!</p>');
+                        $('.confirm-order').addClass('order-success');
+                        $('.order-success').removeClass('confirm-order');
+                        $('.order-success').off('click');
+                    });
+                });
+            });
         });
+    });
+
+    $(toggleReviews).on('click', () => {
+        if ($(toggleReviews).hasClass('show')) {
+            $(toggleReviews).removeClass('show');
+            $(toggleReviews).html('Hide');
+            $(reviewsDiv).append(`<div class="loader"></div>`);
+            custGetRestaurantReviews(reviewsDiv, restaurantId);
+        } else {
+            $(toggleReviews).addClass('show');
+            $(toggleReviews).html('Show');
+            $(reviewsDiv).empty();
+        }
+    });
+
+    $('.make-review').on('click', () => {
+        if ($(reviewText).val() === '') {
+            $(reviewText).html('Please enter your review');
+        } else if ($(reviewText).val() === 'Please enter your review') {
+            $(reviewText).html('Please enter your review');
+        } else {
+            custMakeReview(restaurantId, reviewText, toggleReviews, reviewsDiv);
+        }
     })
-})
-;
+});
+
+const getDateTime = (date) => {
+    const dateTime = date.split('T');
+
+    return (dateTime);
+};
+
 const calcDeliveryFee = (restaurantCoord, customerCoord) => {
     const lat1 = restaurantCoord[0] * (Math.PI / 180);
     const lat2 = customerCoord[0] * (Math.PI / 180);
@@ -175,9 +221,53 @@ const custCreateOrder = (data) => {
         headers: {
             "Content-Type": "application/json"
         },
-        data: JSON.stringify(data),
-        success: (data, textStatus) => {
-            console.log(data);
-        }
+        data: JSON.stringify(data)
     });   
 };
+
+const custGetRestaurantReviews = (reviewsDiv, restaurantId) => {
+    $.ajax({
+        url: `http://127.0.0.1:5000/api/customer/restaurants/${restaurantId}/reviews`,
+        success: (data, textStatus) => {
+            $(reviewsDiv).empty();
+
+            if (data.length === 0) {
+                $(reviewsDiv).append('<p>No reviews made yet</p>')
+            }
+            for (const review of data) {
+                const dateTime = getDateTime(review.created_at);
+                const reviewData = $(`<div class="review">
+                    <div class="review-headline">
+                        <div class="reviewer">
+                            <img src="/static/images/profile-pics/${review.customer.image_file}" class="reviewer-img">
+                            <h3>${review.customer.first_name + ' ' + review.customer.last_name}</h3>
+                        </div>
+                        <span>${dateTime[0]} at ${dateTime[1]}</span>
+                    </div>
+                    <p class="review-text">${review.text}</p>    
+                </div>`);
+
+                $(reviewsDiv).append(reviewData);
+            }
+        }
+    });
+};
+
+const custMakeReview = (restaurantId, text, toggleReviews, reviewsDiv) => {
+    $.ajax({
+        url: `http://127.0.0.1:5000/api/customer/restaurants/${restaurantId}/make-review`,
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        data: JSON.stringify({
+            "text": $(text).val()
+        }),
+        success: () => {
+            $(text).val('');
+            if (! $(toggleReviews).hasClass('show')) {
+                custGetRestaurantReviews(reviewsDiv, restaurantId);
+            }
+        }
+    })
+}

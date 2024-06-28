@@ -264,3 +264,111 @@ p.delivery {
     padding: 20px;   
 }
 
+.restaurant-reviews {
+    padding: 50px;
+}
+
+.reviews-intro {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #fff;
+}
+
+.reviews-intro h2 {
+    color: rgb(66, 255, 151);
+}
+
+.review-buttons {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.make-review, .reviews-toggle {
+    font-family: "Quicksand" sans-serif;
+    outline: none;
+    font-size: 500;
+    padding: 10px 20px;
+    border: none;
+    background-color: rgb(8, 138, 66);
+    color: #fff;
+    border-radius: 10px;
+}
+
+.make-review:hover, .reviews-toggle:hover {
+    background-color: rgb(27, 185, 98);
+}
+
+button {
+    font-family: "Quicksand";
+}
+
+.new-review {
+    padding: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+}
+
+.new-review textarea {
+    background-color: inherit;
+    outline: none;
+    border: 1px solid rgb(66, 255, 151);
+    width: 40%;
+    color: rgb(66, 255, 151);
+    font-family: "Quicksand";
+    font-size: 16px;
+}
+
+.reviews {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+}
+
+button.reviews-toggle {
+    font-family: "Quicksand";
+    padding: 10px 20px;
+}
+
+.review {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    border-bottom: 1px solid rgb(66, 255, 151);
+    padding: 10px;
+}
+
+.review-headline {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.reviewer {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.reviewer-img {
+    width: 50px;
+    height: 50px;
+}
+
+.review-headline h3, .review-headline span {
+    color: rgb(66, 255, 151);
+    font-weight: 500;
+}
+
+.order-success {
+    color: rgb(8, 138, 66);
+    background-color: inherit;
+    border: none;
+    outline: none;
+    font-size: 22px;
+}

@@ -13,6 +13,7 @@ from derash.models.driver import Driver
 from derash.models.dish import Dish
 from derash.models.order import Order
 from derash.models.restaurant import Restaurant
+from derash.models.review import Review
 from derash.models.user import User
 from utils import calc_distance
 
@@ -96,8 +97,33 @@ def get_restaurant_reviews(restaurant_id):
     restaurant = db.get(Restaurant, restaurant_id)
     if restaurant is None:
         return ("Invalid restaurant id", 400)
-    reviews = [review.to_dict() for review in restaurant.reviews]
+    reviews = []
+    for review in restaurant.reviews:
+        dct = review.to_dict()
+        dct["customer"] = review.customer.to_dict()
+        reviews.append(dct)
     return (jsonify(reviews))
+
+@app.route("/api/customer/restaurants/<restaurant_id>/make-review", methods=["POST"])
+@login_required
+def make_review(restaurant_id):
+    if not isinstance(current_user, Customer):
+        return ("Not authorized", 401)
+    restaurant = db.get(Restaurant, restaurant_id)
+    if restaurant is None:
+        return ("Invalid restaurant id", 400)
+    try:
+        data = request.get_json()
+        print(data)
+        text = data["text"]
+    except Exception:
+        return ("Missing text", 400)
+    review = Review()
+    review.customer_id = current_user.id
+    review.restaurant_id = restaurant_id
+    review.text = text
+    review.save()
+    return (jsonify(True))
 
 @app.route("/api/customer/dishes/<dish_id>")
 @login_required
@@ -250,5 +276,5 @@ def create_order():
             new_order.add_dish_to_order(dish)
     new_order.calc_order_price()
     new_order.calc_delivery_price()
-    print(new_order.id)
+    new_order.save()
     return (jsonify(True))

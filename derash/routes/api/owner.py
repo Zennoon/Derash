@@ -58,7 +58,6 @@ def get_my_restaurant_reviews(restaurant_id):
         return ("Invalid restaurant id", 400)
     if restaurant.owner_id != current_user.id:
         return ("Not authorized", 401)
-    reviews = [review.to_dict() for review in restaurant.reviews]
     reviews = []
     for review in restaurant.reviews:
         dct = review.to_dict()

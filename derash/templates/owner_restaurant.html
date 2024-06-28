@@ -4,10 +4,10 @@
     <script src="{{ url_for('static', filename='scripts/owner_restaurant.js') }}"></script>
 {% endblock meta %}
 {% block nav_items %}
-    <li class="nav-item restaurant-details"><i class="fa-solid fa-utensils"></i>Restaurant Details</li>
-    <li class="nav-item pending-orders"><i class="fa-solid fa-location-dot"></i>Pending Orders</li>
-    <li class="nav-item past-orders"><i class="fa-regular fa-hourglass-half"></i>Past Orders</li>
-    <li class="nav-item orders-past-month"><i class="fa-solid fa-clock-rotate-left"></i>Past Month Receipt</li>
+    <li class="nav-item restaurant-details"><i class="fa-solid fa-circle-info"></i>Restaurant Details</li>
+    <li class="nav-item pending-orders"><i class="fa-regular fa-hourglass-half"></i>Pending Orders</li>
+    <li class="nav-item past-orders"><i class="fa-solid fa-clock-rotate-left"></i>Past Orders</li>
+    <li class="nav-item orders-past-month"><i class="fa-solid fa-receipt"></i>Past Month Receipt</li>
 {% endblock nav_items %}
 {% block content %}
 <div class="content" data-id="{{ restaurant.id }}"></div>

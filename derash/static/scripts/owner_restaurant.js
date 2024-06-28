@@ -51,7 +51,7 @@ const fillContentOrders = (element, data, title) => {
     $(element).empty();
     $(element).append(`<h1 class='section-title'>${title}</h1>`);
     const orders = $('<div class="orders"></div>');
-    const totalPrice = 0;
+    let totalPrice = 0;
     let preparedButton = '<button class="order-prepared">Confirm Done</button>';
 
     if (data === null) {
@@ -66,15 +66,22 @@ const fillContentOrders = (element, data, title) => {
 
     for (const order of data) {
         const dateTime = getDateTime(order.created_at);
+        let driver = '';
+        if (order.driver.id === "0") {
+            driver = 'Waiting for a driver to accept delivery'
+        } else {
+            driver = `Delivered by ${order.driver.first_name + ' ' + order.driver.last_name} , License Plate number: <span class="order-license-num">${order.driver.license_num}</span>, Phone number: <span>${order.driver.phone_num}</span>`;
+        }
         const orderDiv = `<div class="order" data-id=${order.id}>
             <div class="order-headline">
-                <a><h3 class="order-customer-name">Ordered by ${order.customer.name}</h3></a>
+                <a><h3 class="order-customer-name">Ordered by ${order.customer.first_name + ' ' + order.customer.last_name}</h3></a>
                 <p class="order-time">${dateTime[0]} at ${dateTime[1]}</p>
             </div>
             <div class="order-body">
                 <div class="order-text">
-                    <p class="order-driver-name">Delivered by ${order.driver.first_name+ ' ' + order.driver.last_name}, License Plate number: <span class="order-license-num">${order.driver.license_num}</span></p>
+                    <p class="order-driver-name">${driver}</p>
                     <p class="order-dishes">${mergeDishNames(order.dish_names)}</p>
+                    <p class="order-price">Order price: <span>${order.price}</span></p>
                 </div>
                 ${preparedButton}
             </div>
@@ -162,6 +169,9 @@ const ownerGetRestaurantReviews = (restaurantId) => {
             const reviews = $('.reviews');
 
             $(reviews).empty();
+            if (data.length === 0) {
+                $(reviews).append('<p>No reviews made yet</p>')
+            }
             for (const review of data) {
                 const dateTime = getDateTime(review.created_at);
                 const reviewData = $(`<div class="review">
@@ -189,17 +199,21 @@ const ownerGetPendingRestaurantOrders = (element, restaurantId) => {
             fillContentOrders(element, data, "Pending Orders");
 
             $('.order-prepared').on('click', (event) => {
-                ownerConfirmOrderMade($($(event.currentTarget).parent().parent()).attr('data-id'));
-                ownerGetPendingRestaurantOrders(element, restaurantId);
+                $(element).empty();
+                $(element).append('<div class="loader"></div>');
+                ownerConfirmOrderMade($($(event.currentTarget).parent().parent()).attr('data-id'), element, restaurantId);
             });
         }
     });  
 };
 
-const ownerConfirmOrderMade = (orderId) => {
+const ownerConfirmOrderMade = (orderId, element, restaurantId) => {
     $.ajax({
         url: `http://127.0.0.1:5000/api/owner/my_orders/${orderId}/done`,
-        method: "PUT"
+        method: "PUT",
+        success: () => {
+            ownerGetPendingRestaurantOrders(element, restaurantId);
+        }
     }); 
 };
 

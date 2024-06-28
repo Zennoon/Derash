@@ -1,0 +1,26 @@
+{% extends "logged_in_home.html" %}
+{% block meta %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/driver_home.css') }}">
+    <script src="{{ url_for('static', filename='scripts/driver_home.js') }}"></script>
+{% endblock meta %}
+{% block nav_items %}
+    <li class="nav-item pending-delivery clicked"><i class="fa-solid fa-clock"></i>Pending Delivery</li>
+    <li class="nav-item possible-deliveries"><i class="fa-solid fa-car"></i>Possible Deliveries</li>
+    <li class="nav-item past-deliveries"><i class="fa-solid fa-clock-rotate-left"></i>Past Deliveries</li>
+    <li class="nav-item deliveries-past-month"><i class="fa-solid fa-receipt"></i>Past Month Receipt</li>
+{% endblock nav_items %}
+{% block content %}
+<div class="toggle-active">
+    {% if driver.active %}
+        <p>You are currently <span class="active">active</span> and accepting requests</p>
+        <button class="deactivate">Deactivate</button>
+    {% else %}
+        <p>You are currently <span class="dormant">dormant</span> and not accepting requests</p>
+        <button class="activate">Activate</butotn>
+    {% endif %}
+</div>
+<div class="content"></div>
+{% endblock content %}
+{% block main_content %}
+    {{ super() }}
+{% endblock main_content %}

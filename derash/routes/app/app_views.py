@@ -63,7 +63,7 @@ def home():
                 restaurant.save()
             return (render_template("owner_home.html", form=form))
         elif isinstance(current_user, Driver):
-            return (render_template("driver_home.html"))
+            return (render_template("driver_home.html", driver=current_user.to_dict()))
         return (render_template("logged_in_home.html"))
     return (render_template("logged_out_home.html"))
 

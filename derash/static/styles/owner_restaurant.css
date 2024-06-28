@@ -23,6 +23,7 @@
 
     display: flex;
     gap: 20px;
+    align-items: center;
 }
 
 .nav-item:hover {
@@ -257,6 +258,7 @@ button.reviews-toggle {
 }
 
 .order-customer-name {
+    color: rgb(66, 255, 151);
     font-size: 20px;
     font-weight: 500;
 }
@@ -268,10 +270,18 @@ button.reviews-toggle {
 .order-body {
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 
 .order-text {
     color: #fff;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.order-text span {
+    color: rgb(66, 255, 151);
 }
 
 .awaiting-driver {
@@ -280,4 +290,20 @@ button.reviews-toggle {
 
 .order-license-num {
     color: rgb(66, 255, 151);
+}
+
+.order-prepared {
+    cursor: pointer;
+    font-family: "Quicksand";
+    font-weight: 700;
+    color: rgb(66, 255, 151);
+    padding: 10px 20px;
+    background: inherit;
+    border: 1px solid rgb(66, 255, 151);
+    border-radius: 20px;
+}
+
+.order-prepared:hover {
+    background: rgb(66, 255, 151);
+    color: rgb(4, 19, 32);
 }
