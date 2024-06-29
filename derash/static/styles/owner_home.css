@@ -19,7 +19,7 @@
     color: rgb(66, 255, 151);
 }
 
-button.add-restaurant {
+a.add-restaurant {
     font-family: "Quicksand" sans-serif;
     outline: none;
     padding: 10px 20px;

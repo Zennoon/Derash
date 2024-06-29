@@ -216,6 +216,7 @@ input.coord-input {
 
 .order-text span {
     color: rgb(66, 255, 151);
+    font-weight: 700;
 }
 
 .awaiting-driver {

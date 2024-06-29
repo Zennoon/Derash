@@ -175,3 +175,8 @@
 .error-text {
     color: rgb(247, 122, 122);
 }
+
+.receipt-summary span {
+    color: rgb(66, 255, 151);
+    font-weight: 700;
+}

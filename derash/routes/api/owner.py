@@ -168,7 +168,20 @@ def get_restaurant_past_month_receipt(restaurant_id):
         if (order.restaurant_confirm
             and order.created_at > start
             and order.created_at < end):
-            orders_past_month.append(order.to_dict())
+            dct = order.to_dict()
+            dct["dishes"] = {}
+            dct["dish_names"] = {}
+            all_dishes = [assoc.dish for assoc in order.dishes]
+            for dish in all_dishes:
+                if dish.id in dct["dishes"]:
+                    dct["dishes"][dish.id] += 1
+                    dct["dish_names"][dish.name] += 1
+                else:
+                    dct["dishes"][dish.id] = 1
+                    dct["dish_names"][dish.name] = 1
+            dct["customer"] = order.customer.to_dict()
+            dct["driver"] = order.driver.to_dict()
+            orders_past_month.append(dct)
     return (jsonify(orders_past_month))
 
 @app.route("/api/owner/my_restaurants/<restaurant_id>/all_orders")

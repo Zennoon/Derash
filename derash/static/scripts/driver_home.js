@@ -107,6 +107,19 @@ $(document).ready(() => {
         });
     };
 
+    const driverGetPastMonthReceipt = () => {
+        $.ajax({
+            url: `http://127.0.0.1:5000/api/driver/past_month`,
+            method: "GET",
+            success: (data, textStatus) => {
+                fillContentPastMonthDeliveries(contentDiv, data, "Past Month's Deliveries");
+            },
+            error: (error) => {
+                fillContentPastMonthDeliveries(contentDiv, null, "Past Month's Deliveries");
+            }
+        });
+    };
+
     driverGetCurrentDelivery();
     $(toggleActiveButton).on('click', () => {
         if ($(toggleActiveButton).hasClass('activate')) {
@@ -131,11 +144,15 @@ $(document).ready(() => {
 
     $('.possible-deliveries').on('click', () => {
         driverGetPossibleDeliveries();
-    })
+    });
 
     $('.past-deliveries').on('click', () => {
         driverGetPastDeliveries();
-    })
+    });
+
+    $('.deliveries-past-month').on('click', () => {
+        driverGetPastMonthReceipt();
+    });
 });
 
 const mergeDishNames = (dishNames) => {
@@ -283,6 +300,48 @@ const fillContentPastDeliveries = (element, data, title) => {
         $(orders).append(orderDiv);
     }
     $(element).append(orders);
+};
+
+const fillContentPastMonthDeliveries = (element, data, title) => {
+    $(element).empty();
+    $(element).append(`<h1 class='section-title'>${title}</h1>`);
+    const orders = $('<div class="orders"></div>');
+    let totalPrice = 0;
+    let totalDeliveryFees = 0;
+
+    if (data === null) {
+        $(element).append('<p>Your account was created less than a month ago</p>');
+    } else {
+        for (const order of data) {
+            const dateTime = getDateTime(order.created_at);
+            const restaurantLocation = `Restaurant location: Lat: <span>${order.restaurant.latitude}</span>, Lng: <span>${order.restaurant.longitude}</span>`;
+            const customerLocation = `Destination: Lat: <span>${order.destination_latitude}</span>, Lng: <span>${order.destination_longitude}</span>`;
+            const distance = calcDistance([order.restaurant.latitude, order.restaurant.longitude], [order.destination_latitude, order.destination_longitude]);
+            const orderDiv = `<div class="order" data-id=${order.id}>
+                <div class="order-headline">
+                    <h3 class="order-customer-name">Ordered by ${order.customer.first_name + ' ' + order.customer.last_name} from ${order.restaurant.name}</h3>
+                    <p class="order-time">${dateTime[0]} at ${dateTime[1]}</p>
+                </div>
+                <div class="order-body">
+                    <div class="order-text">
+                        <p class="order-restaurant-location">${restaurantLocation}</p>
+                        <p class="order-destination">${customerLocation}</p>
+                        <p class="order-distance">Distance: <span>${distance} Km</span></p>
+                        <p class="customer-phone"><span>${order.customer.first_name}</span>'s phone number: <span>${order.customer.phone_num}</span></p>
+                        <p class="order-dishes">${mergeDishNames(order.dish_names)}</p>
+                        <p class="order-price">Order Price: <span>${order.price} ETB</span></p>
+                        <p class="delivery-fee">Delivery Fee: <span>${order.delivery_fee} ETB</span></p>
+                        <p class="total-price">Total: <span>${order.price + order.delivery_fee} ETB</span></p>
+                    </div>
+                </div>
+            </div>`
+            $(orders).append(orderDiv);
+            totalPrice += order.price;
+            totalDeliveryFees += order.delivery_fee;
+        }
+        $(element).append(`<p class="receipt-summary">In the past month, you have completed <span>${data.length} deliveries</span>, and collected <span>${totalPrice} ETB in orders</span>, and <span>${totalDeliveryFees} in delivery fees</span>. In summary you have earned <span>${totalDeliveryFees * 0.75} ETB</span> (75% of the total delivery fees), and you are expected to <span>submit ${totalPrice + (totalDeliveryFees * 0.25)} ETB</span> to the nearest Derash center by the end of this month</p>`);
+        $(element).append(orders);
+    }
 };
 
 const fillContentOrders = (element, data, title) => {

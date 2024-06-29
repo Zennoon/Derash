@@ -81,7 +81,7 @@ const fillContentOrders = (element, data, title) => {
                 <div class="order-text">
                     <p class="order-driver-name">${driver}</p>
                     <p class="order-dishes">${mergeDishNames(order.dish_names)}</p>
-                    <p class="order-price">Order price: <span>${order.price}</span></p>
+                    <p class="order-price">Order price: <span>${order.price} ETB</span></p>
                 </div>
                 ${preparedButton}
             </div>
@@ -90,7 +90,7 @@ const fillContentOrders = (element, data, title) => {
         totalPrice += order.price;
     }
     if (title === "Past Month's Orders") {
-        $(element).append(`<p>This restaurant has served ${data.length} orders last month, and has earned a total of ${totalPrice} ETB</p>`)
+        $(element).append(`<p class="receipt-summary">This restaurant has served ${data.length} orders last month, and has earned a total of ${totalPrice} ETB</p>`)
     }
     $(element).append(orders);
 };

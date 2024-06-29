@@ -48,20 +48,7 @@ def home():
         if isinstance(current_user, Customer):
             return (render_template("customer_home.html"))
         elif isinstance(current_user, Owner):
-            form = createRestaurant()
-            if form.validate_on_submit():
-                restaurant = Restaurant()
-                restaurant.name = form.name.data
-                restaurant.latitude = form.latitude.data
-                restaurant.longitude = form.longitude.data
-                restaurant.owner_id = current_user.id
-                if form.description.data:
-                    restaurant.description = form.description.data
-                if form.image_file.data:
-                    image_file = save_image_file(form.image_file.data, "restaurant-pics")
-                    restaurant.image_file = image_file
-                restaurant.save()
-            return (render_template("owner_home.html", form=form))
+            return (render_template("owner_home.html"))
         elif isinstance(current_user, Driver):
             return (render_template("driver_home.html", driver=current_user.to_dict()))
         return (render_template("logged_in_home.html"))
@@ -91,7 +78,7 @@ def register_customer():
         }
         customer = Customer(**dct)
         customer.save()
-        flash("Your account has been created!")
+        flash("Your account has been created!", "success")
         return (redirect(url_for("login")))
     return (render_template("register_customer.html", form=form))
     
@@ -112,7 +99,7 @@ def register_owner():
         }
         owner = Owner(**dct)
         owner.save()
-        flash("Your account has been created!")
+        flash("Your account has been created!", "success")
         return (redirect(url_for("login")))
     return (render_template("register_owner.html", form=form))
 
@@ -134,7 +121,7 @@ def register_driver():
         }
         driver = Driver(**dct)
         driver.save()
-        flash("Your account has been created!")
+        flash("Your account has been created!", "success")
         return (redirect(url_for("login")))
     return (render_template("register_driver.html", form=form))
 
@@ -151,7 +138,7 @@ def login():
             login_user(user[0], remember=form.remember.data)
             return (redirect(url_for("home")))
         else:
-            flash("Incorrect credentials. Please check the email and password")
+            flash("Incorrect credentials. Please check the email and password", "error")
     return (render_template("login.html", form=form))
 
 @app.route("/logout")
@@ -179,7 +166,7 @@ def request_reset_password():
     if form.validate_on_submit():
         user = db.filter_by_attr(User, "email", form.email.data)[0]
         send_reset_token(user)
-        flash("An email has been sent with instructions on how to reset your password")
+        flash("An email has been sent with instructions on how to reset your password", "info")
         return (redirect(url_for("login")))
     return (render_template("reset_request.html", form=form))
 
@@ -191,13 +178,33 @@ def reset_password(token):
         return (redirect(url_for("home")))
     user = User.verify_reset_token(token)
     if user is None:
-        flash("That is an invalid or expired token")
+        flash("That is an invalid or expired token", "warning")
         return (redirect(url_for("request_reset_password")))
     form = ResetPasswordForm()
     if form.validate_on_submit():
         user.password = bcrypt.generate_password_hash(form.password.data)
         user.save()
     return (render_template("reset_password.html", form=form))
+
+@app.route("/o/new-restaurant", methods=["GET", "POST"])
+@login_required
+def add_new_restaurant():
+    """Handles creating a new restaurant"""
+    form = createRestaurant()
+    if form.validate_on_submit():
+        restaurant = Restaurant()
+        restaurant.name = form.name.data
+        restaurant.latitude = form.latitude.data
+        restaurant.longitude = form.longitude.data
+        restaurant.owner_id = current_user.id
+        if form.description.data:
+            restaurant.description = form.description.data
+        if form.image_file.data:
+            image_file = save_image_file(form.image_file.data, "restaurant-pics")
+            restaurant.image_file = image_file
+        restaurant.save()
+        return (render_template("owner_home.html", form=form))
+    return (render_template("new_restaurant.html", form=form))
 
 @app.route("/c/restaurants/<restaurant_id>")
 @login_required

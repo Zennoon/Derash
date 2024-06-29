@@ -282,6 +282,7 @@ button.reviews-toggle {
 
 .order-text span {
     color: rgb(66, 255, 151);
+    font-weight: 700;
 }
 
 .awaiting-driver {
@@ -306,4 +307,8 @@ button.reviews-toggle {
 .order-prepared:hover {
     background: rgb(66, 255, 151);
     color: rgb(4, 19, 32);
+}
+
+.receipt-summary {
+    margin-bottom: 20px;
 }

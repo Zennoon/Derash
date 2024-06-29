@@ -217,7 +217,7 @@ def get_driver_past_month_receipt():
         start_month = now.month - 2
         end_month = now.month - 1
     if start_month < created_at.month:
-        return ("Driver doesn't have enough data", 400)
+        return (jsonify(None), 400)
 
     start = datetime(year=created_at.year,
                      month=start_month,
@@ -239,5 +239,18 @@ def get_driver_past_month_receipt():
             and order.driver_confirm
             and order.created_at > start
             and order.created_at < end):
-            deliveries_past_month.append(order.to_dict())
+            dct = order.to_dict()
+            dct["dishes"] = {}
+            dct["dish_names"] = {}
+            all_dishes = [assoc.dish for assoc in order.dishes]
+            for dish in all_dishes:
+                if dish.id in dct["dishes"]:
+                    dct["dishes"][dish.id] += 1
+                    dct["dish_names"][dish.name] += 1
+                else:
+                    dct["dishes"][dish.id] = 1
+                    dct["dish_names"][dish.name] = 1
+            dct["customer"] = order.customer.to_dict()
+            dct["restaurant"] = order.restaurant.to_dict()
+            deliveries_past_month.append(dct)
     return (jsonify(deliveries_past_month))
