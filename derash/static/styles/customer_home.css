@@ -1,25 +1,34 @@
 .main-nav {
     margin-left: 20px;
-    height: 100%;
+    height: 80%;
     width: 25%;
 
     position: fixed;
-    top: 64px;
+    top: 80px;
+}
+
+.select-nothing {
+    color: rgb(225,28,64), rgb(185,22,53)
 }
 
 .nav-items {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    padding: 20px;
+    margin: 0 20px;
+    padding-top: 20px;
     gap: 20px;
+    border-top: 1px solid rgb(192, 186, 186);
 }
 
+
 .nav-item {
-    padding: 30px;
-    background-color:rgb(46, 54, 59);
+    padding: 20px;
+    background-color:rgb(240, 233, 233);
+    color: rgb(185,22,53);
     border-radius: 10px;
     font-weight: bold;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 
     display: flex;
     gap: 20px;
@@ -28,20 +37,54 @@
 
 .nav-item:hover {
     cursor: pointer;
-    background-color:rgb(74, 82, 87);
+    background-color: rgb(230,69,95);
+    color: #fff;
+}
+
+.account-info {
+    background-color: rgb(230,69,95);
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    padding: 10px 20px;
+    color: #fff;
+    border-radius: 20px;
+
+    position: absolute;
+    bottom: 0;
+    margin: 0 20px;
+
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.account-info p {
+    font-weight: 700;
+}
+
+.account-info:hover {
+    background-color: rgb(185,22,53);
+}
+
+.account-info img {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
 }
 
 .content {
     width: 70%;
-    background: rgb(4, 19, 32);
     position: relative;
+    background-color: rgb(255, 255, 255);
     top: 64px;
     left: 30%;
     padding: 20px;
+    padding-left: 40px;
 }
 
 .nav-item.clicked {
-    border: 2px solid rgb(66, 255, 151);
+    background-color: rgb(185,22,53);
+    color: #fff;
 }
 
 /* HTML: <div class="loader"></div> */
@@ -49,7 +92,7 @@
     width: 60px;
     margin: 0 auto;
     aspect-ratio: 2;
-    --_g: no-repeat radial-gradient(circle closest-side,rgb(66, 255, 151) 90%,rgb(66, 255, 151, 0));
+    --_g: no-repeat radial-gradient(circle closest-side,rgb(185,22,53) 90%,rgb(66, 255, 151, 0));
     background: 
       var(--_g) 0%   50%,
       var(--_g) 50%  50%,
@@ -74,26 +117,26 @@
 .section-title {
     font-size: 28px;
     font-weight: 700;
-    color: rgb(66, 255, 151);
+    color: rgb(185,22,53);
     margin-bottom: 30px;
 }
 
 .restaurant {
-background-color: #112121;
-display: flex;
-flex-direction: column;
-padding: 20px;
-gap: 10px;
-max-width: 350px;
-border: 1px solid rgb(66, 255, 151);
+    background-color: rgb(245, 240, 240);
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    gap: 10px;
+    max-width: 350px;
 }
 
 .restaurant-name {
     font-size: 24px;
     font-weight: 700;
-    color:rgb(66, 255, 151);
+    color:rgb(185,22,53);
     padding: 20px;
-    border-bottom: 1px solid #fff;
+    border-bottom: 1px solid rgb(192, 186, 186);
     text-align: center;
 }
 
@@ -102,16 +145,16 @@ border: 1px solid rgb(66, 255, 151);
     padding: 20px;
     width: 100%;
     height: 300px;
-    border-bottom: 1px solid #fff;
+    border-bottom: 1px solid rgb(192, 186, 186);
 }
 
 .restaurant-text {
-    color: #fff;
+    color: #000;
     padding: 20px;
 }
 
 .restaurant-text i {
-    color :rgb(66, 255, 151);
+    color :rgb(230,69,95);
     font-size: 20px;
     margin-right: 10px;
 }
@@ -138,14 +181,14 @@ border: 1px solid rgb(66, 255, 151);
 
 input.coord-input {
     margin: 0px 10px;
-    color: #fff;
+    color: rgb(185,22,53);
     font-size: 16px;
-    font-family: "Quicksand" sans-serif;
+    font-family: "Quicksand";
     padding-bottom: 3px;
     background-color: inherit;
     outline: none;
     border: none;
-    border-bottom: 1px solid rgb(66, 255, 151);
+    border-bottom: 1px solid rgb(185,22,53);
 }
 
 .other-options {
@@ -158,16 +201,20 @@ input.coord-input {
     cursor: pointer;
     font-family: "Quicksand";
     font-weight: 700;
-    color: rgb(66, 255, 151);
+    color: rgb(225,28,64);
     padding: 10px 20px;
     background: inherit;
-    border: 1px solid rgb(66, 255, 151);
+    border: 1px solid rgb(225,28,64);
     border-radius: 20px;
 }
 
 .coord-submit:hover, .show-map:hover, .current-location:hover, .repeat-order:hover, .order-delivered:hover, .cancel-repeat:hover {
-    background: rgb(66, 255, 151);
-    color: rgb(4, 19, 32);
+    background: rgb(225,28,64);
+    color: #fff;
+}
+
+div.content > div > p {
+    color: #000;
 }
 
 .orders {
@@ -180,16 +227,17 @@ input.coord-input {
     display: flex;
     flex-direction: column;
     padding: 20px;
-    background-color: #112121;
-    border: 2px solid rgb(66, 255, 151);
+    background-color: rgb(245, 240, 240);
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     gap: 20px;
 }
 
 .order-headline {
     display: flex;
     justify-content: space-between;
-    color: rgb(66, 255, 151);
-    border-bottom: 1px solid rgb(66, 255, 151);
+    color: rgb(185,22,53);
+    border-bottom: 1px solid rgb(192, 186, 186);
+    font-size: bold;
 }
 
 .order-restaurant-name {
@@ -198,7 +246,7 @@ input.coord-input {
 }
 
 .order-time {
-    color: rgb(66, 255, 151);
+    color: rgb(225,28,64);
 }
 
 .order-body {
@@ -208,25 +256,25 @@ input.coord-input {
 }
 
 .order-text {
-    color: #fff;
     display: flex;
     flex-direction: column;
     gap: 10px;
+    color: #000;
 }
 
 .order-text span {
-    color: rgb(66, 255, 151);
+    color: rgb(225,28,64);
     font-weight: 700;
 }
 
 .awaiting-driver {
-    color: rgb(66, 255, 151);
+    color: rgb(230,69,95);
 }
 
 .order-license-num {
-    color: rgb(66, 255, 151);
+    color: rgb(230,69,95);
 }
 
 .nearby-select {
-    color: #fff;
+    color: #000;
 }

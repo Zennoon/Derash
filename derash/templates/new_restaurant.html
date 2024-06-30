@@ -11,10 +11,10 @@
         {{ form.hidden_tag() }}
         <fieldset>
             <legend>Add a new restaurant</legend>
-            {% with messages = get_flashed_messages() %}
+            {% with messages = get_flashed_messages(with_categories=true) %}
             {% if messages %}
-                {% for message in messages %}
-                    <p class="flash flash-error">{{ message }}</p>
+                {% for category, message in messages %}
+                    <p class="flash {{category}}">{{ message }}</p>
                 {% endfor %}
             {% endif %}
             {% endwith %}

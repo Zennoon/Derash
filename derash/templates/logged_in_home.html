@@ -32,6 +32,10 @@
             <ul class="nav-items">
                 {% block nav_items %}{% endblock nav_items %}
             </ul>
+            <a href="#" class="account-info">
+                <img src="{{ url_for('static', filename='images/profile-pics/{}'.format(user.image_file)) }}" alt="">
+                <p>{{ user.first_name }} {{user.last_name}}</p>
+            </a>
         </nav>
         {% block content %}<div class="content"></div>{% endblock content %}
     </div>

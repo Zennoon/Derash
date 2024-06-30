@@ -1,39 +1,13 @@
-.main-nav {
-    margin-left: 20px;
-    height: 100%;
-    width: 25%;
-
-    position: fixed;
-    top: 64px;
-}
-
-.nav-items {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    padding: 20px;
-    gap: 20px;
-}
-
-.nav-item {
-    padding: 30px;
-    background-color:rgb(46, 54, 59);
-    border-radius: 10px;
-    font-weight: bold;
-
-    display: flex;
-    gap: 20px;
-    align-items: center;
-}
-
-.nav-item:hover {
-    cursor: pointer;
-    background-color:rgb(74, 82, 87);
+.select-nothing {
+    color: rgb(185,22,53);
+    color: rgb(230,69,95);
+    color: rgb(225,28,64);
+    color: rgb(192, 186, 186);
+    color: rgb(240, 233, 233);
 }
 
 .toggle-active {
     width: 70%;
-    background: rgb(4, 19, 32);
     position: relative;
     top: 64px;
     left: 30%;
@@ -42,6 +16,8 @@
     justify-content: center;
     gap: 50px;
     align-items: center;
+    color: #000;
+    border-bottom: 1px solid rgb(192, 186, 186);
 }
 
 .activate, .deactivate {
@@ -50,19 +26,19 @@
     padding: 10px 20px;
     font-family: "Quicksand";
     font-weight: 700;
-    border: 2px solid rgb(247, 122, 122);
+    border: 2px solid rgb(185,22,53);
     border-radius: 20px;
 }
 
 .activate {
     background-color: inherit;
-    border-color:rgb(66, 255, 151);
-    color: rgb(66, 255, 151);
+    border-color:rgb(0, 204, 17);
+    color: rgb(0, 204, 17);
 }
 
 .deactivate {
     background-color: inherit;
-    color: rgb(247, 122, 122);
+    color: rgb(185,22,53);
 }
 
 .active {
@@ -76,32 +52,19 @@
 }
 
 .activate:hover {
-    background-color: rgb(66, 255, 151);
+    background-color: rgb(6, 245, 113);
     color: #112121;
 }
 
 .deactivate:hover {
-    background-color: rgb(247, 122, 122);
-    color: #112121;
-}
-
-.content {
-    width: 70%;
-    background: rgb(4, 19, 32);
-    position: relative;
-    top: 84px;
-    left: 30%;
-    padding: 20px;
-}
-
-.nav-item.clicked {
-    border: 2px solid rgb(66, 255, 151);
+    background-color: rgb(185,22,53);
+    color: #fff;
 }
 
 .section-title {
     font-size: 28px;
-    color: rgb(66, 255, 151);
-    border-bottom: 1px solid #fff;
+    color: rgb(185,22,53);
+    border-bottom: 1px solid rgb(192, 186, 186);
     margin-bottom: 20px;
     padding-bottom: 10px;
 }
@@ -117,25 +80,26 @@
     display: flex;
     flex-direction: column;
     padding: 20px;
-    background-color: #112121;
-    border: 2px solid rgb(66, 255, 151);
+    background-color:  rgb(240, 233, 233);
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     gap: 20px;
 }
 
 .order-headline {
     display: flex;
     justify-content: space-between;
-    color: rgb(66, 255, 151);
-    border-bottom: 1px solid rgb(66, 255, 151);
+    color: rgb(185,22,53);
+    border-bottom: 1px solid rgb(192, 186, 186);
 }
 
-.order-restaurant-name {
+.order-customer-name {
     font-size: 20px;
     font-weight: 500;
 }
 
 .order-time {
-    color: rgb(66, 255, 151);
+    color: rgb(230,69,95);
+    font-weight: 500;
 }
 
 .order-body {
@@ -145,14 +109,14 @@
 }
 
 .order-text {
-    color: #fff;
+    color: #000;
     display: flex;
     flex-direction: column;
     gap: 10px;
 }
 
 .order-text span {
-    color: rgb(66, 255, 151);
+    color: rgb(230,69,95);
     font-weight: 700;
 }
 
@@ -160,16 +124,16 @@
     cursor: pointer;
     font-family: "Quicksand";
     font-weight: 700;
-    color: rgb(66, 255, 151);
+    color: rgb(225,28,64);
     padding: 10px 20px;
     background: inherit;
-    border: 1px solid rgb(66, 255, 151);
+    border: 1px solid rgb(225,28,64);
     border-radius: 20px;
 }
 
 .confirm-delivered:hover, .accept-delivery:hover {
-    background: rgb(66, 255, 151);
-    color: rgb(4, 19, 32);
+    background: rgb(225,28,64);
+    color: #fff;
 }
 
 .error-text {
@@ -177,6 +141,10 @@
 }
 
 .receipt-summary span {
-    color: rgb(66, 255, 151);
+    color: rgb(185,22,53);
     font-weight: 700;
+}
+
+.empty-list {
+    color: #000;
 }

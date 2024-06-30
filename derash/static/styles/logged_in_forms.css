@@ -2,18 +2,27 @@ html, body {
     height: 100%;
 }
 
+.select-nothing {
+    color: rgb(185,22,53);
+    color: rgb(230,69,95);
+    color: rgb(225,28,64);
+    color: rgb(192, 186, 186);
+    color: rgb(240, 233, 233);
+}
+
 body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgb(4, 19, 32);
 }
 
 form {
     padding: 50px;
     border-radius: 30px;
     color: #fff;
-    background-color: #112121;
+    background-color: rgb(240, 233, 233);
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    color: #000;
 }
 
 legend {
@@ -21,6 +30,7 @@ legend {
     font-size: 24px;
     font-weight: 700;
     margin-bottom: 25px;
+    color: rgb(185,22,53)
 }
 
 form fieldset {
@@ -46,12 +56,12 @@ form fieldset {
     padding: 2px 0;
     font-size: 16px;
     background-color: inherit;
-    color: rgb(66, 255, 151);
+    color: #000;
     /* border: 1px solid black;
     border-radius: 15px; */
     border: none;
     outline: none;
-    border-bottom: 1px solid rgb(66, 255, 151);
+    border-bottom: 1px solid #000;
 }
 
 textarea {
@@ -67,17 +77,15 @@ input[type='text'], textarea {
     padding: 15px 30px;
     margin-top: 10px;
     outline: none;
-    background-color: #112121;
-    border: 2px solid rgb(66, 255, 151);
+    background-color: rgb(185,22,53);
+    border: none;
     border-radius: 20px;
-    color: rgb(66, 255, 151);
+    color: #fff;
     font-family: "Quicksand" sans-serif;
     font-weight: 700;
 }
 
 .submit input:hover {
-    background-color: rgb(66, 255, 151);
-    padding: 14px 29px;
-    color: #112121;
+    background-color: rgb(230,69,95);
     cursor: pointer;
 }

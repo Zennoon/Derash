@@ -11,7 +11,7 @@
 {% endblock nav_items %}
 {% block content %}
 <div class="toggle-active">
-    {% if driver.active %}
+    {% if user.active %}
         <p>You are currently <span class="active">active</span> and accepting requests</p>
         <button class="deactivate">Deactivate</button>
     {% else %}

@@ -10,11 +10,13 @@
     </div>
     <div class="restaurant-intro">
         <img src="{{ url_for('static', filename='images/restaurant-pics/{}'.format(restaurant.image_file)) }}" alt="Image of the restaurant described in the page" class="restaurant-img">
-        <h1 class="restaurant-name">{{ restaurant.name }}</h1>
-        {% if restaurant.description %}
-            <p class="restaurant description">{{ restaurant.description }}</p>
-        {% endif %}
-        <p class="restaurant-location"><i class="fa-solid fa-location-dot"></i> <span class="restaurant-lat">{{restaurant.latitude}}</span> Lat, <span class="restaurant-lng">{{ restaurant.longitude }}</span> Lng</p>
+        <div class="restaurant-info">
+            <h1 class="restaurant-name">{{ restaurant.name }}</h1>
+            {% if restaurant.description %}
+                <p class="restaurant description">{{ restaurant.description }}</p>
+            {% endif %}
+            <p class="restaurant-location"><i class="fa-solid fa-location-dot"></i> <span class="restaurant-lat">{{restaurant.latitude}}</span> Lat, <span class="restaurant-lng">{{ restaurant.longitude }}</span> Lng</p>
+        </div>
     </div>
     <div class="restaurant-dishes">
         {% for dish in restaurant.dishes %}

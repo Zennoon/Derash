@@ -88,6 +88,7 @@ def get_possible_deliveries():
                                  restaurant.longitude)
             distance = calc_distance(restaurant_coords,
                                      driver_coords)
+            print(distance)
             if distance <= 5:
                 dct = order.to_dict()
                 dct["restaurant"] = restaurant.to_dict()

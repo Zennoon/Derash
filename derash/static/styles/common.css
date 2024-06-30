@@ -1,12 +1,14 @@
-.main-cont {
-    background-image: linear-gradient(rgb(181, 250, 255), aliceblue);
+body {
+    /* background-image: linear-gradient(rgb(252, 228, 232), rgb(185,22,53)); */
+    background-color: rgb(255, 255, 255);
 }
 
+/* .main-cont {
+    background-image: linear-gradient(rgb(181, 250, 255), aliceblue);
+} */
+
 .header {
-    padding: 15px 30px;
-    margin: 0 10%;
-    border-bottom-left-radius: 20px;
-    border-bottom-right-radius: 20px;
+    padding: 15px 75px;
     background-color: white;
 
     display: flex;
@@ -14,20 +16,9 @@
     align-items: center;
 }
 
-.logo-info {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
-
-.logo {
-    width: 35px;
-    height: auto;
-}
-
-.logo-info p {
+.header p {
     font-size: 25px;
-    background-image: linear-gradient(to top right, rgb(33, 253, 132), rgb(180, 255, 255));
+    background-image: linear-gradient(to top right, rgb(225,28,64), rgb(185,22,53));
     background-clip: text;
     color: transparent;
     font-weight: 700;
@@ -44,52 +35,48 @@
 }
 
 .header-link:hover {
-    color: #67dd8a;
+    color: rgb(230,69,95);
 }
 
 .login-link {
-    border: 1px solid rgb(181, 250, 255);
-    border-radius: 15px;
+    border: 1px solid rgb(185,22,53);
 }
 
 .login-link:hover {
     color: #fff;
-    background-color: rgb(68, 243, 255);
+    background-color: rgb(185,22,53);
 }
 
 .signup-link {
-    border: 1px solid rgb(66, 255, 151);
-    border-radius: 15px;
+    border: 1px solid rgb(230,69,95);
 }
 
 .signup-link:hover {
     color: #fff;
-    background-color: rgb(66, 255, 151);
+    background-color: rgb(230,69,95);
 }
 
 .footer {
-    margin: 0 110px;
-    padding: 20px 20px;
+    padding: 15px 110px;
     display: flex;
-    background-color: rgb(13, 14, 15);
+    background-color: rgb(185,22,53);
     justify-content: space-between;
     align-items: center;
-    color: #74eb97;
-
-    border: 2px solid rgb(66, 255, 151);
-    border-bottom: none;
-    border-top-left-radius: 25px;
-    border-top-right-radius: 25px;
+    color: #fff;
+    font-weight: 700;
 }
 
 .social-links {
+    padding: 10px 20px;
+    background-color: #fff;
+    border-radius: 20px;
     display: flex;
     gap: 20px;
 }
 
 .social-links i {
     font-size: 25px;
-    color: #74eb97;
+    color: rgb(185,22,53);
 }
 
 .flash {

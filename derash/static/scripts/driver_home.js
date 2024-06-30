@@ -310,7 +310,7 @@ const fillContentPastMonthDeliveries = (element, data, title) => {
     let totalDeliveryFees = 0;
 
     if (data === null) {
-        $(element).append('<p>Your account was created less than a month ago</p>');
+        $(element).append('<p class="empty-list">Your account was created less than a month ago</p>');
     } else {
         for (const order of data) {
             const dateTime = getDateTime(order.created_at);
@@ -342,52 +342,4 @@ const fillContentPastMonthDeliveries = (element, data, title) => {
         $(element).append(`<p class="receipt-summary">In the past month, you have completed <span>${data.length} deliveries</span>, and collected <span>${totalPrice} ETB in orders</span>, and <span>${totalDeliveryFees} in delivery fees</span>. In summary you have earned <span>${totalDeliveryFees * 0.75} ETB</span> (75% of the total delivery fees), and you are expected to <span>submit ${totalPrice + (totalDeliveryFees * 0.25)} ETB</span> to the nearest Derash center by the end of this month</p>`);
         $(element).append(orders);
     }
-};
-
-const fillContentOrders = (element, data, title) => {
-    $(element).empty();
-    $(element).append(`<h1 class='section-title'>${title}</h1>`);
-    const orders = $('<div class="orders"></div>');
-    let totalPrice = 0;
-    let preparedButton = '<button class="order-prepared">Confirm Done</button>';
-
-    if (data === null) {
-        $(element).append('<p>Your account was created less than a month ago</p>');
-    } 
-    if (data.length === 0 && title != "Past Month's Orders") {
-        $(orders).append('<p class="empty-list">There are no deliveries</p>')
-    }
-    if (title != "Pending Orders") {
-        preparedButton = '';
-    }
-
-    for (const order of data) {
-        const dateTime = getDateTime(order.created_at);
-        let driver = '';
-        if (order.driver.id === "0") {
-            driver = 'Waiting for a driver to accept delivery'
-        } else {
-            driver = `Delivered by ${order.driver.first_name + ' ' + order.driver.last_name} , License Plate number: <span class="order-license-num">${order.driver.license_num}</span>, Phone number: <span>${order.driver.phone_num}</span>`;
-        }
-        const orderDiv = `<div class="order" data-id=${order.id}>
-            <div class="order-headline">
-                <a><h3 class="order-customer-name">Ordered by ${order.customer.first_name + ' ' + order.customer.last_name}</h3></a>
-                <p class="order-time">${dateTime[0]} at ${dateTime[1]}</p>
-            </div>
-            <div class="order-body">
-                <div class="order-text">
-                    <p class="order-driver-name">${driver}</p>
-                    <p class="order-dishes">${mergeDishNames(order.dish_names)}</p>
-                    <p class="order-price">Order price: <span>${order.price}</span></p>
-                </div>
-                ${preparedButton}
-            </div>
-        </div>`
-        $(orders).append(orderDiv);
-        totalPrice += order.price;
-    }
-    if (title === "Past Month's Orders") {
-        $(element).append(`<p>This restaurant has served ${data.length} orders last month, and has earned a total of ${totalPrice} ETB</p>`)
-    }
-    $(element).append(orders);
 };

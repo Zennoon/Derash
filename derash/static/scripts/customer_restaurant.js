@@ -30,7 +30,7 @@ $(document).ready(() => {
         }
         totalPrice += dishPrice;
         $(dishAmt).html(orderDishes[dishId]);
-        $(dishAmt).css("color", "rgb(66, 255, 151)")
+        $(dishAmt).css("color", "rgb(9, 151, 73)")
     })
 
     $('.decrease-from-order').on('click', (event) => {
@@ -49,7 +49,7 @@ $(document).ready(() => {
                 $(dishAmt).empty();
             } else {
                 $(dishAmt).html(orderDishes[dishId]);
-                $(dishAmt).css("color", "rgb(247, 215, 35)")
+                $(dishAmt).css("color", "rgb(163, 148, 10)")
             }
             if (orderDishNames[dishName] === 0) {
                 delete orderDishNames[dishName];

@@ -111,13 +111,9 @@ const fillContentOrders = (element, data, title) => {
     $(element).empty();
     $(element).append(`<h1 class='section-title'>${title}</h1>`);
     const orders = $('<div class="orders"></div>');
-    let repeatButton = '';
 
     if (data.length === 0) {
         $(orders).append('<p class="empty-list">No result has been found. Try another query</p>')
-    }
-    if (title === "Past Orders") {
-        repeatButton = '<button class="repeat-order">Repeat Order</button>';
     }
 
     for (const order of data) {
@@ -148,7 +144,6 @@ const fillContentOrders = (element, data, title) => {
                 <p class="delivery-fee">Delivery Fee: <span>${order.delivery_fee} ETB</span></p>
                 <p class="total-price">Total: <span>${order.price + order.delivery_fee} ETB</span></p>
             </div>
-            ${repeatButton}
             ${confirmDelivered}
         </div>
     </div>`

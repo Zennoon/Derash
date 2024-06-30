@@ -6,7 +6,7 @@ $(document).ready(() => {
         console.log(appDomain + $(link).attr('href'));
         console.log(location.href);
         if (appDomain + $(link).attr('href') === location.href) {
-            $(link).css("color", "#00ff00");
+            $(link).css("color", "rgb(185,22,53)");
         }
     }
 })

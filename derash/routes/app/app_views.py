@@ -46,11 +46,11 @@ def save_image_file(form_picture, folder):
 def home():
     if current_user.is_authenticated:
         if isinstance(current_user, Customer):
-            return (render_template("customer_home.html"))
+            return (render_template("customer_home.html", user=current_user.to_dict()))
         elif isinstance(current_user, Owner):
-            return (render_template("owner_home.html"))
+            return (render_template("owner_home.html", user=current_user.to_dict()))
         elif isinstance(current_user, Driver):
-            return (render_template("driver_home.html", driver=current_user.to_dict()))
+            return (render_template("driver_home.html", user=current_user.to_dict()))
         return (render_template("logged_in_home.html"))
     return (render_template("logged_out_home.html"))
 
@@ -226,7 +226,7 @@ def view_restaurant_owner(restaurant_id):
         return ("Not a valid restaurant id", 404)
     dct = restaurant.to_dict()
     dct["dishes"] = [dish.to_dict() for dish in restaurant.dishes]
-    return (render_template("owner_restaurant.html", restaurant=dct))
+    return (render_template("owner_restaurant.html", restaurant=dct, user=current_user.to_dict()))
 
 @app.route("/o/restaurants/<restaurant_id>/update", methods=["GET", "POST"])
 @login_required
