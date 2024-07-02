@@ -4,3 +4,4 @@ flask-wtf
 flask-bcrypt
 flask-login
 flask-mail
+Pillow

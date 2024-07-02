@@ -23,7 +23,7 @@
             <a href="#" class="nav-link">About</a>
             <a href="#" class="nav-link">Contact</a>
             <a href="{{ url_for('logout') }}" class="nav-link">Log out</a>
-            <a href="#" class="nav-link">Account</a>
+            <a href="{{ url_for('view_profile') }}" class="nav-link">Account</a>
         </div>
     </header>
     {% block main_content%}
@@ -32,7 +32,7 @@
             <ul class="nav-items">
                 {% block nav_items %}{% endblock nav_items %}
             </ul>
-            <a href="#" class="account-info">
+            <a href="{{ url_for('view_profile') }}" class="account-info">
                 <img src="{{ url_for('static', filename='images/profile-pics/{}'.format(user.image_file)) }}" alt="">
                 <p>{{ user.first_name }} {{user.last_name}}</p>
             </a>

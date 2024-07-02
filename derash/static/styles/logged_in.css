@@ -9,12 +9,11 @@ body {
 
 .header {
     width: 100%;
-    margin-left: 20px;
     position: fixed;
     z-index: 10;
     top: 0;
 
-    padding: 20px 30px;
+    padding: 20px 50px;
     display: flex;
     justify-content: space-between;
     background-color: #fff;

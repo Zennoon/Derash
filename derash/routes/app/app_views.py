@@ -7,7 +7,8 @@ import secrets
 
 from flask import flash, redirect, render_template, request, url_for
 from flask_login import current_user, login_required, login_user, logout_user
-from flask_mail import Mail, Message
+from flask_mail import Message
+from PIL import Image
 
 from derash import app, bcrypt, mail
 from derash.forms.dish import createDish, updateDish
@@ -15,6 +16,7 @@ from derash.forms.login import LoginForm
 from derash.forms.register import RegisterCustomerForm, RegisterDriverForm, RegisterOwnerForm
 from derash.forms.reset import RequestResetForm, ResetPasswordForm
 from derash.forms.restaurant import createRestaurant, updateRestaurant
+from derash.forms.user_update import UpdateAccountForm, UpdateDriverAccountForm
 
 from derash.models import db
 from derash.models.customer import Customer
@@ -39,7 +41,10 @@ def save_image_file(form_picture, folder):
     _, f_ext = os.path.splitext(form_picture.filename)
     image_filename = random_hex + f_ext
     save_path = os.path.join(app.root_path, 'static/images/{}'.format(folder), image_filename)
-    form_picture.save(save_path)
+    output_size = (200, 200)
+    i = Image.open(form_picture)
+    i.thumbnail(output_size)
+    i.save(save_path)
     return (image_filename)
 
 @app.route("/", methods=["GET", "POST"])
@@ -309,3 +314,31 @@ def update_dish(dish_id):
         form.ingredients.data = dish.ingredients
         form.price.data = dish.price
     return (render_template("update_dish.html", dish_name=dish.name, form=form))
+
+@app.route("/account", methods=["GET", "POST"])
+@login_required
+def view_profile():
+    if isinstance(current_user, Customer) or isinstance(current_user, Owner):
+        form = UpdateAccountForm()
+    elif isinstance(current_user, Driver):
+        form = UpdateDriverAccountForm()
+    if form.validate_on_submit():
+        current_user.first_name = form.first_name.data
+        current_user.last_name = form.last_name.data
+        current_user.email = form.email.data
+        current_user.phone_num = form.phone_num.data
+        if form.image_file.data:
+            image_file = save_image_file(form.image_file.data, "profile-pics")
+            current_user.image_file = image_file
+        if hasattr(form, "license_num"):
+            current_user.license_num = form.license_num.data
+        current_user.save()
+    elif request.method == "GET":
+        form.first_name.data = current_user.first_name
+        form.last_name.data = current_user.last_name
+        form.email.data = current_user.email
+        form.phone_num.data = current_user.phone_num
+        if hasattr(form, "license_num"):
+            form.license_num.data = current_user.license_num
+    return (render_template("account.html", form=form, user=current_user))
+    
