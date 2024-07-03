@@ -94,7 +94,7 @@ const fillContentRestaurants = (element, data, title) => {
         if (!restaurant.description) {
             restaurant.description = "";
         }
-        const restaurantDiv = `<a href="http://127.0.0.1:5000/c/restaurants/${restaurant.id}"><div class="restaurant" data-id=${restaurant.id}>
+        const restaurantDiv = `<a href="https://derash.zennoon.tech/c/restaurants/${restaurant.id}"><div class="restaurant" data-id=${restaurant.id}>
             <h3 class="restaurant-name">${restaurant.name}</h3>
             <img src="/static/images/restaurant-pics/${restaurant.image_file}" class="restaurant-img">
             <div class="restaurant-text">
@@ -154,7 +154,7 @@ const fillContentOrders = (element, data, title) => {
 
 const custGetOpenRestaurants = (element) => {
     $.ajax({
-        url: 'http://127.0.0.1:5000/api/customer/open_restaurants',
+        url: 'https://derash.zennoon.tech/api/customer/open_restaurants',
         success: (data, textStatus) => {
             fillContentRestaurants(element, data, "Open Restaurants");
         }
@@ -163,7 +163,7 @@ const custGetOpenRestaurants = (element) => {
 
 const custGetRestaurantsNear = (coords, element) => {
     $.ajax({
-        url: 'http://127.0.0.1:5000/api/customer/restaurants_near',
+        url: 'https://derash.zennoon.tech/api/customer/restaurants_near',
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -177,7 +177,7 @@ const custGetRestaurantsNear = (coords, element) => {
 
 const custGetPendingOrders = (element) => {
     $.ajax({
-        url: `http://127.0.0.1:5000/api/customer/pending_orders`,
+        url: `https://derash.zennoon.tech/api/customer/pending_orders`,
         success: (data, textStatus) => {
             fillContentOrders(element, data, "Pending Orders");
             $('.order-delivered').on('click', (event) => {
@@ -191,7 +191,7 @@ const custConfirmOrderDelivered = (element, orderId) => {
     $(element).empty();
     $(element).append('<div class="loader"></div>');
     $.ajax({
-        url: `http://127.0.0.1:5000/api/customer/confirm_delivered/${orderId}`,
+        url: `https://derash.zennoon.tech/api/customer/confirm_delivered/${orderId}`,
         method: "PUT",
         success: (data, textStatus) => {
             custGetPendingOrders(element);
@@ -205,7 +205,7 @@ const addCustomEventListener = (element, eventName, callback) => {
 
 const custGetPastOrders = (element) => {
     $.ajax({
-        url: `http://127.0.0.1:5000/api/customer/past_orders`,
+        url: `https://derash.zennoon.tech/api/customer/past_orders`,
         success: (data, textStatus) => {
             fillContentOrders(element, data, 'Past Orders');
             $('.repeat-order').on('click', (event) => {

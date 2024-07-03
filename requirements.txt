@@ -5,3 +5,5 @@ flask-bcrypt
 flask-login
 flask-mail
 Pillow
+email_validator
+gunicorn

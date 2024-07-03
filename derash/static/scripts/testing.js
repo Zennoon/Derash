@@ -2,7 +2,7 @@ $(document).ready(() => {
     // Customers
     const custGetDetails = () => {
         $.ajax({
-            url: 'http://127.0.0.1:5000/api/customer',
+            url: 'https://derash.zennoon.tech/api/customer',
             success: (data, textStatus) => {
                 console.log(data);
             }
@@ -12,7 +12,7 @@ $(document).ready(() => {
 
     const custGetAllRestaurants = () => {
         $.ajax({
-            url: 'http://127.0.0.1:5000/api/customer/all_restaurants',
+            url: 'https://derash.zennoon.tech/api/customer/all_restaurants',
             success: (data, textStatus) => {
                 console.log(data);
             }
@@ -22,7 +22,7 @@ $(document).ready(() => {
 
     const custGetOpenRestaurants = () => {
         $.ajax({
-            url: 'http://127.0.0.1:5000/api/customer/open_restaurants',
+            url: 'https://derash.zennoon.tech/api/customer/open_restaurants',
             success: (data, textStatus) => {
                 console.log(data);
             }
@@ -32,7 +32,7 @@ $(document).ready(() => {
 
     const custGetRestaurantsNear = () => {
         $.ajax({
-            url: 'http://127.0.0.1:5000/api/customer/restaurants_near',
+            url: 'https://derash.zennoon.tech/api/customer/restaurants_near',
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -49,7 +49,7 @@ $(document).ready(() => {
 
     const custGetRestaurantDetails = (restaurantId) => {
         $.ajax({
-            url: `http://127.0.0.1:5000/api/customer/restaurants/${restaurantId}`,
+            url: `https://derash.zennoon.tech/api/customer/restaurants/${restaurantId}`,
             success: (data, textStatus) => {
                 console.log(data);
             }
@@ -59,7 +59,7 @@ $(document).ready(() => {
 
     const custGetRestaurantReviews = (restaurantId) => {
         $.ajax({
-            url: `http://127.0.0.1:5000/api/customer/restaurants/${restaurantId}/reviews`,
+            url: `https://derash.zennoon.tech/api/customer/restaurants/${restaurantId}/reviews`,
             success: (data, textStatus) => {
                 console.log(data);
             }
@@ -69,7 +69,7 @@ $(document).ready(() => {
 
     const custGetDishDetails = (dishId) => {
         $.ajax({
-            url: `http://127.0.0.1:5000/api/customer/dishes/${dishId}`,
+            url: `https://derash.zennoon.tech/api/customer/dishes/${dishId}`,
             success: (data, textStatus) => {
                 console.log(data);
             }
@@ -79,7 +79,7 @@ $(document).ready(() => {
 
     const custGetPastOrders = () => {
         $.ajax({
-            url: `http://127.0.0.1:5000/api/customer/past_orders`,
+            url: `https://derash.zennoon.tech/api/customer/past_orders`,
             success: (data, textStatus) => {
                 console.log(data);
             }
@@ -89,7 +89,7 @@ $(document).ready(() => {
 
     const custGetPendingOrders = () => {
         $.ajax({
-            url: `http://127.0.0.1:5000/api/customer/pending_orders`,
+            url: `https://derash.zennoon.tech/api/customer/pending_orders`,
             success: (data, textStatus) => {
                 console.log(data);
             }
@@ -99,7 +99,7 @@ $(document).ready(() => {
 
     const custGetAllOrders = () => {
         $.ajax({
-            url: `http://127.0.0.1:5000/api/customer/all_orders`,
+            url: `https://derash.zennoon.tech/api/customer/all_orders`,
             success: (data, textStatus) => {
                 console.log(data);
             }
@@ -109,7 +109,7 @@ $(document).ready(() => {
 
     const custConfirmOrderDelivered = (orderId) => {
         $.ajax({
-            url: `http://127.0.0.1:5000/api/customer/confirm_delivered/${orderId}`,
+            url: `https://derash.zennoon.tech/api/customer/confirm_delivered/${orderId}`,
             method: "PUT",
             success: (data, textStatus) => {
                 console.log(data);
@@ -119,7 +119,7 @@ $(document).ready(() => {
     // custConfirmOrderDelivered("0578a4ac-c5f4-4c2f-b8d7-85157a652c85b5c3e06c-ef48-4d7b-b6bb-277a98cf4786");
     const custGetOrderDetails = (orderId) => {
         $.ajax({
-            url: `http://127.0.0.1:5000/api/customer/orders/${orderId}`,
+            url: `https://derash.zennoon.tech/api/customer/orders/${orderId}`,
             success: (data, textStatus) => {
                 console.log(data);
             }
@@ -130,7 +130,7 @@ $(document).ready(() => {
 
     const custCreateOrder = (data) => {
         $.ajax({
-            url: 'http://127.0.0.1:5000/api/customer/new_order',
+            url: 'https://derash.zennoon.tech/api/customer/new_order',
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -144,10 +144,10 @@ $(document).ready(() => {
 
     const custRepeatOrder = (orderId) => {
         $.ajax({
-            url: `http://127.0.0.1:5000/api/customer/orders/${orderId}`,
+            url: `https://derash.zennoon.tech/api/customer/orders/${orderId}`,
             success: (data, textStatus) => {
                 $.ajax({
-                    url: 'http://127.0.0.1:5000/api/customer/new_order',
+                    url: 'https://derash.zennoon.tech/api/customer/new_order',
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json"
@@ -167,7 +167,7 @@ $(document).ready(() => {
     // Owners
     const ownerGetDetails = () => {
         $.ajax({
-            url: 'http://127.0.0.1:5000/api/owner',
+            url: 'https://derash.zennoon.tech/api/owner',
             success: (data, textStatus) => {
                 console.log(data);
             }
@@ -177,7 +177,7 @@ $(document).ready(() => {
 
     const ownerGetMyRestaurants = () => {
         $.ajax({
-            url: 'http://127.0.0.1:5000/api/owner/my_restaurants',
+            url: 'https://derash.zennoon.tech/api/owner/my_restaurants',
             success: (data, textStatus) => {
                 console.log(data);
             }
@@ -187,7 +187,7 @@ $(document).ready(() => {
 
     const ownerGetRestaurantDetails = (restaurantId) => {
         $.ajax({
-            url: `http://127.0.0.1:5000/api/owner/my_restaurants/${restaurantId}`,
+            url: `https://derash.zennoon.tech/api/owner/my_restaurants/${restaurantId}`,
             success: (data, textStatus) => {
                 console.log(data);
             }
@@ -197,7 +197,7 @@ $(document).ready(() => {
 
     const ownerGetRestaurantReviews = (restaurantId) => {
         $.ajax({
-            url: `http://127.0.0.1:5000/api/owner/my_restaurants/${restaurantId}/reviews`,
+            url: `https://derash.zennoon.tech/api/owner/my_restaurants/${restaurantId}/reviews`,
             success: (data, textStatus) => {
                 console.log(data);
             }
@@ -207,7 +207,7 @@ $(document).ready(() => {
 
     const ownerOpenRestaurant = (restaurantId) => {
         $.ajax({
-            url: `http://127.0.0.1:5000/api/owner/my_restaurants/${restaurantId}/open`,
+            url: `https://derash.zennoon.tech/api/owner/my_restaurants/${restaurantId}/open`,
             method: "PUT",
             success: (data, textStatus) => {
                 console.log(data);
@@ -218,7 +218,7 @@ $(document).ready(() => {
 
     const ownerCloseRestaurant = (restaurantId) => {
         $.ajax({
-            url: `http://127.0.0.1:5000/api/owner/my_restaurants/${restaurantId}/close`,
+            url: `https://derash.zennoon.tech/api/owner/my_restaurants/${restaurantId}/close`,
             method: "PUT",
             success: (data, textStatus) => {
                 console.log(data);
@@ -229,7 +229,7 @@ $(document).ready(() => {
 
     const ownerGetMonthlyReceipt = (restaurantId) => {
         $.ajax({
-            url: `http://127.0.0.1:5000/api/owner/my_restaurants/${restaurantId}/monthly`,
+            url: `https://derash.zennoon.tech/api/owner/my_restaurants/${restaurantId}/monthly`,
             method: "GET",
             success: (data, textStatus) => {
                 console.log(data);
@@ -240,7 +240,7 @@ $(document).ready(() => {
 
     const ownerGetPastMonthReceipt = (restaurantId) => {
         $.ajax({
-            url: `http://127.0.0.1:5000/api/owner/my_restaurants/${restaurantId}/past_month`,
+            url: `https://derash.zennoon.tech/api/owner/my_restaurants/${restaurantId}/past_month`,
             method: "GET",
             success: (data, textStatus) => {
                 console.log(data);
@@ -251,7 +251,7 @@ $(document).ready(() => {
 
     const ownerGetAllRestaurantOrders = (restaurantId) => {
         $.ajax({
-            url: `http://127.0.0.1:5000/api/owner/my_restaurants/${restaurantId}/all_orders`,
+            url: `https://derash.zennoon.tech/api/owner/my_restaurants/${restaurantId}/all_orders`,
             method: "GET",
             success: (data, textStatus) => {
                 console.log(data);
@@ -262,7 +262,7 @@ $(document).ready(() => {
 
     const ownerGetPastRestaurantOrders = (restaurantId) => {
         $.ajax({
-            url: `http://127.0.0.1:5000/api/owner/my_restaurants/${restaurantId}/past_orders`,
+            url: `https://derash.zennoon.tech/api/owner/my_restaurants/${restaurantId}/past_orders`,
             method: "GET",
             success: (data, textStatus) => {
                 console.log(data);
@@ -273,7 +273,7 @@ $(document).ready(() => {
 
     const ownerGetPendingRestaurantOrders = (restaurantId) => {
         $.ajax({
-            url: `http://127.0.0.1:5000/api/owner/my_restaurants/${restaurantId}/pending_orders`,
+            url: `https://derash.zennoon.tech/api/owner/my_restaurants/${restaurantId}/pending_orders`,
             method: "GET",
             success: (data, textStatus) => {
                 console.log(data);
@@ -284,7 +284,7 @@ $(document).ready(() => {
 
     const ownerGetOrderDetails = (orderId) => {
         $.ajax({
-            url: `http://127.0.0.1:5000/api/owner/my_orders/${orderId}`,
+            url: `https://derash.zennoon.tech/api/owner/my_orders/${orderId}`,
             method: "GET",
             success: (data, textStatus) => {
                 console.log(data);
@@ -295,7 +295,7 @@ $(document).ready(() => {
 
     const ownerConfirmOrderMade = (orderId) => {
         $.ajax({
-            url: `http://127.0.0.1:5000/api/owner/my_orders/${orderId}/done`,
+            url: `https://derash.zennoon.tech/api/owner/my_orders/${orderId}/done`,
             method: "PUT",
             success: (data, textStatus) => {
                 console.log(data);
@@ -309,7 +309,7 @@ $(document).ready(() => {
     // Driver
     const driverGetDetails = () => {
         $.ajax({
-            url: 'http://127.0.0.1:5000/api/driver',
+            url: 'https://derash.zennoon.tech/api/driver',
             success: (data, textStatus) => {
                 console.log(data);
             }
@@ -319,7 +319,7 @@ $(document).ready(() => {
 
     const driverGetAllDeliveries = () => {
         $.ajax({
-            url: `http://127.0.0.1:5000/api/driver/all_deliveries`,
+            url: `https://derash.zennoon.tech/api/driver/all_deliveries`,
             method: "GET",
             success: (data, textStatus) => {
                 console.log(data);
@@ -330,7 +330,7 @@ $(document).ready(() => {
 
     const driverGetPastDeliveries = () => {
         $.ajax({
-            url: `http://127.0.0.1:5000/api/driver/past_deliveries`,
+            url: `https://derash.zennoon.tech/api/driver/past_deliveries`,
             method: "GET",
             success: (data, textStatus) => {
                 console.log(data);
@@ -341,7 +341,7 @@ $(document).ready(() => {
 
     const driverActivate = () => {
         $.ajax({
-            url: `http://127.0.0.1:5000/api/driver/activate`,
+            url: `https://derash.zennoon.tech/api/driver/activate`,
             method: "PUT",
             success: (data, textStatus) => {
                 console.log(data);
@@ -352,7 +352,7 @@ $(document).ready(() => {
 
     const driverDeactivate = () => {
         $.ajax({
-            url: `http://127.0.0.1:5000/api/driver/deactivate`,
+            url: `https://derash.zennoon.tech/api/driver/deactivate`,
             method: "PUT",
             success: (data, textStatus) => {
                 console.log(data);
@@ -363,7 +363,7 @@ $(document).ready(() => {
 
     const driverGetPossibleDeliveries = () => {
         $.ajax({
-            url: `http://127.0.0.1:5000/api/driver/possible_deliveries`,
+            url: `https://derash.zennoon.tech/api/driver/possible_deliveries`,
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -380,7 +380,7 @@ $(document).ready(() => {
 
     const driverAcceptDelivery = (orderId) => {
         $.ajax({
-            url: `http://127.0.0.1:5000/api/driver/${orderId}/accept`,
+            url: `https://derash.zennoon.tech/api/driver/${orderId}/accept`,
             method: "PUT",
             success: (data, textStatus) => {
                 console.log(data);
@@ -391,7 +391,7 @@ $(document).ready(() => {
 
     const driverCurrentDelivery = (orderId) => {
         $.ajax({
-            url: `http://127.0.0.1:5000/api/driver/current_delivery`,
+            url: `https://derash.zennoon.tech/api/driver/current_delivery`,
             method: "GET",
             success: (data, textStatus) => {
                 console.log(data);
@@ -402,7 +402,7 @@ $(document).ready(() => {
 
     const driverConfirmDelivery = (orderId) => {
         $.ajax({
-            url: `http://127.0.0.1:5000/api/driver/${orderId}/delivered`,
+            url: `https://derash.zennoon.tech/api/driver/${orderId}/delivered`,
             method: "PUT",
             success: (data, textStatus) => {
                 console.log(data);
@@ -413,7 +413,7 @@ $(document).ready(() => {
 
     const driverGetMonthlyReceipt = () => {
         $.ajax({
-            url: `http://127.0.0.1:5000/api/driver/monthly`,
+            url: `https://derash.zennoon.tech/api/driver/monthly`,
             method: "GET",
             success: (data, textStatus) => {
                 console.log(data);
@@ -424,7 +424,7 @@ $(document).ready(() => {
 
     const driverGetPastMonthReceipt = () => {
         $.ajax({
-            url: `http://127.0.0.1:5000/api/driver/past_month`,
+            url: `https://derash.zennoon.tech/api/driver/past_month`,
             method: "GET",
             success: (data, textStatus) => {
                 console.log(data);

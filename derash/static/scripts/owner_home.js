@@ -14,7 +14,7 @@ $(document).ready(() => {
 
 const ownerGetMyRestaurants = (element) => {
     $.ajax({
-        url: 'http://127.0.0.1:5000/api/owner/my_restaurants',
+        url: 'https://derash.zennoon.tech/api/owner/my_restaurants',
         success: (data, textStatus) => {
             $(element).empty();
 
@@ -33,7 +33,7 @@ const ownerGetMyRestaurants = (element) => {
                     const restaurantDiv = $(`<div class="owner-restaurant" data-id="${restaurant.id}">
                         <div class="restaurant-headline">
                             <img src="/static/images/restaurant-pics/${restaurant.image_file}" class="restaurant-img">
-                            <a href="http://127.0.0.1:5000/o/restaurants/${restaurant.id}"><h2 class="restaurant-name">${restaurant.name}</h2></a>
+                            <a href="https://derash.zennoon.tech/o/restaurants/${restaurant.id}"><h2 class="restaurant-name">${restaurant.name}</h2></a>
                             <div>
                                 <span></span>
                                 ${activate}
@@ -65,7 +65,7 @@ const ownerGetMyRestaurants = (element) => {
 
 const ownerOpenRestaurant = (restaurantId, element) => {
     $.ajax({
-        url: `http://127.0.0.1:5000/api/owner/my_restaurants/${restaurantId}/open`,
+        url: `https://derash.zennoon.tech/api/owner/my_restaurants/${restaurantId}/open`,
         method: "PUT",
         success: () => {
             ownerGetMyRestaurants(element);
@@ -75,7 +75,7 @@ const ownerOpenRestaurant = (restaurantId, element) => {
 
 const ownerCloseRestaurant = (restaurantId, element) => {
     $.ajax({
-        url: `http://127.0.0.1:5000/api/owner/my_restaurants/${restaurantId}/close`,
+        url: `https://derash.zennoon.tech/api/owner/my_restaurants/${restaurantId}/close`,
         method: "PUT",
         success: () => {
             ownerGetMyRestaurants(element);

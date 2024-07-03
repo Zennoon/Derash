@@ -1,6 +1,6 @@
 $(document).ready(() => {
     const navLinks = $('.nav-link');
-    const appDomain = "http://127.0.0.1:5000"
+    const appDomain = "https://derash.zennoon.tech"
 
     for (const link of navLinks) {
         if (appDomain + $(link).attr("href") === location.href) {

@@ -216,7 +216,7 @@ const calcDeliveryFee = (restaurantCoord, customerCoord) => {
 
 const custCreateOrder = (data) => {
     $.ajax({
-        url: 'http://127.0.0.1:5000/api/customer/new_order',
+        url: 'https://derash.zennoon.tech/api/customer/new_order',
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -227,7 +227,7 @@ const custCreateOrder = (data) => {
 
 const custGetRestaurantReviews = (reviewsDiv, restaurantId) => {
     $.ajax({
-        url: `http://127.0.0.1:5000/api/customer/restaurants/${restaurantId}/reviews`,
+        url: `https://derash.zennoon.tech/api/customer/restaurants/${restaurantId}/reviews`,
         success: (data, textStatus) => {
             $(reviewsDiv).empty();
 
@@ -255,7 +255,7 @@ const custGetRestaurantReviews = (reviewsDiv, restaurantId) => {
 
 const custMakeReview = (restaurantId, text, toggleReviews, reviewsDiv) => {
     $.ajax({
-        url: `http://127.0.0.1:5000/api/customer/restaurants/${restaurantId}/make-review`,
+        url: `https://derash.zennoon.tech/api/customer/restaurants/${restaurantId}/make-review`,
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

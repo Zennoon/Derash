@@ -18,6 +18,7 @@
 .welcome {
     width: 100%;
     height: 250px;
+    color: #fff;
     background-image: url("https://images.rawpixel.com/image_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIzLTEyL2Rlc2lnbndpdGhtZTA5X2J1cmd1bmR5X2dyYWRpZW50X2JhY2tncm91bmRfNzhjNTRhZTctNTY0ZS00YWM2LWIwMzYtMDI0Y2U5MmVlZmIwXzEuanBn.jpg");
     background-repeat: no-repeat;
     background-size: cover;

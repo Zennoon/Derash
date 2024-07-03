@@ -97,12 +97,12 @@ const fillContentOrders = (element, data, title) => {
 
 const ownerGetRestaurantDetails = (element, restaurantId, popUp) => {
     $.ajax({
-        url: `http://127.0.0.1:5000/api/owner/my_restaurants/${restaurantId}`,
+        url: `https://derash.zennoon.tech/api/owner/my_restaurants/${restaurantId}`,
         success: (data, textStatus) => {
             $(element).empty();
             const restaurantIntro = `<div class="intro">
                 <h1>${data.name}</h1>
-                <a class="edit-restaurant" href="http://127.0.0.1:5000/o/restaurants/${restaurantId}/update"><i class="fa-solid fa-pen"></i> Edit</a>
+                <a class="edit-restaurant" href="https://derash.zennoon.tech/o/restaurants/${restaurantId}/update"><i class="fa-solid fa-pen"></i> Edit</a>
             </div>`;
             const restaurantDesc = `<div class="description">
                 <img src="/static/images/restaurant-pics/${data.image_file}" class="restaurant-img">
@@ -112,7 +112,7 @@ const ownerGetRestaurantDetails = (element, restaurantId, popUp) => {
             const restaurantDishes = $(`<div class="dishes-section">
                 <div class="dishes-intro">
                     <h2>Dishes</h2>
-                    <a class="new-dish" href="http://127.0.0.1:5000/o/restaurants/${restaurantId}/add-dish"><i class="fa-solid fa-plus"></i> New</a>
+                    <a class="new-dish" href="https://derash.zennoon.tech/o/restaurants/${restaurantId}/add-dish"><i class="fa-solid fa-plus"></i> New</a>
                 </div>
             </div>`);
             const dishes = $(`<div class="dishes"></div>`);
@@ -124,7 +124,7 @@ const ownerGetRestaurantDetails = (element, restaurantId, popUp) => {
                             <h2>${dish.name}</h2>
                         </div>
                         <span class="dish-price">${dish.price} ETB</span>
-                        <a class="edit-dish" href="http://127.0.0.1:5000/o/dish/${dish.id}/edit"><i class="fa-solid fa-pen"></i> Edit</a>
+                        <a class="edit-dish" href="https://derash.zennoon.tech/o/dish/${dish.id}/edit"><i class="fa-solid fa-pen"></i> Edit</a>
                     </div>
                     <div class="dish-desc">
                         <p>Description: ${dish.description || ''}</p>
@@ -164,7 +164,7 @@ const ownerGetRestaurantDetails = (element, restaurantId, popUp) => {
 
 const ownerGetRestaurantReviews = (restaurantId) => {
     $.ajax({
-        url: `http://127.0.0.1:5000/api/owner/my_restaurants/${restaurantId}/reviews`,
+        url: `https://derash.zennoon.tech/api/owner/my_restaurants/${restaurantId}/reviews`,
         success: (data, textStatus) => {
             const reviews = $('.reviews');
 
@@ -193,7 +193,7 @@ const ownerGetRestaurantReviews = (restaurantId) => {
 
 const ownerGetPendingRestaurantOrders = (element, restaurantId) => {
     $.ajax({
-        url: `http://127.0.0.1:5000/api/owner/my_restaurants/${restaurantId}/pending_orders`,
+        url: `https://derash.zennoon.tech/api/owner/my_restaurants/${restaurantId}/pending_orders`,
         method: "GET",
         success: (data, textStatus) => {
             fillContentOrders(element, data, "Pending Orders");
@@ -209,7 +209,7 @@ const ownerGetPendingRestaurantOrders = (element, restaurantId) => {
 
 const ownerConfirmOrderMade = (orderId, element, restaurantId) => {
     $.ajax({
-        url: `http://127.0.0.1:5000/api/owner/my_orders/${orderId}/done`,
+        url: `https://derash.zennoon.tech/api/owner/my_orders/${orderId}/done`,
         method: "PUT",
         success: () => {
             ownerGetPendingRestaurantOrders(element, restaurantId);
@@ -219,7 +219,7 @@ const ownerConfirmOrderMade = (orderId, element, restaurantId) => {
 
 const ownerGetPastRestaurantOrders = (element, restaurantId) => {
     $.ajax({
-        url: `http://127.0.0.1:5000/api/owner/my_restaurants/${restaurantId}/past_orders`,
+        url: `https://derash.zennoon.tech/api/owner/my_restaurants/${restaurantId}/past_orders`,
         method: "GET",
         success: (data, textStatus) => {
             fillContentOrders(element, data, "Past Orders");
@@ -229,7 +229,7 @@ const ownerGetPastRestaurantOrders = (element, restaurantId) => {
 
 const ownerGetPastMonthReceipt = (element, restaurantId) => {
     $.ajax({
-        url: `http://127.0.0.1:5000/api/owner/my_restaurants/${restaurantId}/past_month`,
+        url: `https://derash.zennoon.tech/api/owner/my_restaurants/${restaurantId}/past_month`,
         method: "GET",
         success: (data, textStatus) => {
             fillContentOrders(element, data, "Past Month's Orders")

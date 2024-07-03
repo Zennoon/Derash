@@ -4,7 +4,7 @@
 
 body {
     background-color: #fff;
-    color: #fff;
+    color: #000;
 }
 
 .header {
@@ -146,11 +146,15 @@ body {
     padding-left: 40px;
 }
 
-.contentc > p {
+.content > p {
     color: #000;
 }
 
 .nav-item.clicked {
     background-color: rgb(185,22,53);
     color: #fff;
+}
+
+.empty-list {
+    color: #000;
 }

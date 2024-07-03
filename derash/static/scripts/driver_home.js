@@ -6,7 +6,7 @@ $(document).ready(() => {
 
     const driverActivate = () => {
         $.ajax({
-            url: `http://127.0.0.1:5000/api/driver/activate`,
+            url: `https://derash.zennoon.tech/api/driver/activate`,
             method: "PUT",
             success: () => {
                 $(toggleActiveButton).removeClass('activate');
@@ -20,7 +20,7 @@ $(document).ready(() => {
     
     const driverDeactivate = () => {
         $.ajax({
-            url: `http://127.0.0.1:5000/api/driver/deactivate`,
+            url: `https://derash.zennoon.tech/api/driver/deactivate`,
             method: "PUT",
             success: () => {
                 $(toggleActiveButton).removeClass('deactivate');
@@ -33,7 +33,7 @@ $(document).ready(() => {
 
     const driverGetCurrentDelivery = () => {
         $.ajax({
-            url: `http://127.0.0.1:5000/api/driver/current_delivery`,
+            url: `https://derash.zennoon.tech/api/driver/current_delivery`,
             method: "GET",
             success: (data, textStatus) => {
                 fillContentPendingDelivery(contentDiv, data, "Pending Delivery");
@@ -48,7 +48,7 @@ $(document).ready(() => {
 
     const driverConfirmDelivery = (orderId) => {
         $.ajax({
-            url: `http://127.0.0.1:5000/api/driver/${orderId}/delivered`,
+            url: `https://derash.zennoon.tech/api/driver/${orderId}/delivered`,
             method: "PUT",
             success: () => {
                 $(contentDiv).empty();
@@ -62,7 +62,7 @@ $(document).ready(() => {
         navigator.geolocation.getCurrentPosition((position) => {
             const driverCoords = [position.coords.latitude, position.coords.longitude];
             $.ajax({
-                url: `http://127.0.0.1:5000/api/driver/possible_deliveries`,
+                url: `https://derash.zennoon.tech/api/driver/possible_deliveries`,
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -82,7 +82,7 @@ $(document).ready(() => {
 
         const driverAcceptDelivery = (orderId, button) => {
             $.ajax({
-                url: `http://127.0.0.1:5000/api/driver/${orderId}/accept`,
+                url: `https://derash.zennoon.tech/api/driver/${orderId}/accept`,
                 method: "PUT",
                 success: (data, textStatus) => {
                     $(contentDiv).empty();
@@ -99,7 +99,7 @@ $(document).ready(() => {
 
     const driverGetPastDeliveries = () => {
         $.ajax({
-            url: `http://127.0.0.1:5000/api/driver/past_deliveries`,
+            url: `https://derash.zennoon.tech/api/driver/past_deliveries`,
             method: "GET",
             success: (data, textStatus) => {
                 fillContentPastDeliveries(contentDiv, data, "Past Deliveries")
@@ -109,7 +109,7 @@ $(document).ready(() => {
 
     const driverGetPastMonthReceipt = () => {
         $.ajax({
-            url: `http://127.0.0.1:5000/api/driver/past_month`,
+            url: `https://derash.zennoon.tech/api/driver/past_month`,
             method: "GET",
             success: (data, textStatus) => {
                 fillContentPastMonthDeliveries(contentDiv, data, "Past Month's Deliveries");

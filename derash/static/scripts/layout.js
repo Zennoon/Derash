@@ -1,5 +1,5 @@
 $(document).ready(() => {
-    const appDomain = "http://127.0.0.1:5000"
+    const appDomain = "https://derash.zennoon.tech"
     const headerLinks = $('.header-link');
 
     for (const link of headerLinks) {
