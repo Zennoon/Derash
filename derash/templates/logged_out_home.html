@@ -16,11 +16,11 @@
     </div>
 {% endblock upper %}
 {% block content %}
-<div class="calls">
+<div class="calls" id="features">
     <div class="customer-call call">
         <div class="call-text">
             <h2>Explore food like never before</h2>
-            <p>Thousands of Choices. One Easy App. Your Food Delivery Starts Here. Start using <span class="derash-span">Derash</span> now</p>
+            <p>Thousands of Choices. One Easy App. Your Food Delivery Starts Here. Enjoy the vast collection of restaurants registered with our app, filter by location, and order in a heartbeat. Start using <span class="derash-span">Derash</span> now</p>
             <a href="{{ url_for('register_customer') }}">Sign up now</a>
         </div>
         <img src="{{ url_for('static', filename='images/app-images/injera.png') }}" alt="A traditional Ethiopian food, injera, served with 8 different stews" class="call-img customer-call-img">
@@ -29,17 +29,50 @@
         <img src="{{ url_for('static', filename='images/app-images/restaurant-manager.png') }}" alt="A black female restaurant owner posing for the camera" class="call-img restaurant-call-img">
         <div class="call-text">
             <h2>Make your restaurants accessible to thousands of daily users</h2>
-            <p>Expand Your Reach. Grow Your Business. Join <span class="derash-span">Derash</span> today.</p>
+            <p>Expand Your Reach. Grow Your Business. Register and manage all your restaurants with a single account. Join <span class="derash-span">Derash</span> today.</p>
             <a href="{{ url_for('register_owner') }}">Sign up now</a>
         </div>
     </div>
     <div class="driver-call call">
         <div class="call-text">
             <h2>Earn with Derash, on your own time</h2>
-            <p>Be Your Own Boss. Set Your Schedule. Deliver with <span class="derash-span">Derash</span>.</p>
+            <p>Be Your Own Boss. Set Your Schedule. Enjoy our robust system which filters possible deliveries to those near you. Deliver with <span class="derash-span">Derash</span>.</p>
             <a href="{{ url_for('register_driver') }}">Sign up now</a>
         </div>
         <img src="{{ url_for('static', filename='images/app-images/driver.png') }}" alt="A red food delivery car" class="call-img driver-call-img">
     </div>
+</div>
+<div class="about" id="about">
+  <div class="about-cont">
+    <img src="{{ url_for('static', filename='images/app-images/derash-icon.png') }}" class="about-img"></img>
+    <div class="about-text">
+      <div class="about-desc">
+	<h2 class="about-header">About this project</h2>
+	<p>What inspired me to build this web application for the <span>alx</span> portfolio project is my desire to learn, play around and explore with handling different types of users present in a single application. As displayed in the <a href="{{ url_for('home') }}#features" class="about-link header-link">features</a> section, this project deals with three different types of users, all of which have their own views, and actions, but are also connected through their transactions</p>
+      </div>
+      <div class="about-timeline">
+	<h3 class="about-header">Timeline</h3>
+	<ul>
+	  <li>June 13 - June 17: Defining the models, and creating, and configuring a database, along with the ORM</li>
+	  <li>June 18 - June 19: Testing the models and the ORM</li>
+	  <li>June 20 - June 23: Creating API endpoints for the application</li>
+	  <li>June 24 - June 28: Building the front-end of the application</li>
+	  <li>June 29 - June 30: Testing the integration and fixing found bugs</li>
+	  <li>July 1:Deploying the application</li>
+	</ul>
+      </div>
+      <div class="team-members">
+	<h3 class="about-header">Team Members</h3>
+	<ul>
+	  <li><span class="team-member-name">Yunus Kedir</span>: <span class="team-member-links"><a href="https://www.github.com/Zennoon" target="_blank">Github</a><a href="https://www.linkedin.com/in/yunus-kedir" target="_blank">Linkedin</a><a href="https://x.com/ZennoonK" target="_blank">X</a></span></li>
+	</ul>
+      </div>
+      <p>You can find the source code of this project in <a href="https://www.github.com/Zennoon/Derash" target="_blank">this repository</a></p>
+    </div>
+  </div>
+</div>
+<div class="video-cont" id="demo">
+  <iframe src="https://www.youtube.com/embed/oafUo9iofJ0">
+  </iframe>  
 </div>
 {% endblock content %}

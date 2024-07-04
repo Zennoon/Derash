@@ -1,3 +1,11 @@
+.select-nothing {
+    color: rgb(185,22,53);
+    color: rgb(230,69,95);
+    color: rgb(225,28,64);
+    color: rgb(192, 186, 186);
+    color: rgb(240, 233, 233);
+}
+
 .hero-content {
     height: 500px;
     position: relative;
@@ -160,4 +168,82 @@
 .driver-call {
     margin-bottom: 0;
 }
- 
+
+.about {
+    margin: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.about-cont {
+    width: 70%;
+    padding: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 100px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.about-img {
+    display: inline-block;
+    width: 200px;
+    height: 200px;
+}
+
+.about-text {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.about-cont h3 {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.about-timeline ul, .team-members ul {
+    padding: 10px;
+}
+
+.about-timeline li, .team-members li {
+    margin-bottom: 5px;
+}
+
+.about-header {
+    color: rgb(185,22,53);
+    padding-bottom: 3px;
+    margin-bottom: 5px;
+    border-bottom: 1px solid rgb(192, 186, 186);
+}
+
+.about-text span {
+    font-weight: 700;
+    color: rgb(185,22,53);
+}
+
+.about-text a {
+    color: rgb(230,69,95);
+}
+
+.about-text a:hover {
+    color: rgb(185, 22, 53);
+}
+
+.team-member-links a {
+    margin-left: 10px;
+}
+
+.video-cont {
+    padding: 50px 100px;
+    margin: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.video-cont iframe {
+    width: 755px;
+    height: 400px;
+}

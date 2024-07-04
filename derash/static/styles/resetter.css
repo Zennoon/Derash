@@ -20,6 +20,7 @@ time, mark, audio, video {
 	padding: 0;
 	border: 0;
 	font-size: 100%;
+	font-weight: 500;
 	font: inherit;
 	vertical-align: baseline;
 }
@@ -50,7 +51,7 @@ table {
 body {
     font-family: "Quicksand", sans-serif;
     font-optical-sizing: auto;
-    font-weight: 400;
+    font-weight: 500;
     font-style: normal;
     background-color: aliceblue;
 }

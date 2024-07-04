@@ -27,3 +27,10 @@ from derash.routes.app.app_views import *
 from derash.routes.api.customer import *
 from derash.routes.api.driver import *
 from derash.routes.api.owner import *
+
+
+from derash.models import db
+@app.teardown_appcontext
+def close_db(error):
+    """ Close Storage """
+    db.close()
