@@ -19,14 +19,16 @@
     {% block header %}
         <header class="header">
             <p class="header-name">DERASH</p>
+            <input type="checkbox" name="" id="header-menu">
+            <label for="header-menu" class="header-menu-btn"><i class="fa-solid fa-bars"></i></label>
             <div class="links">
                 <a href="{{ url_for('home') }}" class="home-link header-link">Home</a>
                 {% if current_user.is_authenticated %}
                     <a href="{{ url_for('logout') }}" class="home-link header-link">Log out</a>
-                    {% else %}
-		    <a href="{{ url_for('home') }}#features" class="about-link header-link">Features</a>
-		    <a href="{{ url_for('home') }}#about" class="about-link header-link">About</a>
-		    <a href="{{ url_for('home') }}#demo" class="demo-link header-link">Demo</a>
+                {% else %}
+                    <a href="{{ url_for('home') }}#features" class="about-link header-link">Features</a>
+                    <a href="{{ url_for('home') }}#about" class="about-link header-link">About</a>
+                    <a href="{{ url_for('home') }}#demo" class="demo-link header-link">Demo</a>
                     <a href="{{ url_for('home') }}#contact"  class="contact-link header-link">Contact</a>
                     <a href="{{ url_for('login') }}" class="login-link header-link">Log in</a>
                     <a href="{{ url_for('register') }}" class="signup-link header-link">Sign up</a>

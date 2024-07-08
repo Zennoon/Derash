@@ -9,7 +9,7 @@
 .toggle-active {
     width: 70%;
     position: relative;
-    top: 64px;
+    top: 90px;
     left: 30%;
     padding: 20px;
     display: flex;
@@ -73,7 +73,7 @@
     display: flex;
     flex-direction: column;
     gap: 50px;
-    margin-top: 50px;
+    margin-top: 20px;
 }
 
 .order {
@@ -147,4 +147,63 @@
 
 .empty-list {
     color: #000;
+}
+
+@media screen and (max-width: 600px) {
+    .toggle-active p, .empty-list {
+        font-size: 14px;
+    }
+
+    .order-customer-name {
+        font-size: 18px;
+    }
+
+    .order-text {
+        font-size: 14px;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .toggle-active {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .order {
+        padding: 10px;
+    }
+
+    .order-headline {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .order-time {
+        align-self: flex-end;
+        text-align: right;
+    }
+
+    .order-customer-name {
+        font-size: 16px;
+    }
+
+    .order-text {
+        font-size: 14px;
+    }
+
+    .order-body {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+
+@media screen and (max-width: 350px) {
+    .order-customer-name {
+        font-size: 14px;
+    }
+
+    .order-text {
+        font-size: 12px;
+    }
 }

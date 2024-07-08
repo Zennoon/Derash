@@ -82,3 +82,35 @@ h1.user-choice {
     background: #8dfc8d;
     color: #000;
 }
+
+@media screen and (max-width: 800px) {
+    .user-choice {
+        font-size: 26px;
+    }
+
+    .user-selections {
+        gap: 50px;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    div.main-cont {
+        padding: 20px 0;
+    }
+
+    .user-selections {
+        padding: 50px 20px;
+    }
+
+    .selection h3 {
+        font-size: 20px;
+    }
+
+    .avatar {
+        width: 75px;
+    }
+
+    .selection ul {
+        padding: 0 10px;
+    }
+}

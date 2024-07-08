@@ -88,10 +88,14 @@ $(document).ready(() => {
             $(popup).append(table);
 
             const locationForm = `<div class="location-submit"><div class="coord-form">
-                <label for="latitude">Latitude:</label>
-                <input id="latitude" class="coord-input" required>
-                <label for="longitude">Longitude:</label>
-                <input id="longitude" class="coord-input" required>
+                <div class="latitude-div">
+                    <label for="latitude">Latitude:</label>
+                    <input id="latitude" class="coord-input" required>
+                </div>
+                <div>
+                    <label for="longitude">Longitude:</label>
+                    <input id="longitude" class="coord-input" required>
+                </div>
                 <button class="coord-submit">Submit</button>
             </div>
             <h3>or</h3>

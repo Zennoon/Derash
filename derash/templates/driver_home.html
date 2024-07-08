@@ -4,10 +4,10 @@
     <script src="{{ url_for('static', filename='scripts/driver_home.js') }}"></script>
 {% endblock meta %}
 {% block nav_items %}
-    <li class="nav-item pending-delivery clicked"><i class="fa-solid fa-clock"></i>Pending Delivery</li>
-    <li class="nav-item possible-deliveries"><i class="fa-solid fa-car"></i>Possible Deliveries</li>
-    <li class="nav-item past-deliveries"><i class="fa-solid fa-clock-rotate-left"></i>Past Deliveries</li>
-    <li class="nav-item deliveries-past-month"><i class="fa-solid fa-receipt"></i>Past Month Receipt</li>
+    <li title="Pending Delivery" class="nav-item pending-delivery clicked"><i class="fa-solid fa-clock"></i><p>Pending Delivery</p></li>
+    <li title="Possible Deliveries" class="nav-item possible-deliveries"><i class="fa-solid fa-car"></i><p>Possible Deliveries</p></li>
+    <li title="Past Delievries" class="nav-item past-deliveries"><i class="fa-solid fa-clock-rotate-left"></i><p>Past Deliveries</p></li>
+    <li title="Past Month's Receipt" class="nav-item deliveries-past-month"><i class="fa-solid fa-receipt"></i><p>Past Month Receipt</p></li>
 {% endblock nav_items %}
 {% block content %}
 <div class="toggle-active">

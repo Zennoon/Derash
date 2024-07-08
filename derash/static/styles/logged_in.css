@@ -25,12 +25,30 @@ body {
     background-image: linear-gradient(to bottom right, rgb(225,28,64), rgb(185,22,53));
     background-clip: text;
     color: transparent;
+    display: flex;
+    align-items: center;
 }
 
 .links {
     display: flex;
     gap: 30px;
     margin-right: 30px;
+}
+
+#header-menu {
+    display: none;
+}
+
+.header-menu-btn {
+    padding: 10px 0;
+    font-size: 20px;
+    color: rgb(185,22,53);
+    cursor: pointer;
+    display: none;
+}
+
+.header-menu-btn:hover {
+    color: rgb(230,69,95);
 }
 
 .nav-link {
@@ -49,7 +67,9 @@ body {
     width: 25%;
 
     position: fixed;
-    top: 80px;
+    top: 90px;
+    z-index: 2;
+    border-top: 1px solid rgb(192, 186, 186);
 }
 
 .select-nothing {
@@ -63,7 +83,6 @@ body {
     margin: 0 20px;
     padding-top: 20px;
     gap: 20px;
-    border-top: 1px solid rgb(192, 186, 186);
 }
 
 
@@ -140,7 +159,7 @@ body {
     width: 70%;
     position: relative;
     background-color: rgb(255, 255, 255);
-    top: 64px;
+    top: 90px;
     left: 30%;
     padding: 20px;
     padding-left: 40px;
@@ -157,4 +176,103 @@ body {
 
 .empty-list {
     color: #000;
+}
+
+/* Make responsive */
+@media screen and (max-width: 1050px) {
+    .main-nav {
+        width: fit-content;
+    }
+
+    .content {
+        left: 15%;
+        width: 80%;
+    }
+
+    .links {
+        display: none;
+    }
+
+    .header-menu-btn {
+        display: block;
+    }
+
+    #header-menu:checked ~ .links {
+        box-sizing: border-box;
+        position: absolute;
+        top: 80px;
+        left: 0px;
+        width: 100%;
+        padding: 10px;
+        z-index: 1;
+        background: rgb(185,22,53);
+        color: #fff;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .links a {
+        width: 90%;
+        padding: 20px 0;
+        text-align: center;
+        color: #fff;
+        border: none;
+    }
+
+    .links a:hover {
+        color: #fff;
+        background-color: rgb(230,69,95);
+    }
+
+    .account-info {
+        margin: 0;
+    }
+
+    .account-info p {
+        display: none;
+    }
+
+    .nav-item p {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .header {
+        padding: 10px 20px;
+    }
+    .account-info {
+        display: none;
+    }
+    .nav-items {
+        margin: 5px;
+    }
+    h1.section-title {
+        font-size: 18px;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .header {
+        padding: 10px 10px;
+    }
+
+    .header h1 {
+        font-size: 20px;
+    }
+    .account-info {
+        display: none;
+    }
+    .main-nav {
+        margin: 5px;
+    }
+}
+
+@media screen and (max-height: 550px) {
+    .account-info {
+        display: none;
+    }
 }

@@ -21,7 +21,7 @@
 }
 
 .edit-restaurant, .new-dish, .edit-dish, .reviews-toggle {
-    font-family: "Quicksand" sans-serif;
+    font-family: "Quicksand", sans-serif;
     outline: none;
     font-size: 500;
     padding: 8px 20px;
@@ -89,6 +89,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgb(192, 186, 186);
 }
 
 .dish-intro {
@@ -252,4 +254,167 @@ button.reviews-toggle {
 
 .receipt-summary {
     margin-bottom: 20px;
+}
+
+@media screen and (max-width: 900px) {
+    .section-title {
+        font-size: 24px;
+    }
+
+    .intro h1 {
+        font-size: 24px;
+    }
+
+    .dishes-intro h2, .reviews-intro h2 {
+        font-size: 24px;
+    }
+
+    .dish-intro h2 {
+        font-size: 22px;
+    }
+}
+
+@media screen and (max-width: 750px) {
+    .dish-intro {
+        flex-direction: column;
+    }
+
+}
+
+@media screen and (max-width: 600px) {
+    .dish-main {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .review-headline {
+        flex-direction: column;
+        align-items: flex-start;
+        align-self: stretch;
+        gap: 10px;
+    }
+
+    .review-headline span {
+        align-self: flex-end;
+        text-align: right;
+    }
+
+    .order-customer-name {
+        font-size: 16px;
+    }
+
+    .order-text {
+        font-size: 14px;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .intro h1 {
+        font-size: 20px;
+    }
+
+    .dishes-intro h2, .reviews-intro h2 {
+        font-size: 20px;
+    }
+
+    .dish-intro h2 {
+        font-size: 20px;
+    }
+
+    .description, .dish-desc {
+        font-size: 14px;
+    }
+
+    .restaurant-img {
+        width: 125px;
+        height: 125px;
+    }
+
+    .dish-img {
+        width: 75px;
+        height: 75px;
+    }
+
+    .reviews {
+        padding: 20px 10px;
+    }
+
+    .review-text {
+        font-size: 14px;
+    }
+
+    .reviewer {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+    }
+
+    .reviewer h3, .review-headline span {
+        font-size: 14px;
+    }
+
+    .intro h1 {
+        font-size: 20px;
+    }
+
+    .dishes-intro h2, .reviews-intro h2 {
+        font-size: 20px;
+    }
+
+    .dish-intro h2 {
+        font-size: 18px;
+    }
+
+    .order-headline {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .order-time {
+        align-self: flex-end;
+        text-align: right;
+    }
+
+    .order-body {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .content > p {
+        font-size: 14px;
+    }
+}
+
+@media screen and (max-width: 300px) {
+    .intro h1 {
+        font-size: 16px;
+    }
+
+    .dishes-intro h2, .reviews-intro h2 {
+        font-size: 16px;
+    }
+
+    .dish {
+        padding: 20px 10px;
+    }
+
+    .dish-intro h2 {
+        font-size: 16px;
+    }
+
+    .description, .dish-desc, .review-text {
+        font-size: 14px;
+    }
+
+    .reviews {
+        padding: 20px 0;
+    }
+
+    .review {
+        padding: 5px;
+    }
+
+    .order {
+        padding: 10px;
+    }
 }

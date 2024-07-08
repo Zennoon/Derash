@@ -109,8 +109,9 @@
 }
 
 .call-img {
-    width: 30%;
+    width: 35%;
     height: auto;
+    max-height: 120%;
     position: absolute;
 }
 
@@ -136,9 +137,7 @@
 
 .restaurant-call-img {
     top: -50px;
-    left: -5%;
-    height: 120%;
-    width: auto;
+    left: 5%;
 }
 
 .restaurant-call .call-text a:hover {
@@ -156,7 +155,7 @@
 }
 
 .driver-call-img {
-    top: 50px;
+    top: 0px;
     right: 5%;
 }
 
@@ -246,4 +245,85 @@
 .video-cont iframe {
     width: 755px;
     height: 400px;
+}
+
+
+/* Make responsive */
+@media screen and (max-width: 1200px) {
+    .call {
+        display: flex;
+        padding: 50px;
+    }
+    .call-img {
+        position: static;
+        align-self: center;
+    }
+    .call h2 {
+        font-size: 24px;
+    }
+    .call-text {
+        font-size: 14px;
+        gap: 20px;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .about {
+        margin: 50px 30px;
+    }
+
+    .about-cont {
+        flex-direction: column;
+        align-items: center;
+        gap: 50px;
+    }
+
+    .about-header {
+        font-size: 22px;
+    }
+
+    .about-text {
+        font-size: 14px;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .hero-head {
+        font-size: 30px;
+    }
+
+    .hero-cartoon {
+        width: 75px;
+    }
+
+    .about {
+        margin: 50px 15px;
+    }
+
+    .about-header {
+        font-size: 18px;
+    }
+
+    .about-text {
+        font-size: 14px;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .hero-head {
+        font-size: 20px;
+    }
+
+    .hero-cartoon {
+        width: 40px;
+    }
+
+    .call h2 {
+        font-size: 18px;
+    }
+    
+    .call-text {
+        font-size: 12px;
+        gap: 5px;
+    }
 }

@@ -4,8 +4,8 @@
     <script src="{{ url_for('static', filename='scripts/customer_home.js') }}"></script>
 {% endblock meta %}
 {% block nav_items %}
-    <li class="nav-item open-restaurants"><i class="fa-solid fa-utensils"></i>Open Restaurants</li>
-    <li class="nav-item nearby-restaurants"><i class="fa-solid fa-location-dot"></i>Restaurants nearby</li>
-    <li class="nav-item pending-orders"><i class="fa-regular fa-hourglass-half"></i>Pending Orders</li>
-    <li class="nav-item past-orders"><i class="fa-solid fa-clock-rotate-left"></i>Past Orders</li>
+    <li title="Open Restaurants" class="nav-item open-restaurants"><i class="fa-solid fa-utensils"></i><p>Open Restaurants</p></li>
+    <li title="Restaurants Nearby" class="nav-item nearby-restaurants"><i class="fa-solid fa-location-dot"></i><p>Restaurants Nearby</p></li>
+    <li title="Pending Orders" class="nav-item pending-orders"><i class="fa-regular fa-hourglass-half"></i><p>Pending Orders</p></li>
+    <li title="Past Orders" class="nav-item past-orders"><i class="fa-solid fa-clock-rotate-left"></i><p>Past Orders</p></li>
 {% endblock nav_items %}

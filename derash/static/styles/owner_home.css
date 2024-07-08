@@ -28,7 +28,7 @@
 }
 
 a.add-restaurant {
-    font-family: "Quicksand" sans-serif;
+    font-family: "Quicksand", sans-serif;
     outline: none;
     padding: 10px 20px;
     border: none;
@@ -127,4 +127,48 @@ a.add-restaurant {
 .deactivate:hover {
     background-color: rgb(185,22,53);
     color: #fff;
+}
+
+@media screen and (max-width: 700px) {
+    .main-content {
+        padding: 20px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .main-content {
+        padding: 10px;
+    }
+
+    .intro h1 {
+        font-size: 24px;
+    }
+
+    .owner-restaurant {
+        align-items: center;
+    }
+
+    .restaurant-headline {
+        flex-direction: column;
+        gap: 20px;
+        padding-bottom: 20px;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .intro {
+        margin: 20px;
+    }
+
+    .intro h1 {
+        font-size: 18px;
+    }
+
+    a.add-restaurant {
+        font-size: 14px;
+    }
+
+    .owner-restaurants {
+        margin: 20px;
+    }
 }

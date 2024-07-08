@@ -51,7 +51,7 @@ form fieldset {
 }
 
 .field input, .field textarea {
-    font-family: "Quicksand" sans-serif;
+    font-family: "Quicksand", sans-serif;
     margin-top: 5px;
     padding: 2px 0;
     font-size: 16px;
@@ -68,10 +68,6 @@ textarea {
     border: 1px solid rgb(66, 255, 151);
 }
 
-input[type='text'], textarea {
-    font-family: "Quicksand";
-}
-
 .submit input {
     width: 100%;
     padding: 15px 30px;
@@ -81,7 +77,7 @@ input[type='text'], textarea {
     border: none;
     border-radius: 20px;
     color: #fff;
-    font-family: "Quicksand" sans-serif;
+    font-family: "Quicksand", sans-serif;
     font-weight: 700;
 }
 

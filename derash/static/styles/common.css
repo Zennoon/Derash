@@ -22,6 +22,8 @@ body {
     background-clip: text;
     color: transparent;
     font-weight: 700;
+    display: flex;
+    align-items: center;
 }
 
 .links {
@@ -54,6 +56,22 @@ body {
 .signup-link:hover {
     color: #fff;
     background-color: rgb(230,69,95);
+}
+
+#header-menu {
+    display: none;
+}
+
+.header-menu-btn {
+    padding: 10px 0;
+    font-size: 20px;
+    color: rgb(185,22,53);
+    cursor: pointer;
+    display: none;
+}
+
+.header-menu-btn:hover {
+    color: rgb(230,69,95);
 }
 
 .footer {
@@ -103,4 +121,59 @@ body {
 .flash.error {
     background-color: rgb(255, 172, 161);
     border-color: red;
+}
+
+button, a {
+    transition: 0.3s;
+}
+
+/* Make responsive */
+
+@media screen and (max-width: 1200px) {
+    .header {
+        padding: 15px 30px;
+    }
+
+    .footer {
+        padding: 15px 30px;
+    }
+}
+
+@media screen and (max-width: 1030px) {
+    .links {
+        display: none;
+    }
+
+    .header-menu-btn {
+        display: block;
+    }
+
+    #header-menu:checked ~ .links {
+        box-sizing: border-box;
+        position: absolute;
+        top: 80px;
+        left: 0px;
+        width: 100%;
+        padding: 10px;
+        z-index: 1;
+        background: rgb(185,22,53);
+        color: #fff;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .links a {
+        width: 90%;
+        text-align: center;
+        color: #fff;
+        border: none;
+    }
+
+    .links a:hover {
+        color: #fff;
+        background-color: rgb(230,69,95);
+    }
 }

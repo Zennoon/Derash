@@ -1,112 +1,3 @@
-.main-nav {
-    margin-left: 20px;
-    height: 80%;
-    width: 25%;
-
-    position: fixed;
-    top: 80px;
-}
-
-.select-nothing {
-    color: rgb(225,28,64), rgb(185,22,53)
-}
-
-.nav-items {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    margin: 0 20px;
-    padding-top: 20px;
-    gap: 20px;
-    border-top: 1px solid rgb(192, 186, 186);
-}
-
-
-.nav-item {
-    padding: 20px;
-    background-color:rgb(240, 233, 233);
-    color: rgb(185,22,53);
-    border-radius: 10px;
-    font-weight: bold;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-
-    display: flex;
-    gap: 20px;
-    align-items: center;
-}
-
-.nav-item:hover {
-    cursor: pointer;
-    background-color: rgb(230,69,95);
-    color: #fff;
-}
-
-.account-info {
-    background-color: rgb(230,69,95);
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    padding: 10px 20px;
-    color: #fff;
-    border-radius: 20px;
-
-    position: absolute;
-    bottom: 0;
-    margin: 0 20px;
-
-    display: flex;
-    align-items: center;
-    gap: 20px;
-}
-
-.account-info p {
-    font-weight: 700;
-}
-
-.account-info:hover {
-    background-color: rgb(185,22,53);
-}
-
-.account-info img {
-    display: inline-block;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-}
-
-.content {
-    width: 70%;
-    position: relative;
-    background-color: rgb(255, 255, 255);
-    top: 64px;
-    left: 30%;
-    padding: 20px;
-    padding-left: 40px;
-}
-
-.nav-item.clicked {
-    background-color: rgb(185,22,53);
-    color: #fff;
-}
-
-/* HTML: <div class="loader"></div> */
-.loader {
-    width: 60px;
-    margin: 0 auto;
-    aspect-ratio: 2;
-    --_g: no-repeat radial-gradient(circle closest-side,rgb(185,22,53) 90%,rgb(66, 255, 151, 0));
-    background: 
-      var(--_g) 0%   50%,
-      var(--_g) 50%  50%,
-      var(--_g) 100% 50%;
-    background-size: calc(100%/3) 50%;
-    animation: l3 1s infinite linear;
-  }
-  @keyframes l3 {
-      20%{background-position:0%   0%, 50%  50%,100%  50%}
-      40%{background-position:0% 100%, 50%   0%,100%  50%}
-      60%{background-position:0%  50%, 50% 100%,100%   0%}
-      80%{background-position:0%  50%, 50%  50%,100% 100%}
-  }
-
 .restaurants {
     display: flex;
     flex-wrap: wrap;
@@ -177,6 +68,10 @@
 
 .coord-form {
     font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
 }
 
 input.coord-input {
@@ -237,7 +132,7 @@ div.content > div > p {
     justify-content: space-between;
     color: rgb(185,22,53);
     border-bottom: 1px solid rgb(192, 186, 186);
-    font-size: bold;
+    font-weight: bold;
 }
 
 .order-restaurant-name {
@@ -277,4 +172,97 @@ div.content > div > p {
 
 .nearby-select {
     color: #000;
+}
+
+@media screen and (max-width: 1080px) {
+    .coord-form label {
+        font-size: 16px;
+    }
+
+    .coord-form input {
+        width: 50%;
+    }
+}
+
+@media screen and (max-width: 700px){
+    .order-restaurant-name {
+        font-size: 18px;
+    }
+
+    .order-text {
+        font-size: 14px;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .restaurant > * {
+        padding: 0px;
+    }
+
+    .restaurant-name {
+        font-size: 20px;
+    }
+
+    .restaurant-img {
+        height: 200px;
+    }
+
+    .restaurant-text {
+        font-size: 14px;
+    }
+
+    .coord-form {
+        flex-direction: column;
+    }
+
+    .order {
+        padding: 10px;
+    }
+
+    .order-headline {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .order-body {
+        flex-direction: column;
+        gap: 20px;
+    }
+}
+
+@media screen and (max-width: 300px) {
+    .restaurant-name {
+        font-size: 18px;
+    }
+
+    .restaurant-img {
+        height: 100px;
+    }
+
+    .restaurant-text {
+        font-size: 12px;
+    }
+
+    .other-options {
+        flex-direction: column;
+    }
+}
+
+@media screen and (max-width: 275px) {
+    h1.section-title {
+        font-size: 14px;
+    }
+
+    .restaurant-name {
+        font-size: 14px;
+    }
+
+    .restaurant-img {
+        height: 75px;
+    }
+
+    .restaurant-text {
+        font-size: 11px;
+    }
+
 }

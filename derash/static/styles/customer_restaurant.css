@@ -154,7 +154,7 @@
     background-color: inherit;
     border: 2px solid #fff;
     color: #fff;
-    font-family: "Quicksand" sans-serif;
+    font-family: "Quicksand", sans-serif;
     font-weight: bold;
 }
 
@@ -254,10 +254,6 @@ td {
     gap: 20px;
 }
 
-.location-submit input[type="text"] {
-    font-family: "Quicksand" sans-serif;
-}
-
 .coord-submit, .current-location, .confirm-order {
     cursor: pointer;
     font-family: "Quicksand";
@@ -310,7 +306,7 @@ p.delivery {
 }
 
 .make-review, .reviews-toggle {
-    font-family: "Quicksand" sans-serif;
+    font-family: "Quicksand", sans-serif;
     font-weight: 700;
     background-color: rgb(185,22,53);
     padding: 10px 20px;
@@ -397,4 +393,136 @@ button.reviews-toggle {
     border: none;
     outline: none;
     font-size: 22px;
+}
+
+@media screen and (max-width: 1050px) {
+    .popup-order-confirm {
+        padding: 20px;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .restaurant-dish {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .coord-form {
+        flex-direction: column;
+    }
+
+    .coord-form input {
+        width: 60%;
+    }
+
+    table {
+        margin: 20px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .restaurant-intro {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .restaurant-info {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .restaurant-name {
+        font-size: 24px;
+    }
+
+    .restaurant-dish h2 {
+        font-size: 20px;
+    }
+
+    .reviews-intro h2 {
+        font-size: 20px;
+    }
+
+    .review-headline {
+        flex-direction: column;
+        align-items: flex-start;
+        align-self: stretch;
+    }
+
+    .review-headline span {
+        align-self: flex-end;
+    }
+
+    .restaurant-footer h3 {
+        font-size: 14px;
+    }
+
+    .popup-order-confirm h1 {
+        font-size: 24px;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .main-content {
+        padding: 30px 20px;
+    }
+
+    .restaurant-img {
+        width: 150px;
+        height: 150px;
+    }
+
+    .restaurant-dishes {
+        padding: 20px;
+    }
+    .restaurant.description {
+        font-size: 14px;
+    }
+
+    .restaurant-dish p {
+        font-size: 14px;
+    }
+
+    .restaurant-reviews {
+        padding: 30px 10px;
+    }
+
+    .new-review {
+        padding: 15px;
+    }
+
+    .reviews {
+        padding: 10px 0;
+    }
+
+    .review-text {
+        font-size: 14px;
+    }
+
+    table {
+        width: fit-content;
+        font-size: 14px;
+    }
+
+    tr {
+        gap: 50px;
+    }
+
+    p.delivery {
+        font-size: 14px;
+        margin: 10px;
+    }
+}
+
+@media screen and (max-width: 375px) {
+    .restaurant-footer h3 {
+        display: none;
+    }
+
+    table {
+        margin: 20px 0;
+        padding: 10px;
+    }
 }

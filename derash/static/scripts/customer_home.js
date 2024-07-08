@@ -22,10 +22,14 @@ $(document).ready(() => {
     $('.nearby-restaurants').on('click', () => {
         $(contentDiv).empty();
         $(contentDiv).append(`<div class="nearby-select"><div class="coord-form">
-            <label for="latitude">Latitude:</label>
-            <input id="latitude" class="coord-input" required>
-            <label for="longitude">Longitude:</label>
-            <input id="longitude" class="coord-input" required>
+            <div class="latitude-div">
+                <label for="latitude">Latitude:</label>
+                <input id="latitude" class="coord-input" required>
+            </div>
+            <div>
+                <label for="longitude">Longitude:</label>
+                <input id="longitude" class="coord-input" required>
+            </div>
             <button class="coord-submit"><i class="fa-solid fa-magnifying-glass"></i></button>
         </div><h3>or</h3><div class="other-options"><button class="show-map">Select on map</button><button class="current-location">Use my location</button></div></div>`);
         $('.coord-submit').on('click', () => {

@@ -15,7 +15,6 @@ form {
     margin: 20px;
     padding: 20px 50px;
     border-radius: 30px;
-    width: 20%;
 
     background-color: #fff;
 }
@@ -45,7 +44,7 @@ form fieldset {
 }
 
 .field input {
-    font-family: "Quicksand" sans-serif;
+    font-family: "Quicksand", sans-serif;
     margin-top: 5px;
     padding: 2px 0;
     font-size: 16px;
@@ -54,10 +53,6 @@ form fieldset {
     border: none;
     outline: none;
     border-bottom: 1px solid black;
-}
-
-input[type='text'] {
-    font-family: "Quicksand";
 }
 
 .cartoon {
@@ -76,7 +71,7 @@ input[type='text'] {
 .noodles-1 {
     width: 70px;
     top: 180px;
-    left: 34%;
+    left: 32%;
 }
 
 .delivery-car-1 {
@@ -164,7 +159,7 @@ input[type='text'] {
     border: none;
     border-radius: 20px;
     color: #e9e1e1;
-    font-family: "Quicksand" sans-serif;
+    font-family: "Quicksand";
     font-weight: 700;
 }
 
@@ -207,4 +202,16 @@ form small a {
     align-items: center;
     gap: 5px;
     margin-bottom: 30px;
+}
+
+@media screen and (max-width: 1000px) {
+    .cartoon {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    form {
+        padding: 20px 30px;
+    }
 }
