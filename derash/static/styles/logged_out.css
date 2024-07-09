@@ -318,6 +318,10 @@
         width: 40px;
     }
 
+    .call {
+        padding: 10px;
+    }
+
     .call h2 {
         font-size: 18px;
     }
@@ -326,4 +330,8 @@
         font-size: 12px;
         gap: 5px;
     }
+}
+
+.about-text {
+    font-size: 13px;
 }

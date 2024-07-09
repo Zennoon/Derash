@@ -177,3 +177,16 @@ button, a {
         background-color: rgb(230,69,95);
     }
 }
+
+@media screen and (max-width: 600px) {
+    .footer {
+        font-size: 14px;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .footer {
+        padding: 10px;
+        font-size: 13px;
+    }
+}
