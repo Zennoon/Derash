@@ -36,8 +36,3 @@ class Restaurant(BaseModel, Base):
         """Initializes a new instance"""
         self.image_file = "default_{}.png".format(random.randint(0, 9))
         super().__init__(**kwargs)
-
-    def get_pending_orders(self):
-        """Returns the pending orders of the restaurant"""
-        return (list(filter(lambda order: order.delivered is False,
-                            self.all_orders)))

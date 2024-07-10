@@ -2,3 +2,5 @@ test.py
 setup_mysql.sql
 __pycache__
 images/*
+populate_db.py
+jsconfig.json

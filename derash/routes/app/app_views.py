@@ -10,7 +10,7 @@ from flask_login import current_user, login_required, login_user, logout_user
 from flask_mail import Message
 from PIL import Image
 
-from derash import app, bcrypt, mail
+from derash import app, bcrypt
 from derash.forms.dish import createDish, updateDish
 from derash.forms.login import LoginForm
 from derash.forms.register import RegisterCustomerForm, RegisterDriverForm, RegisterOwnerForm
@@ -49,6 +49,7 @@ def save_image_file(form_picture, folder):
 
 @app.route("/", methods=["GET", "POST"])
 def home():
+    """Handles the / route, responds with the home page for the requesting user"""
     if current_user.is_authenticated:
         if isinstance(current_user, Customer):
             return (render_template("customer_home.html", user=current_user.to_dict()))

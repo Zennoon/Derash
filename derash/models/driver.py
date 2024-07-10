@@ -22,8 +22,3 @@ class Driver(User, Base):
     latitude = Column(Float, nullable=True)
     longitude = Column(Float, nullable=True)
     all_orders = relationship("Order", backref="driver")
-
-    def get_pending_orders(self):
-        """Returns the pending orders of the driver"""
-        return (list(filter(lambda order: order.delivered is False,
-                            self.all_orders)))
